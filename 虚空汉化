@@ -1,7 +1,7 @@
 local Translations = {
 ["Voidware"] = "虚空",
 ["discord.gg/voidware"] = "○○汉化",
-["en🇺🇸"] = "自己掰开🥴",
+["en"] = "自己掰开",
 ["Search"] = "搜索",
 ["Information"] = "信息",
 ["Fun"] = "趣味",
@@ -213,9 +213,9 @@ local Translations = {
 ["Sacrifice Totem"] = "献祭图腾",
 ["Cultist Generator Base"] = "信徒生成基地",
 ["Volcano"] = "火山",
-["据点"] = "据点",
+["据点"] = "要塞",
 ["AlienMothership"] = "外星母舰",
-["AlienCrash_Active"] = "活跃外星坠毁点",
+["AlienCrash_Active"] = "外星事件坠毁点",
 ["Military Base"] = "军事基地",
 ["Snow Clothing Shop"] = "雪地服装店",
 ["Testing Facility"] = "测试设施",
@@ -265,14 +265,15 @@ local Translations = {
 ["NewYork"] = "纽约",
 ["Aesthetic3"] = "美学3",
 ["FakeClouds"] = "假云",
-["LunarNight"] = " lunar之夜",
+["LunarNight"] = " 阴之夜",
 ["PitchDark"] = "漆黑",
 ["Self"] = "自身",
 ["FOV"] = "视野",
-["Inf Yield"] = "Inf Yield",
-["Please notify me if you need credits (erchodev#0 on discord)"] = "需鸣谢请通知（Discord erchodev#0）",
+["Inf Yield"] = "正收益",
+["Please notify me if you need credits (erchodev#0 on discord)"] = "如果有需要请通知我（DC erchodev#0）",
 ["Simple"] = "简单",
 ["Safe"] = "安全",
+["Make sure to join our discord server for updates!"] = "一定要加入我们的DC社区获取最新的更新"
 }
 
 local function translateText(text)
