@@ -1,235 +1,78 @@
 local Translations = {
-    -- 验证界面
-    ["Verification Required"] = "需要验证",
-    ["Enter key here..."] = "在此处输入密钥...",
-    ["Get Key"] = "获取密钥",
-    ["Check Key"] = "检查密钥",
-    ["Join Discord"] = "加入Discord",
-    ["PLEASE: DON'T START SCRIPT IN PLAYERS LOBBY MAKE SURE YOU'RE IN THE GAME"] = "请注意：不要在玩家大厅启动脚本，确保你在游戏中",
-    ["Enter key or get a new one"] = "输入密钥或获取新密钥",
- 
-    -- 信息（Information）标签页
-    ["Important Information"] = "重要信息",
-    ["Please read before using:"] = "使用前请阅读：",
-    ["Day - Time Left: 2:19"] = "白天 - 剩余时间：2分19秒",
-    ["Story Day: 1"] = "剧情天数：1",
-    ["Cultist Attack Day: ×"] = "邪教徒攻击日：×",
-    ["Stronghold Timer: Stronghold not found"] = "要塞计时器：未找到要塞",
-    ["Fire Setup:"] = "火堆设置：",
-    ["Make sure to upgrade your fire to maximum level."] = "确保将你的火堆升级到最高等级。",
-    ["Items may glitch if you teleport them from unopened map areas to your location."] = "如果从未开启的地图区域将物品传送到你的位置，物品可能会出现故障。",
-    ["Transport Options:"] = "传送选项：",
-    ["Each transport feature has two destination options:"] = "每个传送功能有两个目的地选项：",
-    ["· Player: Teleports items to your location"] = "· 玩家：将物品传送到你的位置",
-    ["· Campfire/Scrapper: Teleports to the specified station"] = "· 营火/拆解器：传送到指定站点",
-    ["Choose the option that works best for you!"] = "选择最适合你的选项！",
-    ["Found issues or have ideas?"] = "发现问题或有想法？",
-    ["Join the Discord community! You can find the link"] = "加入Discord社区！你可以找到链接",
-    ["in the Credits section above."] = "在上方的致谢部分。",
-    ["We welcome bug reports and feature suggestions!"] = "我们欢迎错误报告和功能建议！",
- 
-    -- 杂项（Misc）标签页
-    ["Miscellaneous"] = "杂项",
-    ["After turning it off make sure to visit the campfire to restart the real time lighting"] = "关闭后请务必前往营火以重新启动实时照明",
-    ["Always Day Light"] = "始终白天",
-    ["Performance Booster - Please note: Once you activate it, to disable you have to restart the game/server"] = "性能增强器 - 请注意：一旦激活，要禁用它你必须重新启动游戏/服务器",
-    ["Performance Booster"] = "性能增强器",
-    ["Instant Open Chests"] = "立即打开宝箱",
-    ["Map Revealing - Please make sure to max the campfire first, it would be much better"] = "地图显示 - 请务必先将营火升到满级，这样会好得多",
-    ["Teleport Cooldown"] = "传送冷却时间",
-    ["Reveal All Map"] = "显示全部地图",
- 
-    -- 玩家（Player）标签页
-    ["Player Settings"] = "玩家设置",
-    ["Enable Speed"] = "启用速度",
-    ["Speed Value"] = "速度值",
-    ["Enable Jump"] = "启用跳跃",
-    ["Jump Power"] = "跳跃力",
-    ["Fly Mode"] = "飞行模式",
-    ["Fly Speed"] = "飞行速度",
-    ["Important Places Teleportation:"] = "重要地点传送：",
-    ["If teleportation doesn't work, try revealing the map first as some locations"] = "如果传送不起作用，请先尝试显示地图，因为某些位置",
- 
-    -- 战斗（Combat）标签页
-    ["Auto Attack"] = "自动攻击",
-    ["Enable Auto Attack"] = "启用自动攻击",
-    ["Weapon Type"] = "武器类型",
-    ["Target Type"] = "目标类型",
-    ["Ultra Kill"] = "极限击杀",
-    ["Attack Range"] = "攻击范围",
-    ["Instant Reload"] = "立即装填",
-    ["Reload Time"] = "装填时间",
- 
-    -- 树木（Trees）标签页
-    ["Tree Cutting"] = "树木砍伐",
-    ["Enable Auto Tree Chopping"] = "启用自动砍树",
-    ["Ultra Tree Chopping"] = "极限砍树",
-    ["Chopping Range"] = "砍伐范围",
-    ["Target Tree Type"] = "目标树木类型",
-    ["Ultra Chop Tree Count"] = "极限砍伐树木数量",
- 
-    -- 其他标签
-    ["Meteors"] = "陨石",
-    ["Campfire"] = "营火",
-    ["Crafting"] = "制作",
-    ["Food"] = "食物",
+    --["待替换英文"] = "对应中文",
+        -- 验证界面
+      ["Get Key"] = "获取密钥",["Check Key"] = "检查密钥",["Join Discord"] = "加入Discord",["PLEASE: DON'T START SCRIPT IN PLAYERS LOBBY MAKE SURE YOU'RE IN THE GAME"] = "请注意：不要在玩家大厅启动脚本，确保你在游戏中",["Enter key or get a new one"] = "输入密钥或获取新密钥",["Important Information"] = "重要信息",["Please read before using:"] = "使用前请阅读：",["Day - Time Left: 2:19"] = "白天 - 剩余时间：2分19秒",["Story Day: 1"] = "剧情天数：1",["Cultist Attack Day: ×"] = "邪教徒攻击日：×",["Stronghold Timer: Stronghold not found"] = "要塞计时器：未找到要塞",["Fire Setup:"] = "火堆设置：",["Make sure to upgrade your fire to maximum level."] = "确保将你的火堆升级到最高等级。",["Items may glitch if you teleport them from unopened map areas to your location."] = "如果从未开启的地图区域将物品传送到你的位置，物品可能会出现故障。",["Transport Options:"] = "传送选项：",["Each transport feature has two destination options:"] = "每个传送功能有两个目的地选项：",["· Player: Teleports items to your location"] = "· 玩家：将物品传送到你的位置",["· Campfire/Scrapper: Teleports to the specified station"] = "· 营火/拆解器：传送到指定站点",["Choose the option that works best for you!"] = "选择最适合你的选项！",["Found issues or have ideas?"] = "发现问题或有想法？",["Join the Discord community! You can find the link"] = "加入Discord社区！你可以找到链接",["in the Credits section above."] = "在上方的致谢部分。",["We welcome bug reports and feature suggestions!"] = "我们欢迎错误报告和功能建议！",["Miscellaneous"] = "杂项",["After turning it off make sure to visit the campfire to restart the real time lighting"] = "关闭后请务必前往营火以重新启动实时照明",["Always Day Light"] = "始终白天",["Performance Booster - Please note: Once you activate it, to disable you have to restart the game/server"] = "性能增强器 - 请注意：一旦激活，要禁用它你必须重新启动游戏/服务器",["Performance Booster"] = "性能增强器",["Instant Open Chests"] = "立即打开宝箱",["Map Revealing - Please make sure to max the campfire first, it would be much better"] = "地图显示 - 请务必先将营火升到满级，这样会好得多",["Teleport Cooldown"] = "传送冷却时间",["Reveal All Map"] = "显示全部地图",["Player Settings"] = "玩家设置",["Enable Speed"] = "启用速度",["Speed Value"] = "速度值",["Enable Jump"] = "启用跳跃",["Jump Power"] = "跳跃力",["Fly Mode"] = "飞行模式",["Fly Speed"] = "飞行速度",["Important Places Teleportation:"] = "重要地点传送：",["If teleportation doesn't work, try revealing the map first as some locations"] = "如果传送不起作用，请先尝试显示地图，因为某些位置",["Auto Attack"] = "自动攻击",["Enable Auto Attack"] = "启用自动攻击",["Weapon Type"] = "武器类型",["Target Type"] = "目标类型",["Ultra Kill"] = "极限击杀",["Attack Range"] = "攻击范围",["Instant Reload"] = "立即装填",["Reload Time"] = "装填时间",["Tree Cutting"] = "树木砍伐",["Enable Auto Tree Chopping"] = "启用自动砍树",["Ultra Tree Chopping"] = "极限砍树",["Chopping Range"] = "砍伐范围",["Target Tree Type"] = "目标树木类型",["Ultra Chop Tree Count"] = "极限砍伐树木数量",["Meteors"] = "陨石",["Campfire"] = "营火",["Crafting"] = "制作",["Food"] = "食物",["Player: Teleports items to your location"] = "· 玩家：将物品传送到你的位置",["Scrapper"] = "拆解器",["Credits"] = "致谢",["Cultist Attack Day:"] = "邪教徒攻击日：",["Every Tree"] = "所有树木",["Small Tree"] = "小树",["Snowy Small Tree"] = "积雪小树",["Show 99NF"] = "显示 99NF",["Interface Hidden"] = "界面已隐藏",["The interface has been hidden, you can unhide the interface by tapping 'Show'."] = "界面已隐藏，你可以通过点击“显示”来取消隐藏界面。",["ToastyXD Hub"] = "TXD 中心--○○汉化",["Machine"] = "机器",["Transport To:"] = "传送至：",["Teleport Height"] = "传送高度",["studs"] = " studs（单位）",["Tip:"] = "提示：",["Use Transport To: Player if you encounter issues with the scrapper"] = "如果拆解器出现问题，请使用传送至：玩家",["Produce Scrap"] = "生产废料",["Scrap Item Type"] = "废料物品类型",["Produce Wood (⚠️ Use only one option)"] = "生产木材（⚠️ 仅使用一个选项）",["Enable 食物 Transporter"] = "启用食物传送器",["Transport Wait Time"] = "传送等待时间",["食物 Type"] = "食物类型",["Healing Items Transport"] = "治疗物品传送",["Enable Healing Items Transporter"] = "启用治疗物品传送器",["Healing Item Type"] = "治疗物品类型",["Bandage"] = "绷带",["Auto Safe Place"] = "自动安全放置",["Health Threshold"] = "生命阈值",["HP"] = "生命值",["Animal Pelts Transport"] = "动物皮毛传送",["Enable Animal Pelts Transporter"] = "启用动物皮毛传送器",["Animal Pelt Type"] = "动物皮毛类型",["Bunny Foot"] = "兔子脚",["Animal Pelts"] = "动物皮毛",["Healing"] = "治疗",["Weapons & Ammo"] = "武器与弹药",["Chests"] = "宝箱",["Success! Loading script..."] = "成功！正在加载脚本...",["Show Skybase Interface"] = "显示空中基地界面",["Smart Auto Eating"] = "智能自动进食",["Hunger Threshold for Eating"] = "进食饥饿阈值",["points"] = "点",["食物 Search Range"] = "食物搜索范围",["Enhanced Anti-AFK Protection"] = "增强防挂机保护",["To get maximum benefit, build a base in the sky"] = "要获得最大收益，请在空中建造基地",["Then bring crop fields, try to get a large quantity and place them all on the base"] = "然后带上农田，尽量多拿一些并将它们全部放在基地上",["Enable smart eating feature and set hunger to 100-150 as you prefer"] = "启用智能进食功能，根据你的喜好将饥饿值设置为100-150",["Then go to your bed and sleep peacefully"] = "然后去你的床上安稳地睡觉",["Happy gaming!"] = "游戏愉快！",["Ammo Color"] = "弹药颜色",["Entities Color"] = "实体颜色",["Entities"] = "实体",["Players"] = "玩家",["Update All ESP"] = "更新所有ESP",["Clear All ESP"] = "清除所有ESP",["Chest Finder"] = "宝箱查找器",["Item Chest"] = "物品宝箱",["Item Chest2"] = "物品宝箱2",["Item Chest3"] = "物品宝箱3",["Item Chest4"] = "物品宝箱4",["Item Chest5"] = "物品宝箱5",["Item Chest6"] = "物品宝箱6",["Snow Chest1"] = "雪地宝箱1",["Enable Ammo Transporter"] = "启用弹药传送器",["seconds"] = "秒",["Ammo Type"] = "弹药类型",["Enable Weapon Transporter"] = "启用武器传送器",["Enable Armor Transporter"] = "启用护甲传送器",["Armor Type"] = "护甲类型",["Old Axe"] = "老斧头",["Good Axe"] = "好斧头",["Leather Body"] = "皮革护甲",["Iron Body"] = "铁护甲",["Revolver Ammo"] = "左轮弹药",["Rifle Ammo"] = "步枪弹药",["Enable 治疗 Items Transporter"] = "启用治疗物品传送器",["Teleport Location"] = "传送位置",["Available Bodies"] = "可复活的尸体",["Refresh Bodies List"] = "刷新尸体列表",["Revive Selected Player"] = "复活选中的玩家",["Produce Wood"] = "生产木材",["Wood Item Type"] = "木材物品类型",["Produce Cultist Gem"] = "生产邪教徒宝石",["Cultist Gem Item Type"] = "邪教徒宝石物品类型",["Produce Forest Gem"] = "生产森林宝石",["Forest Gem Item Type"] = "森林宝石物品类型",["Smart Auto Refill (By %)"] = "智能自动补充（按百分比）",["Continuous Refill (Always)"] = "持续补充（始终）",["Refill Wait Time"] = "补充等待时间",["Refill Percentage"] = "补充百分比",["Refill Item Type"] = "补充物品类型",["Uses advanced teleportation system"] = "使用高级传送系统",["35 meters up, 5 meters back for perfect drop"] = "上升35米，后退5米以实现完美掉落",["Meteor Cutting"] = "陨石开采",["Enable Auto Meteor Mining"] = "启用自动陨石开采",["Shard Transporter"] = "碎片传送器",["Ultra Meteor Mining"] = "极限陨石开采",["Meteor Mining Range"] = "陨石开采范围",["meters"] = "米",["Target Meteor Type"] = "目标陨石类型",["Ultra Mine Count"] = "极限开采数量",["nodes"] = "节点",["Enable Shard Transporter"] = "启用碎片传送器",["Shard Type"] = "碎片类型",["Prepare Obsidiron Ingot"] = "准备黑曜石锭",["Auto Damage Ice Blocks"] = "自动破坏冰块",["Firerate"] = "射速",["Firerate Speed"] = "射速速度",["sec"] = "秒",["Ice Sword"] = "冰剑",["Infernal Sword"] = "地狱剑",["Laser Sword"] = "激光剑",["General Axe"] = "通用斧头",["Spear"] = "长矛",["Morningstar"] = "晨星（带刺棍）"
+}      
+local translated = setmetatable({}, {__mode = "k"}) -- 弱引用存储已汉化控件
 
-    -- 新增未汉化内容
-    ["Player: Teleports items to your location"] = "· 玩家：将物品传送到你的位置",
-    ["Scrapper"] = "拆解器",
-    ["Found issues or have ideas?"] = "发现问题或有想法？",
-    ["Credits"] = "致谢",
-    ["Cultist Attack Day:"] = "邪教徒攻击日：",
-    ["Every Tree"] = "所有树木",
-    ["Small Tree"] = "小树",
-    ["Snowy Small Tree"] = "积雪小树",
-    ["Show 99NF"] = "显示 99NF",
-    ["Interface Hidden"] = "界面已隐藏",
-    ["The interface has been hidden, you can unhide the interface by tapping 'Show'."] = "界面已隐藏，你可以通过点击“显示”来取消隐藏界面。",
-    ["ToastyXD Hub"] = "TXD 中心--○○汉化",
-    -- 新增未汉化内容
-    ["Machine"] = "机器",
-    ["Transport To:"] = "传送至：",
-    ["Teleport Height"] = "传送高度",
-    ["studs"] = " studs（单位）",
-    ["Tip:"] = "提示：",
-    ["Use Transport To: Player if you encounter issues with the scrapper"] = "如果拆解器出现问题，请使用传送至：玩家",
-    ["Produce Scrap"] = "生产废料",
-    ["Scrap Item Type"] = "废料物品类型",
-    ["Produce Wood (⚠️ Use only one option)"] = "生产木材（⚠️ 仅使用一个选项）",
-    ["Enable 食物 Transporter"] = "启用食物传送器",
-    ["Transport Wait Time"] = "传送等待时间",
-    ["食物 Type"] = "食物类型",
-    ["Healing Items Transport"] = "治疗物品传送",
-    ["Enable Healing Items Transporter"] = "启用治疗物品传送器",
-    ["Healing Item Type"] = "治疗物品类型",
-    ["Bandage"] = "绷带",
-    ["Auto Safe Place"] = "自动安全放置",
-    ["Health Threshold"] = "生命阈值",
-    ["HP"] = "生命值",
-    ["Animal Pelts Transport"] = "动物皮毛传送",
-    ["Enable Animal Pelts Transporter"] = "启用动物皮毛传送器",
-    ["Animal Pelt Type"] = "动物皮毛类型",
-    ["Bunny Foot"] = "兔子脚",
-    ["Animal Pelts"] = "动物皮毛",
-    ["Healing"] = "治疗",
-    ["Weapons & Ammo"] = "武器与弹药",
-    ["Chests"] = "宝箱",
-    ["Success! Loading script..."] = "成功！正在加载脚本...",
-    ["Items may glitch if you teleport them from unopened map areas to your location."] = "如果从未开启的地图区域将物品传送到你的位置，物品可能会出现故障。"
-}
-
-local function translateText(text)
-    if not text or type(text) ~= "string" then return text end
-    
-    if Translations[text] then
-        return Translations[text]
-    end
-    
+-- 翻译函数：先模糊匹配，再完全匹配
+local function translate(text)
+    if type(text) ~= "string" then return text end
+    local res = text
+    -- 模糊替换（抓长文本关键词）
     for en, cn in pairs(Translations) do
-        if text:find(en) then
-            return text:gsub(en, cn)
-        end
+        if en ~= "" then res = res:gsub(en, cn) end
     end
-    
-    return text
+    -- 完全匹配兜底
+    return Translations[res] or res
 end
 
-local function setupTranslationEngine()
-    local success, err = pcall(function()
-        local oldIndex = getrawmetatable(game).__newindex
-        setreadonly(getrawmetatable(game), false)
-        
-        getrawmetatable(game).__newindex = newcclosure(function(t, k, v)
-            if (t:IsA("TextLabel") or t:IsA("TextButton") or t:IsA("TextBox")) and k == "Text" then
-                v = translateText(tostring(v))
-            end
-            return oldIndex(t, k, v)
-        end)
-        
-        setreadonly(getrawmetatable(game), true)
+-- 单个控件汉化+实时监听
+local function localize(obj)
+    if not obj:IsA("TextLabel") and not obj:IsA("TextButton") and not obj:IsA("TextBox") then return end
+    if translated[obj] then return end
+
+    -- 初始汉化
+    pcall(function() obj.Text = translate(obj.Text) end)
+    translated[obj] = true
+
+    -- 监听文本变更
+    obj:GetPropertyChangedSignal("Text"):Connect(function()
+        pcall(function() obj.Text = translate(obj.Text) end)
     end)
-    
-    if not success then
-        warn("元表劫持失败:", err)
-       
-        local translated = {}
-        local function scanAndTranslate()
-            for _, gui in ipairs(game:GetService("CoreGui"):GetDescendants()) do
-                if (gui:IsA("TextLabel") or gui:IsA("TextButton") or gui:IsA("TextBox")) and not translated[gui] then
-                    pcall(function()
-                        local text = gui.Text
-                        if text and text ~= "" then
-                            local translatedText = translateText(text)
-                            if translatedText ~= text then
-                                gui.Text = translatedText
-                                translated[gui] = true
-                            end
-                        end
-                    end)
-                end
+end
+
+-- 批量扫描+监听新控件
+local function setup(parent)
+    if not parent then return end
+    -- 扫描已有控件
+    for _, obj in ipairs(parent:GetDescendants()) do localize(obj) end
+    -- 监听新添加控件
+    parent.DescendantAdded:Connect(function(obj) task.wait(0.05) localize(obj) end)
+end
+
+-- 主初始化
+local function init()
+    local ok = pcall(function()
+        -- 元表劫持（高效覆盖）
+        local mt = getrawmetatable(game)
+        local old = mt.__newindex
+        setreadonly(mt, false)
+        mt.__newindex = newcclosure(function(t, k, v)
+            if (t:IsA("TextLabel") or t:IsA("TextButton") or t:IsA("TextBox")) and k == "Text" then
+                v = translate(tostring(v))
+                translated[t] = true
             end
-            
-            local player = game:GetService("Players").LocalPlayer
-            if player and player:FindFirstChild("PlayerGui") then
-                for _, gui in ipairs(player.PlayerGui:GetDescendants()) do
-                    if (gui:IsA("TextLabel") or gui:IsA("TextButton") or gui:IsA("TextBox")) and not translated[gui] then
-                        pcall(function()
-                            local text = gui.Text
-                            if text and text ~= "" then
-                                local translatedText = translateText(text)
-                                if translatedText ~= text then
-                                    gui.Text = translatedText
-                                    translated[gui] = true
-                                end
-                            end
-                        end)
-                    end
-                end
-            end
-        end
-        
-        local function setupDescendantListener(parent)
-            parent.DescendantAdded:Connect(function(descendant)
-                if descendant:IsA("TextLabel") or descendant:IsA("TextButton") or descendant:IsA("TextBox") then
-                    task.wait(0.1)
-                    pcall(function()
-                        local text = descendant.Text
-                        if text and text ~= "" then
-                            local translatedText = translateText(text)
-                            if translatedText ~= text then
-                                descendant.Text = translatedText
-                            end
-                        end
-                    end)
-                end
-            end)
-        end
-        
-        pcall(setupDescendantListener, game:GetService("CoreGui"))
-        local player = game:GetService("Players").LocalPlayer
-        if player and player:FindFirstChild("PlayerGui") then
-            pcall(setupDescendantListener, player.PlayerGui)
-        end
-        
-        while true do
-            scanAndTranslate()
-            task.wait(3)
-        end
+            return old(t, k, v)
+        end)
+        setreadonly(mt, true)
+    end)
+
+    -- 劫持失败则用兼容模式
+    if not ok then
+        setup(game:GetService("CoreGui")) -- 系统UI
+        setup(game.Players.LocalPlayer:WaitForChild("PlayerGui")) -- 玩家UI
+        -- 监听3D文本
+        game.Workspace.DescendantAdded:Connect(function(obj)
+            if obj:IsA("SurfaceGui") or obj:IsA("BillboardGui") then setup(obj) end
+        end)
     end
 end
 
-task.wait(2)
-
-setupTranslationEngine()
-
-local success, err = pcall(function()
---这下面填加载外部脚本
+task.wait(1)
+init()
 loadstring(game:HttpGet("https://raw.githubusercontent.com/nouralddin-abdullah/99-night/refs/heads/main/main-en.lua"))()
-
+-- 加载外部脚本
+pcall(function()
 
 end)
-
-if not success then
-    warn("加载失败:", err)
-end
