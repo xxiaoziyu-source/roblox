@@ -537,12 +537,13 @@ local StealBrainTab = Window:Tab({
     Locked = false,
 })
 
-local StealBrainTab = Window:Tab({
+-- 墨水游戏：用“墨水瓶”图标贴合“墨水”主题
+local InkGameTab = Window:Tab({
     Title = "墨水游戏",
-    Icon = "🤔",
+    Icon = "fa-flask", -- 实验瓶/墨水瓶风格，适配墨水游戏场景
     Locked = false,
 })
-StealBrainTab:Button({
+InkGameTab:Button({
     Title = "Tex(晓月汉化)",
     Desc = "忍者用不了",
     Locked = false,
@@ -554,16 +555,20 @@ StealBrainTab:Button({
     end
 })
 
-local StealBrainTab = Window:Tab({
+-- 被遗弃：用“禁止/废弃”图标体现“被遗弃”的无效状态
+local AbandonedTab = Window:Tab({
     Title = "被遗弃",
-    Icon = "×",
+    Icon = "fa-ban", -- 禁止符号，直观表达“被遗弃、不可用”
     Locked = false,
 })
 
-local StealBrainTab = Window:Tab({
+-- GB：用“游戏手柄”图标呼应“GB”（游戏相关）属性
+local GBTab = Window:Tab({
     Title = "GB",
-    Icon = "999",
+    Icon = "fa-gamepad", -- 游戏手柄，贴合GB（掌机/游戏）主题
     Locked = false,
 })
+
+
 
  print("完美结合版加载完成，AlienX美观样式+所有功能均正常")
