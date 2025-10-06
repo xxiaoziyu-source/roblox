@@ -136,7 +136,7 @@ local rainbowColor = ColorSequence.new({
 })
 
 local Window = WindUI:CreateWindow({
-    Title = "神秘汉化脚本1.8",
+    Title = "神秘汉化脚本1.8(作者专用)",
     Icon = "👑",
     Author = "作者:快手○○",
     Size = UDim2.fromOffset(400, 350),
@@ -654,6 +654,28 @@ qwe:Button({
     Callback = function()
         pcall(function()
              loadstring(game:HttpGet('https://raw.githubusercontent.com/Kenjihin69/Kenjihin69/refs/heads/main/Mahitotsbupdate'))()
+            print("9178加载成功")
+        end)
+    end
+})
+qwe:Button({
+    Title = "火车头",
+    Desc = "只能在最强战场服务器里用",
+    Locked = false,
+    Callback = function()
+        pcall(function()
+             getgenv().settings = {
+    ["morph"] = {
+        ["enabled"] = false,
+        ["dontchangeskincolor"] = false,
+    },
+    ["ult_forcewalkspeed"] = true, -- forces walkspeed even if set to 0
+    ["ult_walkspeed"] = 64, -- how fast you walk in ult
+    ["tp_duration"] = 0.15 -- how long it takes to tp
+}
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/skibiditoiletfan2007/ATrainSounds/refs/heads/main/ATrain.lua"))()
+
             print("9178加载成功")
         end)
     end
