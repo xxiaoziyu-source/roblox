@@ -554,12 +554,33 @@ InkGameTab:Button({
         end)
     end
 })
-
+InkGameTab:Button({
+    Title = "XA(中文)",
+    Desc = "忍者用会卡顿",
+    Locked = false,
+    Callback = function()
+        pcall(function()
+             loadstring(game:HttpGet("https://raw.githubusercontent.com/Xingtaiduan/Script/refs/heads/main/Games/墨水游戏.lua"))()
+            print("9178加载成功")
+        end)
+    end
+})
 -- 被遗弃：用“禁止/废弃”图标体现“被遗弃”的无效状态
 local AbandonedTab = Window:Tab({
     Title = "被遗弃",
     Icon = "bell",
     Locked = false,
+})
+AbandonedTab:Button({
+    Title = "虚空(汉化)",
+    Desc = "完全免费的🥰",
+    Locked = false,
+    Callback = function()
+        pcall(function()
+             loadstring(game:HttpGet("https://raw.githubusercontent.com/ke9460394-dot/ugik/refs/heads/main/Vape.lua"))()
+            print("9178加载成功")
+        end)
+    end
 })
 
 local GBTab = Window:Tab({
@@ -639,4 +660,39 @@ GBTab:Button({
         end)
     end
 })
+
+
+local doors = Window:Tab({
+    Title = "doors",
+    Icon = "bell",
+    Locked = false,
+})
+
+local Loggingtycoon = Window:Tab({
+    Title = "伐木大亨2",
+    Icon = "bell",
+    Locked = false,
+})
+Loggingtycoon:Button({
+    Title = "LuaWare(汉化)",
+    Desc = "汉化的",
+    Locked = false,
+    Callback = function()
+        pcall(function()
+             loadstring(game:HttpGet("https://raw.githubusercontent.com/XiaoYunCN/UWU/main/LuaWare.lua", true))()
+            print("9178加载成功")
+        end)
+    end
+})
+
  print("完美结合版加载完成，AlienX美观样式+所有功能均正常")
+
+
+
+
+
+
+
+
+
+
