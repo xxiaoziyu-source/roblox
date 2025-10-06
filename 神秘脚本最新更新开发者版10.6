@@ -463,7 +463,17 @@ DeadRailTab:Button({
         end)
     end
 })
-
+DeadRailTab:Button({
+    Title = "RlNGta(Kenn汉化)",
+    Desc = "汉化的还是全的",
+    Locked = false,
+    Callback = function()
+        pcall(function()
+             loadstring(game:HttpGet("https://raw.githubusercontent.com/ke9460394-dot/ugik/refs/heads/main/%E6%AD%BB%E9%93%81%E8%BD%A8.lua"))()
+            print("R加载成功")
+        end)
+    end
+})
 -- 5. 森林中99个夜晚标签（唯一变量名：ForestNightTab）
 local ForestNightTab = Window:Tab({
     Title = "森林中99个夜晚",
@@ -524,6 +534,18 @@ ForestNightTab:Button({
 local StealBrainTab = Window:Tab({
     Title = "偷走脑红",
     Icon = "brain",
+    Locked = false,
+})
+
+local StealBrainTab = Window:Tab({
+    Title = "被遗弃",
+    Icon = "×",
+    Locked = false,
+})
+
+local StealBrainTab = Window:Tab({
+    Title = "GB",
+    Icon = "999",
     Locked = false,
 })
 
