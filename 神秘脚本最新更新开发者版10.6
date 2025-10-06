@@ -195,6 +195,238 @@ GeneralTab_Alien:Slider({
         end
     end
 })
+GeneralTab_Alien:Slider({
+    Title = "跳跃",
+    Value = {
+        Min = 50,
+        Max = 200,
+        Default = 50,
+    },
+    Increment = 1,
+    Callback = function(value)
+        if game.Players.LocalPlayer.Character then
+            local humanoid = game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid")
+            if humanoid then
+                humanoid.JumpPower = value
+            end
+        end
+    end
+})
+
+GeneralTab_Alien:Slider({
+    Title = "重力",
+    Value = {
+        Min = 0.1,
+        Max = 500.0,
+        Default = 196.2,
+    },
+    Increment = 0.1, 
+    Callback = function(value)
+        game.Workspace.Gravity = value
+    end
+})
+
+local originalAmbient = game.Lighting.Ambient 
+GeneralTab_Alien:Toggle({
+    Title = "夜视",
+    Value = false,
+    Callback = function(state)
+        if state then
+            game.Lighting.Ambient = Color3.new(1, 1, 1)  
+        else
+            game.Lighting.Ambient = originalAmbient or Color3.new(0, 0, 0)
+        end
+    end
+})
+
+local Noclip = false
+local NoclipConnection
+GeneralTab_Alien:Toggle({
+    Title = "穿墙",
+    Value = false,
+    Callback = function(state)
+        if state then
+            Noclip = true
+            if NoclipConnection then
+                NoclipConnection:Disconnect()
+            end
+            NoclipConnection = game:GetService("RunService").Stepped:Connect(function()
+                if Noclip and game.Players.LocalPlayer.Character then
+                    for _, part in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
+                        if part:IsA("BasePart") then
+                            part.CanCollide = false
+                        end
+                    end
+                end
+            end)
+        else
+            Noclip = false
+            if NoclipConnection then
+                NoclipConnection:Disconnect()
+                NoclipConnection = nil
+            end
+        end
+    end
+})
+
+GeneralTab_Alien:Button({
+    Title = "点击传送工具",
+    Callback = function()
+        local mouse = game.Players.LocalPlayer:GetMouse() 
+        local tool = Instance.new("Tool") 
+        tool.RequiresHandle = false 
+        tool.Name = "点击传送" 
+        tool.Activated:Connect(function() 
+            if game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
+                local pos = mouse.Hit.Position + Vector3.new(0, 2.5, 0) 
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(pos.X, pos.Y, pos.Z)
+            end
+        end) 
+        tool.Parent = game.Players.LocalPlayer.Backpack
+    end
+})
+
+GeneralTab_Alien:Button({
+    Title = "肘击",
+    Callback = function()
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/0Ben1/fe/main/obf_5wpM7bBcOPspmX7lQ3m75SrYNWqxZ858ai3tJdEAId6jSI05IOUB224FQ0VSAswH.lua.txt', true))()
+    end
+})
+
+GeneralTab_Alien:Button({
+    Title = "无敌少侠飞行",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/H20CalibreYT/SystemBroken/main/script"))()
+    end
+})
+
+GeneralTab_Alien:Button({
+    Title = "egor假延迟",
+    Callback = function()
+        loadstring(game:HttpGet("https://pastebin.com/raw/GBmWn4eZ", true))()
+    end
+})
+
+GeneralTab_Alien:Button({
+    Title = "玩家实时数据",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/ke9460394-dot/ugik/refs/heads/main/%E5%AE%9E%E6%97%B6%E6%95%B0%E6%8D%AE.txt", true))()
+    end
+})
+
+GeneralTab_Alien:Button({
+    Title = "飞行v3",
+    Callback = function()
+       loadstring(game:HttpGet("https://raw.githubusercontent.com/Jay907692/Jay/8b94c47bd5969608438fa1ee57f34b1350789caa/飞行脚本", true))()
+    end
+})
+
+GeneralTab_Alien:Button({
+    Title = "透视",
+    Callback = function()
+        local Players = game:GetService("Players")
+        local RunService = game:GetService("RunService")
+        
+        local highlight = Instance.new("Highlight")
+        highlight.Name = "Highlight"
+        highlight.FillColor = Color3.new(1, 0, 0) 
+        highlight.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop 
+
+        local function createESP(character)
+            local humanoidRootPart = character:FindFirstChild("HumanoidRootPart")
+            if not humanoidRootPart then return end
+            
+            if not humanoidRootPart:FindFirstChild("Highlight") then
+                local highlightClone = highlight:Clone()
+                highlightClone.Adornee = character
+                highlightClone.Parent = humanoidRootPart
+            end
+
+            if not humanoidRootPart:FindFirstChild("PlayerNameDisplay") then
+                local billboardGui = Instance.new("BillboardGui")
+                billboardGui.Name = "PlayerNameDisplay"
+                billboardGui.Adornee = humanoidRootPart
+                billboardGui.Size = UDim2.new(0, 150, 0, 20)
+                billboardGui.StudsOffset = Vector3.new(0, 2.8, 0)
+                billboardGui.AlwaysOnTop = true
+
+                local textLabel = Instance.new("TextLabel")
+                textLabel.Parent = billboardGui
+                textLabel.Size = UDim2.new(1, 0, 1, 0)
+                textLabel.BackgroundTransparency = 1
+                textLabel.Text = character.Parent.Name 
+                textLabel.TextColor3 = Color3.new(1, 1, 1)
+                textLabel.TextSize = 9
+                textLabel.TextScaled = false
+
+                billboardGui.Parent = humanoidRootPart
+            end
+        end
+
+        for _, player in ipairs(Players:GetPlayers()) do
+            if player ~= game.Players.LocalPlayer and player.Character then
+                createESP(player.Character)
+            end
+        end
+
+        game.Players.PlayerAdded:Connect(function(player)
+            if player ~= game.Players.LocalPlayer then
+                player.CharacterAdded:Connect(function(character)
+                    createESP(character)
+                end)
+            end
+        end)
+
+        game.Players.PlayerRemoving:Connect(function(player)
+            if player.Character and player.Character:FindFirstChild("HumanoidRootPart") then
+                local humanoidRootPart = player.Character.HumanoidRootPart
+                if humanoidRootPart:FindFirstChild("Highlight") then humanoidRootPart.Highlight:Destroy() end
+                if humanoidRootPart:FindFirstChild("PlayerNameDisplay") then humanoidRootPart.PlayerNameDisplay:Destroy() end
+            end
+        end)
+
+        RunService.Heartbeat:Connect(function()
+            for _, player in ipairs(Players:GetPlayers()) do
+                if player ~= game.Players.LocalPlayer and player.Character then
+                    createESP(player.Character)
+                end
+            end
+        end)
+        
+        print("透视已开启")
+    end
+})
+
+GeneralTab_Alien:Button({
+    Title = "前后空翻",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Xingyan777/roblox/refs/heads/main/%E6%97%8B%E8%BD%AC.txt", true))()
+    end
+})
+
+GeneralTab_Alien:Toggle({
+    Title = "爬墙（关不了）",
+    Value = false,
+    Callback = function(state)
+        if state then
+            loadstring(game:HttpGet("https://pastebin.com/raw/zXk4Rq2r", true))()
+        end
+    end
+})
+
+GeneralTab_Alien:Button({
+    Title = "隐身",
+    Callback = function()
+        loadstring(game:HttpGet("https://pastebin.com/raw/vP6CrQJj", true))()
+    end
+})
+
+GeneralTab_Alien:Button({
+    Title = "无限跳",
+    Callback = function()
+        loadstring(game:HttpGet("https://pastebin.com/raw/V5PQy3y0", true))()
+    end
+})
 
 -- 3. 其他脚本标签（唯一变量名：OtherScriptTab）
 local OtherScriptTab = Window:Tab({
@@ -238,7 +470,7 @@ local ForestNightTab = Window:Tab({
     Icon = "tree-pine",
     Locked = false,
 })
-local Section = Tab:Section({ 
+local Section = ForestNightTab:Section({ 
     Title = "我是大睾丸🤔😍",
     TextXAlignment = "Left",
     TextSize = 25,
