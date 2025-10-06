@@ -164,7 +164,7 @@ local NoticeTab_Alien = Window:Tab({
 })
 NoticeTab_Alien:Button({
     Title = "脚本说明",
-    Desc = "感谢黄某,雪花,本熊,老鼠,乌龟",
+    Desc = "感谢黄某,雪花,本熊,老鼠,乌龟,Kenny",
     Locked = false,
     Callback = function()
         print("脚本说明触发")
@@ -540,7 +540,7 @@ local StealBrainTab = Window:Tab({
 -- 墨水游戏：用“墨水瓶”图标贴合“墨水”主题
 local InkGameTab = Window:Tab({
     Title = "墨水游戏",
-    Icon = "fa-flask", -- 实验瓶/墨水瓶风格，适配墨水游戏场景
+    Icon = "bell",
     Locked = false,
 })
 InkGameTab:Button({
@@ -549,7 +549,7 @@ InkGameTab:Button({
     Locked = false,
     Callback = function()
         pcall(function()
-             loadstring(game:HttpGet("https://getnative.cc/script/loader"))()
+             loadstring(game:HttpGet("https://raw.githubusercontent.com/hdjsjjdgrhj/script-hub/refs/heads/main/TexRBLlX"))()
             print("9178加载成功")
         end)
     end
@@ -558,17 +558,34 @@ InkGameTab:Button({
 -- 被遗弃：用“禁止/废弃”图标体现“被遗弃”的无效状态
 local AbandonedTab = Window:Tab({
     Title = "被遗弃",
-    Icon = "fa-ban", -- 禁止符号，直观表达“被遗弃、不可用”
+    Icon = "bell",
     Locked = false,
 })
 
--- GB：用“游戏手柄”图标呼应“GB”（游戏相关）属性
 local GBTab = Window:Tab({
     Title = "GB",
-    Icon = "fa-gamepad", -- 游戏手柄，贴合GB（掌机/游戏）主题
+    Icon = "bell",
     Locked = false,
 })
 
 
+local InkGameTab = Window:Tab({
+    Title = "最坚强的战场",
+    Icon = "bell",
+    Locked = false,
+})
+
+-- 被遗弃：用“禁止/废弃”图标体现“被遗弃”的无效状态
+local AbandonedTab = Window:Tab({
+    Title = "死亡之死",
+    Icon = "bell",
+    Locked = false,
+})
+
+local GBTab = Window:Tab({
+    Title = "造船寻宝",
+    Icon = "bell",
+    Locked = false,
+})
 
  print("完美结合版加载完成，AlienX美观样式+所有功能均正常")
