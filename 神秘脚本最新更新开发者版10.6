@@ -582,7 +582,17 @@ AbandonedTab:Button({
         end)
     end
 })
-
+AbandonedTab:Button({
+    Title = "AlienX(中文)",
+    Desc = "加载不出来的可以换注入器了",
+    Locked = false,
+    Callback = function()
+        pcall(function()
+             loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/64c115c468ba4af6ddc2f73daed2595c.lua"))()
+            print("9178加载成功")
+        end)
+    end
+})
 local GBTab = Window:Tab({
     Title = "GB",
     Icon = "bell",
@@ -621,12 +631,33 @@ GBTab:Button({
         end)
     end
 })
-local InkGameTab = Window:Tab({
+local qwe = Window:Tab({
     Title = "最坚强的战场",
     Icon = "bell",
     Locked = false,
 })
-
+qwe:Button({
+    Title = "最强战场1",
+    Desc = "可以闪避普通攻击",
+    Locked = false,
+    Callback = function()
+        pcall(function()
+             loadstring(game:HttpGet("https://raw.githubusercontent.com/IdkRandomUsernameok/PublicAssets/refs/heads/main/Releases/MUI.lua"))()
+            print("9178加载成功")
+        end)
+    end
+})
+qwe:Button({
+    Title = "最强战场2",
+    Desc = "用了你就知道了",
+    Locked = false,
+    Callback = function()
+        pcall(function()
+             loadstring(game:HttpGet('https://raw.githubusercontent.com/Kenjihin69/Kenjihin69/refs/heads/main/Mahitotsbupdate'))()
+            print("9178加载成功")
+        end)
+    end
+})
 -- 被遗弃：用“禁止/废弃”图标体现“被遗弃”的无效状态
 local AbandonedTab = Window:Tab({
     Title = "死亡之死",
@@ -667,7 +698,28 @@ local doors = Window:Tab({
     Icon = "bell",
     Locked = false,
 })
-
+doors:Button({
+    Title = "Smshax(汉化)",
+    Desc = "汉化的较全",
+    Locked = false,
+    Callback = function()
+        pcall(function()
+             loadstring(game:HttpGet("https://raw.githubusercontent.com/ke9460394-dot/ugik/refs/heads/main/DOORS.lua"))()
+            print("9178加载成功")
+        end)
+    end
+})
+doors:Button({
+    Title = "VelocityX(汉化)",
+    Desc = "汉化",
+    Locked = false,
+    Callback = function()
+        pcall(function()
+             loadstring(game:HttpGet("https://raw.githubusercontent.com/ke9460394-dot/ugik/refs/heads/main/VelocityX.lua"))()
+            print("9178加载成功")
+        end)
+    end
+})
 local Loggingtycoon = Window:Tab({
     Title = "伐木大亨2",
     Icon = "bell",
