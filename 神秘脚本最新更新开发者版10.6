@@ -136,7 +136,7 @@ local rainbowColor = ColorSequence.new({
 })
 
 local Window = WindUI:CreateWindow({
-    Title = "神秘汉化脚本(作者专用)1.8",
+    Title = "神秘汉化脚本1.8(作者专用)",
     Icon = "rbxassetid://4483362748",
     Author = "作者:快手○○",
     Size = UDim2.fromOffset(400, 350),
@@ -173,7 +173,7 @@ NoticeTab_Alien:Button({
 
 -- 2. 通用标签（核心修复：变量名GeneralTab_Alien，与调用一致）
 local GeneralTab_Alien = Window:Tab({
-    Title = "通用",
+    Title = "通用(增强版本)",
     Icon = "bell",
     Locked = false,
 })
@@ -181,7 +181,7 @@ GeneralTab_Alien:Slider({
     Title = "移速",
     Value = {
         Min = 16,
-        Max = 120000,
+        Max = 12000000,
         Default = 16,
     },
     Increment = 1,
@@ -535,6 +535,23 @@ local StealBrainTab = Window:Tab({
     Title = "偷走脑红",
     Icon = "brain",
     Locked = false,
+})
+
+local StealBrainTab = Window:Tab({
+    Title = "墨水游戏",
+    Icon = "🤔",
+    Locked = false,
+})
+DeadRailTab:Button({
+    Title = "Tex(晓月汉化)",
+    Desc = "忍者用不了",
+    Locked = false,
+    Callback = function()
+        pcall(function()
+             loadstring(game:HttpGet("https://getnative.cc/script/loader"))()
+            print("9178加载成功")
+        end)
+    end
 })
 
 local StealBrainTab = Window:Tab({
