@@ -749,6 +749,57 @@ Loggingtycoon:Button({
     end
 })
 
+
+local ABC = Window:Tab({
+    Title = "植物大战脑红",
+    Icon = "bell",
+    Locked = false,
+})
+ABC:Button({
+    Title = "HackManHub(oo汉化)",
+    Desc = "汉话",
+    Locked = false,
+    Callback = function()
+        pcall(function()
+             loadstring(game:HttpGet("https://raw.githubusercontent.com/xxiaoziyu-source/-/e2395c7c065c3763ec97e1302ad577db56e7cba9/%E6%A4%8D%E7%89%A9%E5%A4%A7%E6%88%98%E8%84%91%E7%BA%A2%E7%9A%84%E6%B1%89%E8%AF%9D"))()
+            print("9178加载成功")
+        end)
+    end
+})
+
+-- 被遗弃：用“禁止/废弃”图标体现“被遗弃”的无效状态
+local WJHO = Window:Tab({
+    Title = "挖掘后院",
+    Icon = "bell",
+    Locked = false,
+})
+WJHO:Button({
+    Title = "老外(没汉化)",
+    Desc = "功能不咋多",
+    Locked = false,
+    Callback = function()
+        pcall(function()
+             loadstring(game:HttpGet("https://rawscripts.net/raw/Dig-the-Backyard-Alpha-OP-Script-34131"))()
+            print("9178加载成功")
+        end)
+    end
+})
+local SXMS = Window:Tab({
+    Title = "数学谋杀案",
+    Icon = "bell",
+    Locked = false,
+})
+SXMS:Button({
+    Title = "自动回答",  
+    Desc = "点一下就开启了",
+    Locked = false,
+    Callback = function()
+        pcall(function()
+             loadstring(game:HttpGet("https://rawscripts.net/raw/Math-Murder-Auto-Answer-43521"))()
+            print("9178加载成功")
+        end)
+    end
+})
  print("完美结合版加载完成，AlienX美观样式+所有功能均正常")
 
 
