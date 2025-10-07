@@ -570,6 +570,17 @@ StealBrainTab:Button({
         end)
     end
 })
+StealBrainTab:Button({
+    Title = "超强变出脑红",
+    Desc = "顶多和朋友装13",
+    Locked = false,
+    Callback = function()
+        pcall(function()
+             loadstring(game:HttpGet("https://raw.githubusercontent.com/xxiaoziyu-source/-/refs/heads/main/%E9%80%9A%E5%B7%9E%E9%97%B9%E7%BA%A2%E6%B1%89%E5%8C%96"))()
+            print("9178加载成功")
+        end)
+    end
+})
 -- 墨水游戏：用“墨水瓶”图标贴合“墨水”主题
 local InkGameTab = Window:Tab({
     Title = "墨水游戏",
