@@ -136,7 +136,7 @@ local rainbowColor = ColorSequence.new({
 })
 
 local Window = WindUI:CreateWindow({
-    Title = "神秘汉化脚本1.8",
+    Title = "神秘汉化脚本1.9",
     Icon = "👑",
     Author = "作者:快手○○",
     Size = UDim2.fromOffset(400, 350),
@@ -170,7 +170,14 @@ NoticeTab_Alien:Button({
         print("脚本说明触发")
     end
 })
-
+NoticeTab_Alien:Button({
+    Title = "更新内容",
+    Desc = "死亡之死脚本做了汉化,99页新增一个脚本",
+    Locked = false,
+    Callback = function()
+        print("脚本说明触发")
+    end
+})
 -- 2. 通用标签（核心修复：变量名GeneralTab_Alien，与调用一致）
 local GeneralTab_Alien = Window:Tab({
     Title = "通用(增强版本)",
@@ -481,7 +488,7 @@ local ForestNightTab = Window:Tab({
     Locked = false,
 })
 local Section = ForestNightTab:Section({ 
-    Title = "我是大睾丸🤔😍",
+    Title = "最好用的99页脚本↓↓",
     TextXAlignment = "Left",
     TextSize = 25,
 })
@@ -529,7 +536,22 @@ ForestNightTab:Button({
         end)
     end
 })
-
+local Section = ForestNightTab:Section({ 
+    Title = "没汉化的脚本↓↓↓",
+    TextXAlignment = "Left",
+    TextSize = 25,
+})
+ForestNightTab:Button({
+    Title = "Ronix",
+    Desc = "远古脚本",  
+    Locked = false,
+    Callback = function()
+        pcall(function()
+             loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/7d8a2a1a9a562a403b52532e58a14065.lua"))()
+            print("9178加载成功")
+        end)
+    end
+})
 -- 6. 偷走脑红标签（唯一变量名：StealBrainTab）
 local StealBrainTab = Window:Tab({
     Title = "偷走脑红",
