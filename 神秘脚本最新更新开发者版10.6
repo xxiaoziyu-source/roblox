@@ -558,7 +558,17 @@ local StealBrainTab = Window:Tab({
     Icon = "brain",
     Locked = false,
 })
-
+StealBrainTab:Button({
+    Title = "VORTEX(没汉化)",
+    Desc = "现在还能用",
+    Locked = false,
+    Callback = function()
+        pcall(function()
+             loadstring(game:HttpGet("https://backend.unban.cc/api/lua/loader"))()
+            print("9178加载成功")
+        end)
+    end
+})
 -- 墨水游戏：用“墨水瓶”图标贴合“墨水”主题
 local InkGameTab = Window:Tab({
     Title = "墨水游戏",
