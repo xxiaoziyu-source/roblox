@@ -659,6 +659,17 @@ AbandonedTab:Button({
         end)
     end
 })
+AbandonzdTab:Button({
+    Title = "SNT中心(Kenny汉化)",
+    Desc = "依旧",  
+    Locked = false,
+    Callback = function()
+        pcall(function()
+             loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/7d8a2a1a9a562a403b52532e58a14065.lua"))()
+            print("9178加载成功")
+        end)
+    end
+})
 local GBTab = Window:Tab({
     Title = "GB",
     Icon = "bell",
