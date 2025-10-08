@@ -593,7 +593,7 @@ StealBrainTab:Button({
     end
 })
 StealBrainTab:Button({
-    Title = "超强变出脑红",
+    Title = "超强变出脑红(要解卡)",
     Desc = "顶多和朋友装13",
     Locked = false,
     Callback = function()
@@ -631,6 +631,89 @@ InkGameTab:Button({
         end)
     end
 })
+-- 1. 仅当标签页创建成功后，才插入 AX 脚本按钮
+if StealBrainTab and StealBrainTab.Button then
+    StealBrainTab:Button({
+        Title = "AX完美汉化(最新版)",
+        Desc = "适配墨水游戏，需先配置有效卡密",  
+        Locked = false,
+        Callback = function()
+            -- 此处保留原 AX 脚本核心逻辑（卡密检查、加载代码），无需修改
+            pcall(function()
+                local HttpService = game:GetService("HttpService")
+                local Players = game:GetService("Players")
+                local LocalPlayer = Players.LocalPlayer or Players.PlayerAdded:Wait()
+                local readFunc, writeFunc, getPathFunc
+                
+                pcall(function()
+                    if type(syn) == "table" then
+                        readFunc = syn.readfile or readfile
+                        writeFunc = syn.writefile or writefile
+                        getPathFunc = syn.datapath
+                    else
+                        readFunc = readfile or readFile
+                        writeFunc = writefile or writeFile
+                        getPathFunc = function() return "Roblox/Scripts" end
+                    end
+                end)
+
+                local AX_CONFIG = {
+                    keyId = "AX_KEY",
+                    scriptUrl = "https://api.luarmor.net/files/v4/loaders/2401c37b94195677018fb18f72dec3fe.lua",
+                    unlockUrl = "https://ads.luarmor.net/get_key?for=AX__KEY_SYSTEM-AEkCrvrYBzna"
+                }
+
+                local KeyManager = {
+                    KEY_FILE_PATH = (getPathFunc and getPathFunc() or "Roblox/Scripts") .. "/ScriptKeys.json",
+                    readSavedKeys = function(self)
+                        if not readFunc then return {} end
+                        local fileExists = pcall(function() readFunc(self.KEY_FILE_PATH) end)
+                        if not fileExists then return {} end
+                        
+                        local success, content = pcall(readFunc, self.KEY_FILE_PATH)
+                        if not success or not content or content == "" then return {} end
+                        
+                        local ok, keys = pcall(function() return HttpService:JSONDecode(content) end)
+                        return ok and keys or {}
+                    end,
+                    isAxKeyValid = function(self)
+                        local keys = self:readSavedKeys()
+                        local axKeyData = keys[AX_CONFIG.keyId]
+                        if not axKeyData or not axKeyData.value then return false end
+                        
+                        local currentTime = os.time()
+                        local keyAge = currentTime - (axKeyData.timestamp or 0)
+                        local expirySeconds = (axKeyData.expiryDays or 30) * 24 * 60 * 60
+                        return keyAge <= expirySeconds
+                    end,
+                    getValidAxKey = function(self)
+                        if not self:isAxKeyValid() then return nil end
+                        local keys = self:readSavedKeys()
+                        return keys[AX_CONFIG.keyId].value
+                    end
+                }
+                local keyManager = setmetatable({}, {__index = KeyManager})
+
+                local validAxKey = keyManager:getValidAxKey()
+                if not validAxKey then
+                    pcall(function() setclipboard(AX_CONFIG.unlockUrl) end)
+                    if LocalPlayer and LocalPlayer:Kick then
+                        LocalPlayer:Kick("AX脚本卡密无效/未设置！\n已复制卡密获取链接")
+                    end
+                    return
+                end
+
+                pcall(function() getgenv().ADittoKey = validAxKey end)
+                pcall(function() getgenv().script_key = validAxKey end)
+                loadstring(game:HttpGet(AX_CONFIG.scriptUrl))()
+                print("AX汉化脚本加载成功")
+            end)
+        end
+    })
+else
+    print("AlienX UI 接口不匹配，需按该 UI 规范修改标签页/按钮创建方法")
+end
+
 -- 被遗弃：用“禁止/废弃”图标体现“被遗弃”的无效状态
 local AbandonedTab = Window:Tab({
     Title = "被遗弃",
