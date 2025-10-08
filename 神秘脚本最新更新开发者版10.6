@@ -516,12 +516,12 @@ ForestNightTab:Button({
     end
 })
 ForestNightTab:Button({
-    Title = "TXD中心(oo汉化)",
-    Desc = "卡密toastytoplanetsvbrainrots完成80%汉化",
+    Title = "TXD中心(全汉化)",
+    Desc = "卡密toastytoplanetsvbrainrots完成96%汉化",
     Locked = false,
     Callback = function()
         pcall(function()
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/xxiaoziyu-source/roblox/fc1074543394626b81c1787b0e56715dec8569ee/TN%E4%B8%AD%E5%BF%83%E6%B1%89%E5%8C%96", true))()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/54863r/XHnb/refs/heads/main/烤面包全汉"))()
             print("TXD中心汉化加载成功")
         end)
     end
@@ -543,12 +543,23 @@ local Section = ForestNightTab:Section({
     TextSize = 25,
 })
 ForestNightTab:Button({
-    Title = "Ronix",
+    Title = "Ronix(没汉化)",
     Desc = "远古脚本",  
     Locked = false,
     Callback = function()
         pcall(function()
              loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/7d8a2a1a9a562a403b52532e58a14065.lua"))()
+            print("9178加载成功")
+        end)
+    end
+})
+ForestNightTab:Button({
+    Title = "Nazuro(没汉化)",
+    Desc = "不用解卡密",  
+    Locked = false,
+    Callback = function()
+        pcall(function()
+             loadstring(game:HttpGet("https://nazuro.xyz/99nights"))()
             print("9178加载成功")
         end)
     end
@@ -654,7 +665,7 @@ GBTab:Button({
     end
 })
 GBTab:Button({
-    Title = "G&B脚本(不知名1)",
+    Title = "明日清风",
     Desc = "没用过",
     Locked = false,
     Callback = function()
@@ -665,7 +676,7 @@ GBTab:Button({
     end
 })
 GBTab:Button({
-    Title = "G&B脚本(不知名2)",
+    Title = "鲨鱼清风",
     Desc = "依旧没用过",
     Locked = false,
     Callback = function()
