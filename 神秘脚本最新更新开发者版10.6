@@ -482,6 +482,17 @@ DeadRailTab:Button({
         end)
     end
 })
+DeadRailTab:Button({
+    Title = "mtaskh(汉化)",
+    Desc = "谁汉化的我不知道",  
+    Locked = false,
+    Callback = function()
+        pcall(function()
+             loadstring(game:HttpGet("https://github.com/mtaskhh/script/raw/refs/heads/main/moonmt.lua"))()
+            print("9178加载成功")
+        end)
+    end
+})
 -- 5. 森林中99个夜晚标签（唯一变量名：ForestNightTab）
 local ForestNightTab = Window:Tab({
     Title = "森林中99个夜晚",
