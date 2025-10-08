@@ -877,6 +877,24 @@ SXMS:Button({
         end)
     end
 })
+
+local 114514 = Window:Tab({
+    Title = "免费私服",
+    Icon = "bell",
+    Locked = false,
+})
+ForestNightTab:Button({
+    Title = "免费私服脚本(没汉化J",
+    Desc = "需要进入你要弄的私服服务器",  
+    Locked = false,
+    Callback = function()
+        pcall(function()
+             loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-FREE-PRIVATE-SERVER-GUI-ANY-GAME-55939"))()
+            print("9178加载成功")
+        end)
+    end
+})
+
  print("完美结合版加载完成，AlienX美观样式+所有功能均正常")
 
 
