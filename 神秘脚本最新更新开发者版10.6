@@ -883,6 +883,47 @@ SXMS:Button({
     end
 })
 
+
+local yui = Window:Tab({
+    Title = "请捐赠",
+    Icon = "bell",
+    Locked = false,
+})
+yui:Button({
+    Title = "自动圈罗宝",
+    Desc = "全自动",
+    Locked = false,
+    Callback = function()
+        pcall(function()
+             loadstring(game:HttpGet("https://rawscripts.net/raw/PLS-DONATE-szze-autofarm-11262"))()
+            print("9178加载成功")
+        end)
+    end
+})
+
+-- 被遗弃：用“禁止/废弃”图标体现“被遗弃”的无效状态
+local zzdh = Window:Tab({
+    Title = "战争大亨",
+    Icon = "bell",
+    Locked = false,
+})
+
+local okn = Window:Tab({
+    Title = "超人弹射",
+    Icon = "bell",
+    Locked = false,
+})
+okn:Button({
+    Title = "Zephyr(没汉化)",
+    Desc = "国外免费最强脚本",  
+    Locked = false,
+    Callback = function()
+        pcall(function()
+             loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-Hypershot-OP-by-EDUX-51972"))()
+            print("9178加载成功")
+        end)
+    end
+})
 local zxc = Window:Tab({
     Title = "免费私服",
     Icon = "bell",
