@@ -1,7 +1,6 @@
 -- 1.优先加载AlienX Wind UI，失败则启用备用本地UI
 local success, WindUI = pcall(function()
-    return loadstring(game:HttpGet("https://raw.githubusercontent.com/Syndromehsh/Lua/baff0bc41893a32f8e997d840241ad4b3d26ab4d/AlienX/AlienX%20Wind%203.0%20UI.txt"))()
-end)
+    return loadstring(game:HttpGet("https://raw.githubusercontent.com/Syndromehsh/Lua/baff0bc41893a32f8e997d840241ad4b3d26ab4d/AlienX/
 
 if not success then
     warn("AlienX Wind UI加载失败，将使用备用方案")
