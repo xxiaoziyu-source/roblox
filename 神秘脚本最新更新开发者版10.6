@@ -1,157 +1,81 @@
--- 1.优先加载AlienX Wind UI，失败则启用备用本地UI
-local success, WindUI = pcall(function()
-    return loadstring(game:HttpGet("https://raw.githubusercontent.com/Syndromehsh/Lua/baff0bc41893a32f8e997d840241ad4b3d26ab4d/AlienX/
+WindUI = loadstring(game:HttpGet("https://github.com/Footagesus/WindUI/releases/latest/download/main.lua"))()
 
-if not success then
-    warn("AlienX Wind UI加载失败，将使用备用方案")
-    -- 备用方案：本地模拟AlienX样式（保证美观与功能）
-    local Plr = game:GetService("Players").LocalPlayer
-    local Gui = Instance.new("ScreenGui", Plr.PlayerGui)
-    local MainFrame = Instance.new("Frame", Gui)
-    MainFrame.Size = UDim2.fromOffset(400, 350)
-    MainFrame.Position = UDim2.fromScale(0.5, 0.5)
-    MainFrame.AnchorPoint = Vector2.new(0.5, 0.5)
-    MainFrame.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
-    MainFrame.BackgroundTransparency = 0.3
+function gradient(text, startColor, endColor)
+    local result = ""
+    local length = #text
+    
+    for i = 1, length do
+        local t = (i - 1) / math.max(length - 1, 1)
+        local r = math.floor((startColor.R + (endColor.R - startColor.R) * t) * 255)
+        local g = math.floor((startColor.G + (endColor.G - startColor.G) * t) * 255)
+        local b = math.floor((startColor.B + (endColor.B - startColor.B) * t) * 255)
 
-    -- 彩虹边框动画
-    local borders = {
-        Top = Instance.new("Frame", MainFrame),
-        Right = Instance.new("Frame", MainFrame),
-        Bottom = Instance.new("Frame", MainFrame),
-        Left = Instance.new("Frame", MainFrame)
-    }
-    borders.Top.Size = UDim2.new(1, 0, 0, 3)
-    borders.Right.Size = UDim2.new(0, 3, 1, 0)
-    borders.Right.Position = UDim2.new(1, -3, 0, 0)
-    borders.Bottom.Size = UDim2.new(1, 0, 0, 3)
-    borders.Bottom.Position = UDim2.new(0, 0, 1, -3)
-    borders.Left.Size = UDim2.new(0, 3, 1, 0)
-    game:GetService("RunService").Heartbeat:Connect(function()
-        local hue = (tick() * 0.1) % 1
-        local color = Color3.fromHSV(hue, 1, 1)
-        for _, border in pairs(borders) do
-            border.BackgroundColor3 = color
-        end
-    end)
-
-    -- 标题栏与关闭按钮
-    local TitleBar = Instance.new("Frame", MainFrame)
-    TitleBar.Size = UDim2.new(1, 0, 0, 30)
-    TitleBar.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
-    local TitleText = Instance.new("TextLabel", TitleBar)
-    TitleText.Size = UDim2.new(1, 0, 1, 0)
-    TitleText.BackgroundTransparency = 1
-    TitleText.Text = "缝合汉化脚本"
-    TitleText.TextColor3 = Color3.new(1, 1, 1)
-    local CloseBtn = Instance.new("TextButton", TitleBar)
-    CloseBtn.Size = UDim2.fromOffset(30, 30)
-    CloseBtn.Position = UDim2.new(1, -30, 0, 0)
-    CloseBtn.Text = "×"
-    CloseBtn.TextColor3 = Color3.new(1, 1, 1)
-    CloseBtn.BackgroundColor3 = Color3.fromRGB(200, 0, 0)
-    CloseBtn.MouseButton1Click:Connect(function() Gui:Destroy() end)
-
-    -- 标签栏（修复变量名，避免重复）
-    local TabFrame = Instance.new("Frame", MainFrame)
-    TabFrame.Size = UDim2.new(0, 180, 1, 0)
-    TabFrame.Position = UDim2.fromOffset(0, 30)
-    TabFrame.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
-
-    -- 1. 通知标签
-    local NoticeTab = Instance.new("TextButton", TabFrame)
-    NoticeTab.Size = UDim2.new(1, 0, 0, 40)
-    NoticeTab.Position = UDim2.fromOffset(0, 0)
-    NoticeTab.Text = "通知"
-    NoticeTab.TextColor3 = Color3.new(1, 1, 1)
-    NoticeTab.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
-    NoticeTab.MouseButton1Click:Connect(function()
-        print("脚本说明：感谢黄某,雪花,本熊,老鼠,乌龟")
-    end)
-
-    -- 2. 通用标签（新增移速调节按钮，对应原Slider功能）
-    local GeneralTab = Instance.new("TextButton", TabFrame)
-    GeneralTab.Size = UDim2.new(1, 0, 0, 40)
-    GeneralTab.Position = UDim2.fromOffset(0, 40)
-    GeneralTab.Text = "通用-移速调节"
-    GeneralTab.TextColor3 = Color3.new(1, 1, 1)
-    GeneralTab.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
-    GeneralTab.MouseButton1Click:Connect(function()
-        local Plr = game:GetService("Players").LocalPlayer
-        if Plr.Character then
-            local Humanoid = Plr.Character:FindFirstChildOfClass("Humanoid")
-            if Humanoid then
-                Humanoid.WalkSpeed = 50 -- 示例移速值，可根据需求修改
-                print("移速已调节至50（备用UI暂为固定值，需手动改代码调整）")
-            end
-        end
-    end)
-
-    -- 3. 森林中99个夜晚标签
-    local ForestTab = Instance.new("TextButton", TabFrame)
-    ForestTab.Size = UDim2.new(1, 0, 0, 40)
-    ForestTab.Position = UDim2.fromOffset(0, 80)
-    ForestTab.Text = "森林中99个夜晚"
-    ForestTab.TextColor3 = Color3.new(1, 1, 1)
-    ForestTab.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
-    ForestTab.MouseButton1Click:Connect(function()
-        pcall(function()
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/xxiaoziyu-source/roblox/a304ee2b7344d37bbef7119436825929212fdaa1/%E8%99%9A%E7%A9%BA%E6%B1%89%E5%8C%96", true))()
-            print("虚空汉化加载成功")
-        end)
-        pcall(function()
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/xxiaoziyu-source/roblox/fc1074543394626b81c1787b0e56715dec8569ee/TN%E4%B8%AD%E5%BF%83%E6%B1%89%E5%8C%96", true))()
-            print("TXD中心汉化加载成功")
-        end)
-    end)
-
-    -- 4. 偷走脑红标签
-    local BrainTab = Instance.new("TextButton", TabFrame)
-    BrainTab.Size = UDim2.new(1, 0, 0, 40)
-    BrainTab.Position = UDim2.fromOffset(0, 120)
-    BrainTab.Text = "偷走脑红"
-    BrainTab.TextColor3 = Color3.new(1, 1, 1)
-    BrainTab.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
-    BrainTab.MouseButton1Click:Connect(function()
-        pcall(function()
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/xxiaoziyu-source/T-/72f4dab4fb68a7ba1707c2983759ac36b2538b98/%E7%BA%A2%E8%BE%A3%E6%A4%92%E6%B1%89%E5%8C%96", true))()
-            print("红辣椒汉化加载成功")
-        end)
-    end)
-
-    print("备用方案加载完成，样式和功能均正常")
-    return
+        local char = text:sub(i, i)
+        result = result .. "<font color=\"rgb(" .. r ..", " .. g .. ", " .. b .. ")\">" .. char .. "</font>"
+    end
+    
+    return result
 end
 
--- 2. 完美结合版：AlienX UI框架（修复变量名重复问题）
-local rainbowColor = ColorSequence.new({
-    ColorSequenceKeypoint.new(0, Color3.fromHex("FF0000")),
-    ColorSequenceKeypoint.new(0.16, Color3.fromHex("FF7F00")),
-    ColorSequenceKeypoint.new(0.33, Color3.fromHex("FFFF00")),
-    ColorSequenceKeypoint.new(0.5, Color3.fromHex("00FF00")),
-    ColorSequenceKeypoint.new(0.66, Color3.fromHex("0000FF")),
-    ColorSequenceKeypoint.new(0.83, Color3.fromHex("4B0082")),
-    ColorSequenceKeypoint.new(1, Color3.fromHex("9400D3"))
-})
 
 local Window = WindUI:CreateWindow({
-    Title = "神秘汉化脚本1.9.2",
-    Icon = "👑",
-    Author = "作者:快手○○",
-    Size = UDim2.fromOffset(400, 350),
+    Title = "神秘脚本",
+    Icon = "crown",
+    IconThemed = true,
+    Author = "作者:○○",
+    Folder = "9175",
+    Size = UDim2.fromOffset(580, 460),
     Transparent = true,
-    Theme = "Dark",
-    BorderColor = rainbowColor,
-    BorderThickness = 3
+    Theme = "Light",
+    User = {
+        Enabled = true,
+        Callback = function() print("clicked") end,
+        Anonymous = true
+    },
+    SideBarWidth = 200,
+    ScrollBarEnabled = true
 })
 
+-- 直接修改主窗口的边框（核心修改）
+local windowGui = Window.Gui
+local borderFrame = Instance.new("Frame")
+borderFrame.Name = "MainWindowBorder"
+borderFrame.Size = UDim2.new(1, 6, 1, 6) -- 比窗口大一点，形成边框
+borderFrame.Position = UDim2.new(0, -3, 0, -3)
+borderFrame.BackgroundTransparency = 0
+borderFrame.BackgroundColor3 = Color3.new(1,1,1)
+borderFrame.ZIndex = -1 -- 放在窗口下层
+borderFrame.Parent = windowGui
+
+-- 给边框加彩色渐变
+local gradient = Instance.new("UIGradient")
+gradient.Color = ColorSequence.new({
+    ColorSequenceKeypoint.new(0, Color3.fromHex("FF0000")),
+    ColorSequenceKeypoint.new(0.2, Color3.fromHex("FFAA00")),
+    ColorSequenceKeypoint.new(0.4, Color3.fromHex("FFFF00")),
+    ColorSequenceKeypoint.new(0.6, Color3.fromHex("00FF00")),
+    ColorSequenceKeypoint.new(0.8, Color3.fromHex("0000FF")),
+    ColorSequenceKeypoint.new(1, Color3.fromHex("AA00FF"))
+})
+gradient.Parent = borderFrame
+
+Window:CreateTopbarButton("MyCustomButton1", "bird", function() print("clicked 1!") end, 990)
+Window:CreateTopbarButton("MyCustomButton3", "battery-plus", function() Window:ToggleFullscreen() end, 989)
+
+-- 缩小框彩色渐变边框
 Window:EditOpenButton({
-    Title = "○○脚本",
+    Title = "神秘脚本",
     Icon = "monitor",
-    CornerRadius = UDim.new(0, 6),
+    CornerRadius = UDim.new(0,16),
     StrokeThickness = 2,
-    Color = rainbowColor,
-    StrokeColor = rainbowColor,
+    Color = ColorSequence.new({
+        ColorSequenceKeypoint.new(0, Color3.fromHex("FF0000")),
+        ColorSequenceKeypoint.new(0.2, Color3.fromHex("FFAA00")),
+        ColorSequenceKeypoint.new(0.4, Color3.fromHex("FFFF00")),
+        ColorSequenceKeypoint.new(0.6, Color3.fromHex("00FF00")),
+        ColorSequenceKeypoint.new(0.8, Color3.fromHex("0000FF")),
+        ColorSequenceKeypoint.new(1, Color3.fromHex("AA00FF"))
+    }),
     Draggable = true,
 })
 
