@@ -1,11 +1,14 @@
+-- 加载WindUI（确保链接可访问）
 WindUI = loadstring(game:HttpGet("https://github.com/Footagesus/WindUI/releases/latest/download/main.lua"))()
 
-function gradient(text, startColor, endColor)
+-- 修复：避免与后续的UIGradient变量重名，将函数名改为gradientText
+function gradientText(text, startColor, endColor)
     local result = ""
     local length = #text
     
     for i = 1, length do
         local t = (i - 1) / math.max(length - 1, 1)
+        -- Color3的R/G/B是0~1，乘255转为RGB的0~255范围（这部分逻辑是对的）
         local r = math.floor((startColor.R + (endColor.R - startColor.R) * t) * 255)
         local g = math.floor((startColor.G + (endColor.G - startColor.G) * t) * 255)
         local b = math.floor((startColor.B + (endColor.B - startColor.B) * t) * 255)
@@ -40,16 +43,18 @@ local Window = WindUI:CreateWindow({
 local windowGui = Window.Gui
 local borderFrame = Instance.new("Frame")
 borderFrame.Name = "MainWindowBorder"
-borderFrame.Size = UDim2.new(1, 6, 1, 6) -- 比窗口大一点，形成边框
+-- 修复：确保边框完全包裹窗口（Size和Position的偏移量对应）
+borderFrame.Size = UDim2.new(1, 6, 1, 6)
 borderFrame.Position = UDim2.new(0, -3, 0, -3)
 borderFrame.BackgroundTransparency = 0
 borderFrame.BackgroundColor3 = Color3.new(1,1,1)
-borderFrame.ZIndex = -1 -- 放在窗口下层
+-- 修复：ZIndex改为1（避免被窗口完全遮挡，WindUI窗口的ZIndex通常是2+，这里设1可显示在窗口下层）
+borderFrame.ZIndex = 1
 borderFrame.Parent = windowGui
 
--- 给边框加彩色渐变
-local gradient = Instance.new("UIGradient")
-gradient.Color = ColorSequence.new({
+-- 给边框加彩色渐变（修复：变量名改为borderGradient，避免与函数重名）
+local borderGradient = Instance.new("UIGradient")
+borderGradient.Color = ColorSequence.new({
     ColorSequenceKeypoint.new(0, Color3.fromHex("FF0000")),
     ColorSequenceKeypoint.new(0.2, Color3.fromHex("FFAA00")),
     ColorSequenceKeypoint.new(0.4, Color3.fromHex("FFFF00")),
@@ -57,12 +62,20 @@ gradient.Color = ColorSequence.new({
     ColorSequenceKeypoint.new(0.8, Color3.fromHex("0000FF")),
     ColorSequenceKeypoint.new(1, Color3.fromHex("AA00FF"))
 })
-gradient.Parent = borderFrame
+borderGradient.Parent = borderFrame
 
+-- 创建顶部按钮（确保WindUI支持该API）
 Window:CreateTopbarButton("MyCustomButton1", "bird", function() print("clicked 1!") end, 990)
-Window:CreateTopbarButton("MyCustomButton3", "battery-plus", function() Window:ToggleFullscreen() end, 989)
+Window:CreateTopbarButton("MyCustomButton3", "battery-plus", function() 
+    -- 修复：确保ToggleFullscreen是WindUI的合法方法
+    if Window.ToggleFullscreen then
+        Window:ToggleFullscreen() 
+    else
+        print("WindUI不支持ToggleFullscreen方法")
+    end
+end, 989)
 
--- 缩小框彩色渐变边框
+-- 编辑打开按钮样式（确保参数符合WindUI要求）
 Window:EditOpenButton({
     Title = "神秘脚本",
     Icon = "crown",
