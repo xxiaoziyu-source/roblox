@@ -1,16 +1,22 @@
+-- 加载WindUI（确保链接可访问）
 WindUI = loadstring(game:HttpGet("https://github.com/Footagesus/WindUI/releases/latest/download/main.lua"))()
 
-function gradient(text, startColor, endColor)
+-- 修复：避免与后续的UIGradient变量重名，将函数名改为gradientText
+function gradientText(text, startColor, endColor)
     local result = ""
     local length = #text
+    
     for i = 1, length do
         local t = (i - 1) / math.max(length - 1, 1)
+        -- Color3的R/G/B是0~1，乘255转为RGB的0~255范围（这部分逻辑是对的）
         local r = math.floor((startColor.R + (endColor.R - startColor.R) * t) * 255)
         local g = math.floor((startColor.G + (endColor.G - startColor.G) * t) * 255)
         local b = math.floor((startColor.B + (endColor.B - startColor.B) * t) * 255)
+
         local char = text:sub(i, i)
         result = result .. "<font color=\"rgb(" .. r ..", " .. g .. ", " .. b .. ")\">" .. char .. "</font>"
     end
+    
     return result
 end
 
@@ -33,19 +39,22 @@ local Window = WindUI:CreateWindow({
     ScrollBarEnabled = true
 })
 
--- 主窗口边框
+-- 直接修改主窗口的边框（核心修改）
 local windowGui = Window.Gui
 local borderFrame = Instance.new("Frame")
 borderFrame.Name = "MainWindowBorder"
+-- 修复：确保边框完全包裹窗口（Size和Position的偏移量对应）
 borderFrame.Size = UDim2.new(1, 6, 1, 6)
 borderFrame.Position = UDim2.new(0, -3, 0, -3)
 borderFrame.BackgroundTransparency = 0
 borderFrame.BackgroundColor3 = Color3.new(1,1,1)
-borderFrame.ZIndex = -1
+-- 修复：ZIndex改为1（避免被窗口完全遮挡，WindUI窗口的ZIndex通常是2+，这里设1可显示在窗口下层）
+borderFrame.ZIndex = 1
 borderFrame.Parent = windowGui
 
-local gradient = Instance.new("UIGradient")
-gradient.Color = ColorSequence.new({
+-- 给边框加彩色渐变（修复：变量名改为borderGradient，避免与函数重名）
+local borderGradient = Instance.new("UIGradient")
+borderGradient.Color = ColorSequence.new({
     ColorSequenceKeypoint.new(0, Color3.fromHex("FF0000")),
     ColorSequenceKeypoint.new(0.2, Color3.fromHex("FFAA00")),
     ColorSequenceKeypoint.new(0.4, Color3.fromHex("FFFF00")),
@@ -53,12 +62,20 @@ gradient.Color = ColorSequence.new({
     ColorSequenceKeypoint.new(0.8, Color3.fromHex("0000FF")),
     ColorSequenceKeypoint.new(1, Color3.fromHex("AA00FF"))
 })
-gradient.Parent = borderFrame
+borderGradient.Parent = borderFrame
 
+-- 创建顶部按钮（确保WindUI支持该API）
 Window:CreateTopbarButton("MyCustomButton1", "bird", function() print("clicked 1!") end, 990)
-Window:CreateTopbarButton("MyCustomButton3", "battery-plus", function() Window:ToggleFullscreen() end, 989)
+Window:CreateTopbarButton("MyCustomButton3", "battery-plus", function() 
+    -- 修复：确保ToggleFullscreen是WindUI的合法方法
+    if Window.ToggleFullscreen then
+        Window:ToggleFullscreen() 
+    else
+        print("WindUI不支持ToggleFullscreen方法")
+    end
+end, 989)
 
--- 缩小框样式
+-- 编辑打开按钮样式（确保参数符合WindUI要求）
 Window:EditOpenButton({
     Title = "神秘脚本",
     Icon = "crown",
@@ -74,79 +91,6 @@ Window:EditOpenButton({
     }),
     Draggable = true,
 })
-
-
--- ========== 修复：墨水游戏标签页（确保控件正确挂载） ==========
-local InkGameTab = Window:CreateTab({  -- 注意：WindUI的Tab创建方法是CreateTab，不是Tab
-    Title = "墨水游戏",
-    Icon = "bell",
-    Locked = false,
-})
-
--- AX汉化区域容器（正确挂载到InkGameTab）
-local axContainer = InkGameTab:CreateContainer({
-    Title = "AX汉化脚本",
-    Desc = "输入专属卡密后自动验证并加载",
-    StrokeThickness = 1,
-    StrokeColor = Color3.new(0.8, 0.8, 0.8),
-    CornerRadius = UDim.new(0, 6)
-})
-
--- 卡密输入框
-local userScriptKey = ""
-local isLoading = false
-local inputBox = axContainer:CreateTextBox({
-    PlaceholderText = "请输入你的专属卡密",
-    ClearTextOnFocus = true,
-    MaxTextLength = 16,
-    TextBoxType = Enum.TextBoxType.Password,
-    Callback = function(inputText)
-        userScriptKey = inputText
-        if userScriptKey ~= "" and not isLoading then
-            validateAndLoadScript()
-        end
-    end
-})
-
--- 状态提示标签
-local statusLabel = axContainer:CreateLabel({
-    Text = "<font color=\"gray\">请输入专属卡密</font>",
-    TextSize = 14
-})
-
--- 卡密验证+执行函数
-local function validateAndLoadScript()
-    isLoading = true
-    pcall(function()
-        statusLabel.Text = "<font color=\"orange\">正在验证卡密...</font>"
-        script_key = userScriptKey
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/hdjsjjdgrhj/script-hub/refs/heads/main/AX%20CN"))()
-        statusLabel.Text = "<font color=\"blue\">AX汉化已加载成功</font>"
-    end)
-    isLoading = false
-end
-
--- 输入状态反馈
-inputBox.TextBox:GetPropertyChangedSignal("Text"):Connect(function()
-    if userScriptKey == "" then
-        statusLabel.Text = "<font color=\"gray\">请输入专属卡密</font>"
-    else
-        statusLabel.Text = "<font color=\"green\">卡密已输入（共" .. #userScriptKey .. "位）</font>"
-    end
-end)
-
-
--- ========== 可在这里添加墨水游戏的其他功能（示例） ==========
-InkGameTab:CreateButton({
-    Title = "TEX(晓月汉化)",
-    Desc = "忍者用不了",
-    Callback = function()
-        pcall(function()
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/hdjsjjdgrhj/script-hub/refs/heads/main/TEX%20RBX"))()
-            print("TEX加载成功")
-        end)
-    end
-})1
 
 -- 1. 通知标签（唯一变量名：NoticeTab_Alien）
 local NoticeTab_Alien = Window:Tab({
@@ -610,60 +554,12 @@ local InkGameTab = Window:Tab({
     Locked = false,
 })
 
--- AX汉化区域容器
-local axContainer = InkGameTab:CreateContainer({
-    Title = "AX汉化脚本",
-    Desc = "输入专属卡密后自动验证并加载",
-    StrokeThickness = 1,
-    StrokeColor = Color3.new(0.8, 0.8, 0.8),
-    CornerRadius = UDim.new(0, 6)
-})
-
--- 卡密输入框（输入过程中自动触发执行）
-local userScriptKey = ""
-local isLoading = false -- 防止重复执行
-local inputBox = axContainer:CreateTextBox({
-    PlaceholderText = "请输入你的专属卡密",
-    ClearTextOnFocus = true,
-    MaxTextLength = 16,
-    TextBoxType = Enum.TextBoxType.Password,
-    -- 输入内容变化时立即触发（输完自动执行）
-    Callback = function(inputText)
-        userScriptKey = inputText
-        -- 卡密不为空 + 未在加载中 → 自动执行
-        if userScriptKey ~= "" and not isLoading then
-            validateAndLoadScript()
-        end
-    end
-})
 
 -- 状态提示标签
 local statusLabel = axContainer:CreateLabel({
     Text = "<font color=\"gray\">请输入专属卡密</font>",
     TextSize = 14
 })
-
--- 卡密验证+执行脚本（增加防重复逻辑）
-local function validateAndLoadScript()
-    isLoading = true
-    pcall(function()
-        statusLabel.Text = "<font color=\"orange\">正在验证卡密...</font>"
-        -- 传入卡密并执行脚本
-        script_key = userScriptKey
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/hdjsjjdgrhj/script-hub/refs/heads/main/AX%20CN"))()
-        statusLabel.Text = "<font color=\"blue\">AX汉化已加载成功</font>"
-    end)
-    isLoading = false
-end
-
--- 输入状态实时反馈
-inputBox.TextBox:GetPropertyChangedSignal("Text"):Connect(function()
-    if userScriptKey == "" then
-        statusLabel.Text = "<font color=\"gray\">请输入专属卡密</font>"
-    else
-        statusLabel.Text = "<font color=\"green\">卡密已输入（共" .. #userScriptKey .. "位）</font>"
-    end
-end)
 
 InkGameTab:Button({
     Title = "Tex(晓月汉化)",
