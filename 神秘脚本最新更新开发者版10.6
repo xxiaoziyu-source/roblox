@@ -104,6 +104,7 @@ NoticeTab_Alien:Button({
         })
     end
 })
+
 -- 2. 通用标签（核心修复：变量名GeneralTab_Alien，与调用一致）
 local GeneralTab_Alien = Window:Tab({
     Title = "通用(增强版本)",
@@ -128,6 +129,7 @@ GeneralTab_Alien:Slider({
         end
     end
 })
+
 GeneralTab_Alien:Slider({
     Title = "跳跃",
     Value = {
@@ -865,7 +867,6 @@ yui:Button({
     end
 })
 
--- 被遗弃：用“禁止/废弃”图标体现“被遗弃”的无效状态
 local zzdh = Window:Tab({
     Title = "战争大亨",
     Icon = "bell",
@@ -882,7 +883,8 @@ zzdh:Button({
         end)
     end
 })
-AbandonedTab:Button({
+
+zzdh:Button({
     Title = "战争大亨2(汉化)",
     Desc = "实用性中等",
     Locked = false,
