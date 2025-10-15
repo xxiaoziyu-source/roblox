@@ -229,13 +229,6 @@ GeneralTab_Alien:Button({
 })
 
 GeneralTab_Alien:Button({
-    Title = "无敌少侠飞行(换了一个)",
-    Callback = function()
-        loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-Invinicible-Flight-R15-45414"))()
-    end
-})
-
-GeneralTab_Alien:Button({
     Title = "egor假延迟",
     Callback = function()
         loadstring(game:HttpGet("https://pastebin.com/raw/GBmWn4eZ", true))()
@@ -570,12 +563,12 @@ InkGameTab:Button({
     end
 })
 
-local Blox Fruits = Window:Tab({
+local Blox = Window:Tab({
     Title = "Blox Fruits",
     Icon = "bell",
     Locked = false,
 })
-Blox Fruits:Button({
+Blox:Button({
     Title = "Ronix(没汉化)",
     Desc = "要卡",
     Locked = false,
@@ -586,7 +579,7 @@ Blox Fruits:Button({
         end)
     end
 })
-Blox Fruits:Button({
+Blox:Button({
     Title = "自动开宝箱",
     Desc = "开启就关不上了",
     Locked = false,
