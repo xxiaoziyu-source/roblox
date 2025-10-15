@@ -91,7 +91,7 @@ NoticeTab_Alien:Button({
 })
 NoticeTab_Alien:Button({
     Title = "更新内容",
-    Desc = "死亡之死脚本做了汉化,99页新增一个脚本",
+    Desc = "战争大亨 Blox Fruits",
 })
 NoticeTab_Alien:Button({
     Title = "作者QQ群",
@@ -567,6 +567,34 @@ InkGameTab:Button({
         end)
     end
 })
+
+local Blox Fruits = Window:Tab({
+    Title = "Blox Fruits",
+    Icon = "bell",
+    Locked = false,
+})
+Blox Fruits:Button({
+    Title = "Ronix(没汉化)",
+    Desc = "要卡",
+    Locked = false,
+    Callback = function()
+        pcall(function()
+             loadstring(game:HttpGet("https://rawscripts.net/raw/Event-Blox-Fruits-Op-Best-Free-Script-GUI-55877"))()
+            print("9178加载成功")
+        end)
+    end
+})
+Blox Fruits:Button({
+    Title = "自动开宝箱",
+    Desc = "开启就关不上了",
+    Locked = false,
+    Callback = function()
+        pcall(function()
+             loadstring(game:HttpGet("https://rawscripts.net/raw/XMAS-Blox-Fruits-Cash-Generator-OPEN-SOURCE-and-KEYLESS-25553"))()
+            print("9178加载成功")
+        end)
+    end
+})
 -- 被遗弃：用“禁止/废弃”图标体现“被遗弃”的无效状态
 local AbandonedTab = Window:Tab({
     Title = "被遗弃",
@@ -842,6 +870,28 @@ local zzdh = Window:Tab({
     Title = "战争大亨",
     Icon = "bell",
     Locked = false,
+})
+zzdh:Button({
+    Title = "战争大亨1(没汉化)",
+    Desc = "要卡密",
+    Locked = false,
+    Callback = function()
+        pcall(function()
+             loadstring(game:HttpGet("https://rawscripts.net/raw/Limited-War-Tycoon-Kill-Aura-and-Gun-Mods-and-More-58205"))()
+            print("9178加载成功")
+        end)
+    end
+})
+AbandonedTab:Button({
+    Title = "战争大亨2(汉化)",
+    Desc = "实用性中等",
+    Locked = false,
+    Callback = function()
+        pcall(function()
+             loadstring(game:HttpGet("https://raw.githubusercontent.com/ke9460394-dot/ugik/refs/heads/main/%E6%88%98%E4%BA%89%E5%A4%A7%E4%BA%A8.txt"))()
+            print("9178加载成功")
+        end)
+    end
 })
 
 local okn = Window:Tab({
