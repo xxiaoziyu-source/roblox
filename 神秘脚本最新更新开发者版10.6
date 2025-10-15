@@ -547,20 +547,13 @@ StealBrainTab:Button({
         end)
     end
 })
+
 -- 墨水游戏：用“墨水瓶”图标贴合“墨水”主题
 local InkGameTab = Window:Tab({
     Title = "墨水游戏",
     Icon = "bell",
     Locked = false,
 })
-
-
--- 状态提示标签
-local statusLabel = axContainer:CreateLabel({
-    Text = "<font color=\"gray\">请输入专属卡密</font>",
-    TextSize = 14
-})
-
 InkGameTab:Button({
     Title = "Tex(晓月汉化)",
     Desc = "忍者用不了",
