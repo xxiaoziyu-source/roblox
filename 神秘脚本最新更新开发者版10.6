@@ -118,6 +118,28 @@ NoticeTab_Alien:Button({
     end
 })
 
+local TimeTag = Window:Tag({
+    Title = "00:00", 
+    Color = Color3.fromRGB(255, 255, 255) 
+})
+
+local hue = 0
+task.spawn(function()
+    while true do
+        local now = os.date("*t")
+        local hours = string.format("%02d", now.hour)
+        local minutes = string.format("%02d", now.min)
+        local timeString = hours .. ":" .. minutes
+        TimeTag:SetTitle(timeString)
+        task.wait(0.06)
+    end
+end)
+Window:Tag({
+        Title = "万岁",
+        Color = Color3.fromHex("#30ff6a")
+    })
+    
+WindUI:SetNotificationLower(true)
 local GeneralTab_Alien = Window:Tab({
     Title = "通用(增强版本)",
     Icon = "sword",
