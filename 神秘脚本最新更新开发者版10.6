@@ -402,6 +402,7 @@ local Section = DeadRailTab:Section({
     Title = "更新了两个死铁鬼脚本↓↓",
     TextXAlignment = "Left",
     TextSize = 25,
+})
 DeadRailTab:Button({
     Title = "红叶子",
     Desc = "根本没有汉化😏",
@@ -429,8 +430,7 @@ DeadRailTab:Button({
     Desc = "谁汉化的我不知道",  
     Locked = false,
     Callback = function()
-        pcall(function()
-             loadstring(game:HttpGet("https://github.com/mtaskhh/script/raw/refs/heads/main/moonmt.lua"))()
+        pcall(function()              loadstring(game:HttpGet("https://github.com/mtaskhh/script/raw/refs/heads/main/moonmt.lua"))()
             print("9178加载成功")
         end)
     end
@@ -440,8 +440,7 @@ DeadRailTab:Button({
     Desc = "要卡密",
     Locked = false,
     Callback = function()
-        pcall(function()
-             loadstring(game:HttpGet("https://raw.githubusercontent.com/ArdyBotzz/NatHub/refs/heads/master/NatHub.lua"))()
+        pcall(function()        loadstring(game:HttpGet("https://raw.githubusercontent.com/ArdyBotzz/NatHub/refs/heads/master/NatHub.lua"))()
             print("R加载成功")
         end)
     end
@@ -452,7 +451,7 @@ DeadRailTab:Button({
     Locked = false,
     Callback = function()
         pcall(function()
-             loadstring(game:HttpGet("https://raw.githubusercontent.com/debunked69/solixloader/refs/heads/main/solix v2 new loader.lua"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/debunked69/solixloader/refs/heads/main/solix v2 new loader.lua"))()
             print("R加载成功")
         end)
     end
