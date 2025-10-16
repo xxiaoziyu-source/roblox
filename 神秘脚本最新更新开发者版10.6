@@ -124,25 +124,7 @@ local GeneralTab_Alien = Window:Tab({
     Locked = false,
 })
 GeneralTab_Alien:Slider({
-    Title = "移速",
-    Value = {
-        Min = 16,
-        Max = 12000000,
-        Default = 16,
-    },
-    Increment = 1,
-    Callback = function(value)
-        local Plr = game.Players.LocalPlayer
-        if Plr.Character then
-            local Humanoid = Plr.Character:FindFirstChildOfClass("Humanoid")
-            if Humanoid then
-                Humanoid.WalkSpeed = value
-            end
-        end
-    end
-})
-GeneralTab_Alien:Slider({
-    Title = "移速2",
+    Title = "移速(升级版)",
     Value = {
         Min = 16,
         Max = 12000000,
