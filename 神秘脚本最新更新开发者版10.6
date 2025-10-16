@@ -117,29 +117,25 @@ NoticeTab_Alien:Button({
         })
     end
 })
-
--- 时间显示标签
-local TimeTag = Window:Tag({
-    Title = "00:00",
-    Color = Color3.fromRGB(255, 255, 255)
-})
-
--- 实时更新时间
-task.spawn(function()
-    while true do
-        local now = os.date("*t")
-        local hours = string.format("%02d", now.hour)
-        local minutes = string.format("%02d", now.min)
-        TimeTag:SetTitle(hours .. ":" .. minutes)
-        task.wait(0.06)
-    end
-end)
-
--- “万岁”标签
-Window:Tag({
-    Title = "万岁",
-    Color = Color3.fromHex("#30ff6a")
-})
+local TimeTag = NoticeTab_Alien:Tag({  -- 这里把Window改成NoticeTab_Alien
+     Title = "00:00",
+     Color = Color3.fromRGB(255, 255, 255)
+ })
+ -- 实时更新时间
+ task.spawn(function()
+     while true do
+         local now = os.date("*t")
+         local hours = string.format("%02d", now.hour)
+         local minutes = string.format("%02d", now.min)
+         TimeTag:SetTitle(hours .. ":" .. minutes)
+         task.wait(0.06)
+     end
+ end)
+ -- “万岁”标签
+ NoticeTab_Alien:Tag({  -- 这里把Window改成NoticeTab_Alien
+     Title = "缝合",
+     Color = Color3.fromHex("#30ff6a")
+ })
 
 -- 2. 通用标签（核心修复：变量名GeneralTab_Alien，与调用一致）
 local GeneralTab_Alien = Window:Tab({
