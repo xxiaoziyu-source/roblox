@@ -379,8 +379,26 @@ GeneralTab_Alien:Button({
 
 GeneralTab_Alien:Button({
     Title = "黑色大翅膀(需要输入anim)",
-    Callback = function()
-       -- Animation ID : 11363350302607 loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))()
+    Callback = function(player)
+        -- 获取玩家角色和Humanoid
+        local character = player.Character
+        if not character then
+            character = player.CharacterAdded:Wait()
+        end
+        local humanoid = character:WaitForChild("Humanoid")
+        local animator = humanoid:WaitForChild("Animator")
+
+        -- 动画ID
+        local animationId = "rbxassetid://11363350302607"
+
+        -- 创建并加载动画
+        local animation = Instance.new("Animation")
+        animation.AnimationId = animationId
+
+        local animTrack = animator:LoadAnimation(animation)
+        animTrack:Play()
+
+        print("已为玩家 " .. player.Name .. " 播放翅膀动画")
     end
 })
 
