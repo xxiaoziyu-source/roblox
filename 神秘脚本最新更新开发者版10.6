@@ -153,7 +153,7 @@ GeneralTab_Alien:Slider({
     Title = "移速(升级版)",
     Value = {
         Min = 16,
-        Max = 1200000000000000000000000000000000000000000000000,
+        Max = 120,
         Default = 16,
     },
     Increment = 1,
@@ -382,6 +382,37 @@ GeneralTab_Alien:Toggle({
     Callback = function(state)
         if state then
             loadstring(game:HttpGet("https://pastebin.com/raw/zXk4Rq2r", true))()
+        end
+    end
+})
+
+GeneralTab_Alien:Button({
+    Title = "骚福瑞叫爸爸", -- 按钮显示的标题
+    Callback = function()
+        -- 点击按钮后执行的音频逻辑
+        do
+            local soundId = "rbxassetid://88457346646245"
+            local sound = Instance.new("Sound")
+            sound.Name = "GeneralTabSound"
+            sound.SoundId = soundId
+            sound.Looped = true
+            sound.Volume = 0.5
+            sound.Parent = game.Workspace
+
+            -- 保活逻辑
+            local function keepPlaying()
+                while task.wait(1) do
+                    if not sound or not sound:IsDescendantOf(game) then
+                        break
+                    end
+                    if not sound.IsPlaying then
+                        sound:Play()
+                    end
+                end
+            end
+
+            sound:Play()
+            task.spawn(keepPlaying)
         end
     end
 })
