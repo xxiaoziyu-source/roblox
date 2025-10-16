@@ -205,6 +205,13 @@ GeneralTab_Alien:Slider({
     end
 })
 
+GeneralTab_Alien:Button({
+    Title = "飞行v3",
+    Callback = function()
+       loadstring(game:HttpGet("https://raw.githubusercontent.com/Jay907692/Jay/8b94c47bd5969608438fa1ee57f34b1350789caa/飞行脚本", true))()
+    end
+})
+
 local originalAmbient = game.Lighting.Ambient 
 GeneralTab_Alien:Toggle({
     Title = "夜视",
@@ -286,12 +293,6 @@ GeneralTab_Alien:Button({
     end
 })
 
-GeneralTab_Alien:Button({
-    Title = "飞行v3",
-    Callback = function()
-       loadstring(game:HttpGet("https://raw.githubusercontent.com/Jay907692/Jay/8b94c47bd5969608438fa1ee57f34b1350789caa/飞行脚本", true))()
-    end
-})
 
 GeneralTab_Alien:Button({
     Title = "透视",
@@ -626,7 +627,7 @@ StealBrainTab:Button({
 })
 StealBrainTab:Button({
     Title = "ZZZZ中心(汉化)",
-    Desc = "顶多和朋友装13",
+    Desc = "没有隐身但功能挺多",
     Locked = false,
     Callback = function()
         pcall(function()
@@ -692,6 +693,26 @@ Blox:Button({
         end)
     end
 })
+
+local bnmvcx = Window:Tab({
+    Title = "自然灾害",
+    Icon = "bell",
+    Locked = false,
+})
+bnmvcx:Button({
+    Title = "控制单个物体-XTTT",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/cytj777i/6669178/main/单一物体飞行载自己最终优化版"))()
+    end
+})
+
+bnmvcx:Button({
+    Title = "全局物体漂浮-XTTT",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Xingyan777/roblox/refs/heads/main/%E6%97%8B%E8%BD%AC.txt", true))()
+    end
+})
+
 -- 被遗弃：用“禁止/废弃”图标体现“被遗弃”的无效状态
 local AbandonedTab = Window:Tab({
     Title = "被遗弃",
@@ -1029,7 +1050,7 @@ local zxc = Window:Tab({
     Locked = false,
 })
 zxc:Button({
-    Title = "免费私服脚本(没汉化J",
+    Title = "免费私服脚本(没汉化)",
     Desc = "需要进入你要弄的私服服务器",  
     Locked = false,
     Callback = function()
