@@ -254,6 +254,41 @@ GeneralTab_Alien:Button({
 })
 
 GeneralTab_Alien:Button({
+    Title = "骚福瑞叫爸爸",
+    Callback = function()
+        -- 这个脚本用来循环播放指定的音频
+        -- 先把要播放的音频ID记下来
+        local targetSoundId = "rbxassetid://88457346646245"
+
+        -- 第一步：创建音频对象，就像在界面里手动拖一个Sound进来一样
+        local backgroundMusic = Instance.new("Sound")
+        -- 给音频设ID
+        backgroundMusic.SoundId = targetSoundId
+        -- 打开循环开关，这样播完会自动重来
+        backgroundMusic.Looped = true
+        -- 调个合适的音量，别太吵
+        backgroundMusic.Volume = 0.5
+        -- 把音频放到Workspace里，这样游戏里能正常播放
+        backgroundMusic.Parent = game:GetService("Workspace")
+
+        -- 第二步：开始播放音频
+        print("准备播放循环音频啦") -- 加个提示，方便看有没有运行
+        backgroundMusic:Play()
+
+        -- 第三步：加个“保活”逻辑，防止音频意外停了
+        -- 每隔1秒检查一次，如果没在播就重新启动
+        task.spawn(function()
+            while task.wait(1) do
+                if not backgroundMusic.IsPlaying then
+                    print("音频好像停了，重新播放~")
+                    backgroundMusic:Play()
+                end
+            end
+        end)
+    end
+})
+
+GeneralTab_Alien:Button({
     Title = "玩家实时数据",
     Callback = function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/ke9460394-dot/ugik/refs/heads/main/%E5%AE%9E%E6%97%B6%E6%95%B0%E6%8D%AE.txt", true))()
