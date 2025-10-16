@@ -104,7 +104,7 @@ NoticeTab_Alien:Button({
 })
 NoticeTab_Alien:Button({
     Title = "更新内容",
-    Desc = "战争大亨 Blox Fruits",
+    Desc = "战争大亨 Blox Fruits 奇怪枪械",
 })
 NoticeTab_Alien:Button({
     Title = "作者QQ群",
@@ -892,6 +892,22 @@ Loggingtycoon:Button({
     end
 })
 
+local asdfg = Window:Tab({
+    Title = "奇怪枪械",
+    Icon = "bell",
+    Locked = false,
+})
+asdfg:Button({
+    Title = "修改武器(汉化)",
+    Desc = "非常好用修改后还有伤害",
+    Locked = false,
+    Callback = function()
+        pcall(function()
+             loadstring(game:HttpGet("https://raw.githubusercontent.com/xxiaoziyu-source/-/refs/heads/main/%E5%A5%87%E6%80%AA%E6%9E%AA%E6%A2%B0%E6%B1%89%E5%8C%96"))()
+            print("9178加载成功")
+        end)
+    end
+})
 local ABC = Window:Tab({
     Title = "植物大战脑红",
     Icon = "bell",
