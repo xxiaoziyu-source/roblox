@@ -141,6 +141,30 @@ GeneralTab_Alien:Slider({
         end
     end
 })
+GeneralTab_Alien:Slider({
+    Title = "移速2",
+    Value = {
+        Min = 16,
+        Max = 12000000,
+        Default = 16,
+    },
+    Increment = 1,
+    Callback = function(value)
+        -- 用一个循环持续检测并设置移速
+        task.spawn(function()
+            local Plr = game.Players.LocalPlayer
+            -- 只要滑块设置了新值，就持续维持
+            while task.wait(0.1) do
+                if Plr.Character then
+                    local Humanoid = Plr.Character:FindFirstChildOfClass("Humanoid")
+                    if Humanoid and Humanoid.WalkSpeed ~= value then
+                        Humanoid.WalkSpeed = value
+                    end
+                end
+            end
+        end)
+    end
+})
 
 GeneralTab_Alien:Slider({
     Title = "跳跃",
