@@ -1,37 +1,37 @@
--- 【完整开头：WindUI加载+卡密系统+主UI框架】
+-- 1. 加载WindUI（固定开头，无需修改）
 local success, WindUI = pcall(function()
     return loadstring(game:HttpGet("https://github.com/Footagesus/WindUI/releases/latest/download/main.lua"))()
 end)
 if not success then
-    warn("WindUI加载失败，无法启动脚本")
+    warn("WindUI加载失败")
     return
 end
+WindUI:SetTheme("Dark")
+WindUI:SetNotificationLower(true)
 
-WindUI:SetTheme("Dark") -- 统一深色主题
-
--- 卡密系统（官方接口）
-local function InitializeKeySystem()
+-- 2. 卡密系统（固定逻辑，仅需改ValidKeys即可换卡密）
+local function InitKeySystem()
     local KeyWindow = WindUI:CreateKeySystem({
-        Title = "神秘脚本卡密系统",
+        Title = "神秘脚本卡密验证",
         Size = UDim2.new(0, 420, 0, 320),
-        ValidKeys = {"qwe"}, -- 有效卡密
+        ValidKeys = {"qwe"}, -- 可修改为你的卡密
         SaveKey = false,
-        Note = "输入卡密验证后加载功能",
+        Note = "输入卡密后使用",
         OnSuccess = function()
-            WindUI:Notify({Title = "验证成功", Content = "加载主UI中", Icon = "check", Duration = 2})
+            WindUI:Notify({Title = "验证通过", Content = "加载主界面", Icon = "check", Duration = 2})
             KeyWindow:Destroy()
-            CreateMainUI() -- 卡密通过后创建主UI
+            CreateMainUI()
         end,
-        OnFailure = function(Reason)
-            WindUI:Notify({Title = "验证失败", Content = Reason, Icon = "x", Duration = 3})
+        OnFailure = function()
+            WindUI:Notify({Title = "验证失败", Content = "卡密错误", Icon = "x", Duration = 3})
         end
     })
 end
 
--- 主UI基础框架（你之前的窗口/边框设置）
+-- 3. 主UI框架（仅界面结构，无功能代码）
 local function CreateMainUI()
-    -- 主窗口
-    local Window = WindUI:CreateWindow({
+    -- 3.1 主窗口基础配置（和原脚本一致）
+    local MainWindow = WindUI:CreateWindow({
         Title = "神秘脚本",
         Icon = "crown",
         IconThemed = true,
@@ -39,17 +39,21 @@ local function CreateMainUI()
         Folder = "9175",
         Size = UDim2.fromOffset(580, 460),
         Transparent = true,
+        User = {
+            Enabled = true,
+            Callback = function() end, -- 空回调，后续可加功能
+            Anonymous = true
+        },
         SideBarWidth = 200,
         ScrollBarEnabled = true
     })
 
-    -- 主窗口边框（你的样式）
-    local windowGui = Window.Gui
+    -- 3.2 主窗口彩色边框（和原脚本一致）
+    local windowGui = MainWindow.Gui
     local borderFrame = Instance.new("Frame")
     borderFrame.Name = "MainWindowBorder"
     borderFrame.Size = UDim2.new(1, 6, 1, 6)
     borderFrame.Position = UDim2.new(0, -3, 0, -3)
-    borderFrame.BackgroundTransparency = 0
     borderFrame.BackgroundColor3 = Color3.new(1,1,1)
     borderFrame.ZIndex = 1
     borderFrame.Parent = windowGui
@@ -65,14 +69,12 @@ local function CreateMainUI()
     })
     borderGradient.Parent = borderFrame
 
-    -- 顶部按钮
-    Window:CreateTopbarButton("MyCustomButton1", "bird", function() print("clicked 1!") end, 990)
-    Window:CreateTopbarButton("MyCustomButton3", "battery-plus", function() 
-        if Window.ToggleFullscreen then Window:ToggleFullscreen() end
-    end, 989)
+    -- 3.3 主窗口顶部按钮（仅占位，无功能）
+    MainWindow:CreateTopbarButton("MyCustomButton1", "bird", function() end, 990)
+    MainWindow:CreateTopbarButton("MyCustomButton3", "battery-plus", function() end, 989)
 
-    -- 打开按钮样式
-    Window:EditOpenButton({
+    -- 3.4 主窗口打开按钮样式（和原脚本一致）
+    MainWindow:EditOpenButton({
         Title = "神秘脚本",
         Icon = "crown",
         CornerRadius = UDim.new(0,16),
@@ -88,163 +90,33 @@ local function CreateMainUI()
         Draggable = true,
     })
 
-    -- 【这里粘贴你的功能代码（通知标签、通用标签等）】
-end
+    -- 3.5 标签页框架（仅创建标签，无功能按钮）
+    -- 通知标签
+    local NoticeTab_Alien = MainWindow:Tab({
+        Title = "通知",
+        Icon = "bell",
+        Locked = false,
+    })
+    -- 通用功能标签
+    local GeneralTab_Alien = MainWindow:Tab({
+        Title = "通用(增强版本)",
+        Icon = "sword",
+        Locked = false,
+    })
+    -- 其他脚本标签（按原脚本结构创建，无功能）
+    local OtherScriptTab = MainWindow:Tab({Title = "其他脚本", Icon = "sword", Locked = false})
+    local DeadRailTab = MainWindow:Tab({Title = "死铁轨", Icon = "sword", Locked = false})
+    local ForestNightTab = MainWindow:Tab({Title = "森林中99个夜晚", Icon = "sword", Locked = false})
 
--- 启动卡密验证
-InitializeKeySystem()
-
--- 【完整开头：WindUI加载+卡密系统+主UI框架】
-local success, WindUI = pcall(function()
-    return loadstring(game:HttpGet("https://github.com/Footagesus/WindUI/releases/latest/download/main.lua"))()
-end)
-if not success then
-    warn("WindUI加载失败，无法启动脚本")
-    return
-end
-
-WindUI:SetTheme("Dark") -- 统一深色主题
-
--- 卡密系统（官方接口）
-local function InitializeKeySystem()
-    local KeyWindow = WindUI:CreateKeySystem({
-        Title = "神秘脚本卡密系统",
-        Size = UDim2.new(0, 420, 0, 320),
-        ValidKeys = {"qwe"}, -- 有效卡密
-        SaveKey = false,
-        Note = "输入卡密验证后加载功能",
-        OnSuccess = function()
-            WindUI:Notify({Title = "验证成功", Content = "加载主UI中", Icon = "check", Duration = 2})
-            KeyWindow:Destroy()
-            CreateMainUI() -- 卡密通过后创建主UI
-        end,
-        OnFailure = function(Reason)
-            WindUI:Notify({Title = "验证失败", Content = Reason, Icon = "x", Duration = 3})
+    -- 3.6 时间标签（仅显示，无额外逻辑）
+    local TimeTag = MainWindow:Tag({Title = "00:00", Color = Color3.fromRGB(255,255,255)})
+    task.spawn(function()
+        while true do
+            local now = os.date("*t")
+            TimeTag:SetTitle(string.format("%02d:%02d", now.hour, now.min))
+            task.wait(0.06)
         end
-    })
-end
-
--- 主UI基础框架（你之前的窗口/边框设置）
-local function CreateMainUI()
-    -- 主窗口
-    local Window = WindUI:CreateWindow({
-        Title = "神秘脚本",
-        Icon = "crown",
-        IconThemed = true,
-        Author = "作者:○○",
-        Folder = "9175",
-        Size = UDim2.fromOffset(580, 460),
-        Transparent = true,
-        SideBarWidth = 200,
-        ScrollBarEnabled = true
-    })
-
-    -- 主窗口边框（你的样式）
-    local windowGui = Window.Gui
-    local borderFrame = Instance.new("Frame")
-    borderFrame.Name = "MainWindowBorder"
-    borderFrame.Size = UDim2.new(1, 6, 1, 6)
-    borderFrame.Position = UDim2.new(0, -3, 0, -3)
-    borderFrame.BackgroundTransparency = 0
-    borderFrame.BackgroundColor3 = Color3.new(1,1,1)
-    borderFrame.ZIndex = 1
-    borderFrame.Parent = windowGui
-
-    local borderGradient = Instance.new("UIGradient")
-    borderGradient.Color = ColorSequence.new({
-        ColorSequenceKeypoint.new(0, Color3.fromHex("FF0000")),
-        ColorSequenceKeypoint.new(0.2, Color3.fromHex("FFAA00")),
-        ColorSequenceKeypoint.new(0.4, Color3.fromHex("FFFF00")),
-        ColorSequenceKeypoint.new(0.6, Color3.fromHex("00FF00")),
-        ColorSequenceKeypoint.new(0.8, Color3.fromHex("0000FF")),
-        ColorSequenceKeypoint.new(1, Color3.fromHex("AA00FF"))
-    })
-    borderGradient.Parent = borderFrame
-
-    -- 顶部按钮
-    Window:CreateTopbarButton("MyCustomButton1", "bird", function() print("clicked 1!") end, 990)
-    Window:CreateTopbarButton("MyCustomButton3", "battery-plus", function() 
-        if Window.ToggleFullscreen then Window:ToggleFullscreen() end
-    end, 989)
-
-    -- 打开按钮样式
-    Window:EditOpenButton({
-        Title = "神秘脚本",
-        Icon = "crown",
-        CornerRadius = UDim.new(0,16),
-        StrokeThickness = 2,
-        Color = ColorSequence.new({
-            ColorSequenceKeypoint.new(0, Color3.fromHex("FF0000")),
-            ColorSequenceKeypoint.new(0.2, Color3.fromHex("FFAA00")),
-            ColorSequenceKeypoint.new(0.4, Color3.fromHex("FFFF00")),
-            ColorSequenceKeypoint.new(0.6, Color3.fromHex("00FF00")),
-            ColorSequenceKeypoint.new(0.8, Color3.fromHex("0000FF")),
-            ColorSequenceKeypoint.new(1, Color3.fromHex("AA00FF"))
-        }),
-        Draggable = true,
-    })
-
-    -- 【这里粘贴你的功能代码（通知标签、通用标签等）】
-end
-
--- 启动卡密验证
-InitializeKeySystem()
-function(Reason)
-            WindUI:Notify({Title = "验证失败", Content = Reason, Icon = "x", Duration = 3})
-        end
-    })
-end
-
--- 4. 主功能（删除重复的WindUI加载，继承统一主题）
-local function LoadMainFeatures()
-    -- 修复：避免与后续变量重名，函数名改为gradientText
-    function gradientText(text, startColor, endColor)
-        local result = ""
-        local length = #text
-
-
--- 1. 通知标签（唯一变量名：NoticeTab_Alien）
-local NoticeTab_Alien = Window:Tab({
-    Title = "通知",
-    Icon = "bell",
-    Locked = false,
-})
-NoticeTab_Alien:Button({
-    Title = "脚本说明",
-    Desc = "感谢黄某,雪花,本熊,老鼠,乌龟,小圆,孤行,",
-})
-NoticeTab_Alien:Button({
-    Title = "更新内容",
-    Desc = "战争大亨 Blox Fruits 奇怪枪械",
-})
-NoticeTab_Alien:Button({
-    Title = "作者QQ群",
-    Callback = function()
-        setclipboard("749944850")
-        WindUI:Notify({
-            Title = "快手号",
-            Content = "已复制到剪贴板",
-            Duration = 3
-        })
-    end
-})
-
-local TimeTag = Window:Tag({
-    Title = "00:00", 
-    Color = Color3.fromRGB(255, 255, 255) 
-})
-
-local hue = 0
-task.spawn(function()
-    while true do
-        local now = os.date("*t")
-        local hours = string.format("%02d", now.hour)
-        local minutes = string.format("%02d", now.min)
-        local timeString = hours .. ":" .. minutes
-        TimeTag:SetTitle(timeString)
-        task.wait(0.06)
-    end
-end)
+    end)
 Window:Tag({
         Title = "1.9.3",
         Color = Color3.fromHex("#9c30ff")
@@ -1188,11 +1060,8 @@ zxc:Button({
         end)
     end
 })
-
- print("完美结合版加载完成，AlienX美观样式+所有功能均正常")
-end
-
-InitializeKeySystem()
+-- 启动脚本（固定结尾）
+InitKeySystem()
 
 
 
