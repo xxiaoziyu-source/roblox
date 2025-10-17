@@ -92,28 +92,30 @@ Window:EditOpenButton({
     Draggable = true,
 })
 
--- 1. 通知标签（唯一变量名：NoticeTab_Alien）
+
+-- 1. 通知标签（唯一变量名: NoticeTab_Alien）
 local NoticeTab_Alien = Window:Tab({
     Title = "通知",
     Icon = "bell",
     Locked = false,
 })
--- “roblox本熊”功能框（已适配图片ID）
+-- “roblox本熊”功能框（已带乌龟图）
 NoticeTab_Alien:Card({
-    Title = "roblox本熊",
-    Subtitle = "开脚本你就受着",
-    Icon = "rbxassetid://129260712070622",  -- 把这里的“129260712070622”换成你的图片Asset ID
+    Title = "神秘脚本",
+    Subtitle = "开脚本我就不受着",
+    -- 直接用现成的乌龟图外链（不用改）
+    Icon = "https://picsum.photos/seed/turtle/60/60",
     IconSize = UDim2.fromOffset(60, 60),
     Content = {
         WindUI:Button({
-            Title = "欢迎使用BHBUO脚本",
+            Title = "欢迎使用神秘脚本",
             Style = {
                 BackgroundColor = Color3.fromHex("#333333"),
                 TextColor = Color3.new(1,1,1),
                 CornerRadius = UDim.new(0,8)
             },
             Callback = function()
-                WindUI:Notify({Title = "提示", Content = "欢迎使用BHBUO脚本"})
+                WindUI:Notify({Title = "提示", Content = "欢迎使用神秘脚本"})
             end
         }),
         WindUI:Button({
@@ -124,11 +126,12 @@ NoticeTab_Alien:Card({
                 CornerRadius = UDim.new(0,8)
             },
             Callback = function()
-                WindUI:Notify({Title = "更新内容", Content = "V1.0：新增核心功能"})
+                WindUI:Notify({Title = "更新内容", Content = "V1.0: 新增核心功能"})
             end
         })
     }
 })
+
 local Section = NoticeTab_Alien:Section({ 
     Title = "师傅",
     TextXAlignment = "Left",
