@@ -633,6 +633,17 @@ StealBrainTab:Button({
     end
 })
 StealBrainTab:Button({
+    Title = "Zenikaze中心(汉化)",
+    Desc = "有隐身偷",
+    Locked = false,
+    Callback = function()
+        pcall(function()
+             loadstring(game:HttpGet("https://raw.githubusercontent.com/xxiaoziyu-source/-/refs/heads/main/Protected_1650894819534207.lua.txt"))()
+            print("9178加载成功")
+        end)
+    end
+})
+StealBrainTab:Button({
     Title = "ZZZZ中心(汉化)",
     Desc = "没有隐身但功能挺多",
     Locked = false,
@@ -643,7 +654,6 @@ StealBrainTab:Button({
         end)
     end
 })
-
 -- 墨水游戏：用“墨水瓶”图标贴合“墨水”主题
 local InkGameTab = Window:Tab({
     Title = "墨水游戏",
