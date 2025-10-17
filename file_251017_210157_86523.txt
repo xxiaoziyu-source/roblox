@@ -92,85 +92,26 @@ Window:EditOpenButton({
     Draggable = true,
 })
 
-
--- 1. 通知标签（唯一变量名: NoticeTab_Alien）
-local NoticeTab_Alien = Window:Tab({
-    Title = "通知",
+-- 1. 先删除原有的NoticeTab_Alien定义，重新写
+local NoticeTab_Alien = Window:CreateTab({  -- 用CreateTab（部分WindUI版本的正确API）
+    Name = "通知",
     Icon = "bell",
-    Locked = false,
-})
--- “roblox本熊”功能框（已带乌龟图）
-NoticeTab_Alien:Card({
-    Title = "神秘脚本",
-    Subtitle = "开脚本我就不受着",
-    -- 直接用现成的乌龟图外链（不用改）
-    Icon = "https://picsum.photos/seed/turtle/60/60",
-    IconSize = UDim2.fromOffset(60, 60),
-    Content = {
-        WindUI:Button({
-            Title = "欢迎使用神秘脚本",
-            Style = {
-                BackgroundColor = Color3.fromHex("#333333"),
-                TextColor = Color3.new(1,1,1),
-                CornerRadius = UDim.new(0,8)
-            },
-            Callback = function()
-                WindUI:Notify({Title = "提示", Content = "欢迎使用神秘脚本"})
-            end
-        }),
-        WindUI:Button({
-            Title = "更新内容",
-            Style = {
-                BackgroundColor = Color3.fromHex("#333333"),
-                TextColor = Color3.new(1,1,1),
-                CornerRadius = UDim.new(0,8)
-            },
-            Callback = function()
-                WindUI:Notify({Title = "更新内容", Content = "V1.0: 新增核心功能"})
-            end
-        })
-    }
+    IsLocked = false
 })
 
-local Section = NoticeTab_Alien:Section({ 
-    Title = "师傅",
-    TextXAlignment = "Left",
-    TextSize = 25,
-})
-NoticeTab_Alien:Button({
-    Title = "张乐🤑🤑🤑🤑",
-})
-local Section = NoticeTab_Alien:Section({ 
-    Title = "脚本帮助",
-    TextXAlignment = "Left",
-    TextSize = 25,
+-- 2. 强制添加内容（不依赖Card，先显示基础组件）
+local testSection = NoticeTab_Alien:CreateSection("测试区域")
+testSection:CreateButton({
+    Text = "欢迎使用BHBUO脚本",
+    OnClick = function()
+        WindUI:Notify({Title = "提示", Content = "脚本已加载"})
+    end
 })
 
-NoticeTab_Alien:Button({
-    Title = "张乐 本熊 乌龟 老鼠 小圆 孤行",
-})
-local Section = NoticeTab_Alien:Section({ 
-    Title = "更新内容↓↓",
-    TextXAlignment = "Left",
-    TextSize = 25,
-})
-NoticeTab_Alien:Button({
-    Title = "偷走脑红更新了一个汉化脚本",
-})
-local Section = NoticeTab_Alien:Section({ 
-    Title = "加入QQ群",
-    TextXAlignment = "Left",
-    TextSize = 25,
-})
-NoticeTab_Alien:Button({
-    Title = "作者QQ群",
-    Callback = function()
-        setclipboard("749944850")
-        WindUI:Notify({
-            Title = "快手号",
-            Content = "已复制到剪贴板",
-            Duration = 3
-        })
+testSection:CreateButton({
+    Text = "更新内容",
+    OnClick = function()
+        WindUI:Notify({Title = "更新", Content = "V1.0新增功能"})
     end
 })
 
