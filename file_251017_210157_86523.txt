@@ -98,19 +98,41 @@ local NoticeTab_Alien = Window:Tab({
     Icon = "bell",
     Locked = false,
 })
-NoticeTab_Alien:Button({
-    Title = "脚本说明",
-    Desc = "感谢黄某,雪花,本熊,老鼠,乌龟,小圆,孤行,",
+local Section = NoticeTab_Alien:Section({ 
+    Title = "师傅",
+    TextXAlignment = "Left",
+    TextSize = 25,
 })
 NoticeTab_Alien:Button({
-    Title = "更新内容",
-    Desc = "战争大亨 Blox Fruits 奇怪枪械",
+    Title = "张乐🤑🤑🤑🤑",
+})
+local Section = NoticeTab_Alien:Section({ 
+    Title = "脚本帮助",
+    TextXAlignment = "Left",
+    TextSize = 25,
+})
+
+NoticeTab_Alien:Button({
+    Title = "张乐 本熊 乌龟 老鼠 小圆 孤行",
+})
+local Section = NoticeTab_Alien:Section({ 
+    Title = "更新内容↓↓",
+    TextXAlignment = "Left",
+    TextSize = 25,
+})
+NoticeTab_Alien:Button({
+    Title = "偷走脑红更新了一个汉化脚本",
+})
+local Section = NoticeTab_Alien:Section({ 
+    Title = "加入QQ群",
+    TextXAlignment = "Left",
+    TextSize = 25,
 })
 NoticeTab_Alien:Button({
     Title = "作者QQ群",
     Callback = function()
         setclipboard("749944850")
-        WindUI:Notify({
+        WindUI:Notify({n
             Title = "快手号",
             Content = "已复制到剪贴板",
             Duration = 3
@@ -1078,6 +1100,7 @@ zxc:Button({
     end
 })
 
+Window:SelectTab("通知")
  print("完美结合版加载完成，AlienX美观样式+所有功能均正常")
 
 
