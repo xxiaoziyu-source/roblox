@@ -1,3 +1,77 @@
+-- 1. 加载 WindUI（失败则终止）
+local success, WindUI = pcall(function()
+    return loadstring(game:HttpGet("https://github.com/Footagesus/WindUI/releases/latest/download/main.lua"))()
+end)
+
+if not success then
+    warn("WindUI 加载失败，无法启动卡密系统")
+    return
+end
+
+-- 2. 强制设置 Light 主题（确保卡密界面样式一致）
+WindUI:SetTheme("Light")
+
+-- 3. 定义卡密验证逻辑（前置步骤）
+local function InitializeKeySystem()
+    local KeyWindow = WindUI:CreateWindow({
+        Title = "神秘脚本卡密系统",
+        Size = UDim2.new(0, 420, 0, 320),
+        Folder = "WindUI_MandatoryKey",
+        KeySystem = {
+            SaveKey = false, -- 关闭卡密保存（每次执行都需重新验证）
+            ValidKeys = {
+                "qwe"  -- 有效卡密（已改为 qwe）
+            },
+            Note = "每次启动需重新验证卡密",
+            Thumbnail = {
+                Title = "验证通过后加载功能"
+            },
+            -- 验证失败的回调（直接关闭窗口并终止脚本）
+            OnFail = function(Reason)
+                WindUI:Notify({
+                    Title = "验证失败",
+                    Content = "原因：" .. Reason,
+                    Icon = "x",
+                    Duration = 5
+                })
+                wait(3)
+                KeyWindow:Destroy()
+                return
+            end
+        }
+    })
+
+    -- 4. 验证通过后加载功能（卡密窗口自动隐藏）
+    KeyWindow.KeySystem:OnVerified(function()
+        WindUI:Notify({
+            Title = "验证成功",
+            Content = "正在加载功能...",
+            Icon = "check",
+            Duration = 3
+        })
+        KeyWindow:Hide() -- 隐藏卡密窗口
+        LoadMainFeatures() -- 加载主功能
+    end)
+end
+
+-- 5. 主功能（仅在卡密验证通过后执行）
+local function LoadMainFeatures()
+    local MainWindow = WindUI:CreateWindow({
+        Title = "主功能界面",
+        Size = UDim2.new(0, 500, 0, 400)
+    })
+
+    local HomeTab = MainWindow:Tab({Title = "功能", Icon = "home"})
+    HomeTab:Button({
+        Title = "测试功能",
+        Callback = function()
+            WindUI:Notify({Title = "功能正常", Content = "卡密验证已通过"})
+        end
+    })
+end
+
+-- 启动脚本：强制执行卡密验证
+InitializeKeySystem()
 -- 加载WindUI（确保链接可访问）
 WindUI = loadstring(game:HttpGet("https://github.com/Footagesus/WindUI/releases/latest/download/main.lua"))()
 
