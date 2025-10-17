@@ -92,27 +92,55 @@ Window:EditOpenButton({
     Draggable = true,
 })
 
--- 1. 先删除原有的NoticeTab_Alien定义，重新写
-local NoticeTab_Alien = Window:CreateTab({  -- 用CreateTab（部分WindUI版本的正确API）
-    Name = "通知",
+-- 1. 先创建通知标签页（官网API）
+local NoticeTab = Window:CreateTab({
+    Name = "通知", -- 官网用Name，不是Title
     Icon = "bell",
     IsLocked = false
 })
 
--- 2. 强制添加内容（不依赖Card，先显示基础组件）
-local testSection = NoticeTab_Alien:CreateSection("测试区域")
-testSection:CreateButton({
-    Text = "欢迎使用BHBUO脚本",
-    OnClick = function()
-        WindUI:Notify({Title = "提示", Content = "脚本已加载"})
-    end
+-- 2. 师傅Section
+local MasterSection = NoticeTab:CreateSection({
+    Name = "师傅" -- 官网Section用Name，不是Title
+})
+MasterSection:CreateButton({
+    Text = "张乐🤑🤑🤑🤑", -- 官网Button用Text，不是Title
+    Style = { TextXAlignment = "Left", TextSize = 25 } -- 样式写在Style里
 })
 
-testSection:CreateButton({
-    Text = "更新内容",
-    OnClick = function()
-        WindUI:Notify({Title = "更新", Content = "V1.0新增功能"})
-    end
+-- 3. 脚本帮助Section
+local HelpSection = NoticeTab:CreateSection({
+    Name = "脚本帮助"
+})
+HelpSection:CreateButton({
+    Text = "张乐 本熊 乌龟 老鼠 小圆 孤行",
+    Style = { TextXAlignment = "Left", TextSize = 25 }
+})
+
+-- 4. 更新内容Section
+local UpdateSection = NoticeTab:CreateSection({
+    Name = "更新内容↓↓"
+})
+UpdateSection:CreateButton({
+    Text = "偷走脑红更新了一个汉化脚本",
+    Style = { TextXAlignment = "Left", TextSize = 25 }
+})
+
+-- 5. 加入QQ群Section
+local QQSection = NoticeTab:CreateSection({
+    Name = "加入QQ群"
+})
+QQSection:CreateButton({
+    Text = "作者QQ群",
+    OnClick = function() -- 官网用OnClick，不是Callback
+        setclipboard("749944850")
+        WindUI:Notify({
+            Title = "QQ群", -- 这里修正为“QQ群”更准确
+            Content = "已复制到剪贴板",
+            Duration = 3
+        })
+    end,
+    Style = { TextXAlignment = "Left", TextSize = 25 }
 })
 
 local TimeTag = Window:Tag({
