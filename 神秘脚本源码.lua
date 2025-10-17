@@ -1024,17 +1024,3 @@ Window:SelectTab("通知")
 
 -- 加载完成提示
 print("神秘脚本1.9.3加载完成 - 基于本熊汉化格式重构")
-
--- 添加彩虹边框动画效果
-task.spawn(function()
-    while true do
-        for i = 0, 1, 0.01 do
-            if borderFrame and borderFrame.Parent then
-                local hue = i
-                local r, g, b = Color3.fromHSV(hue, 1, 1):ToRGB()
-                borderFrame.BackgroundColor3 = Color3.new(r, g, b)
-            end
-            task.wait(0.05)
-        end
-    end
-end)
