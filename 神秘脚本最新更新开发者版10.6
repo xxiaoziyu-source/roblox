@@ -1,77 +1,65 @@
--- 1. 加载 WindUI（失败则终止）
+-- 1. 加载 WindUI
 local success, WindUI = pcall(function()
     return loadstring(game:HttpGet("https://github.com/Footagesus/WindUI/releases/latest/download/main.lua"))()
 end)
+if not success then warn("WindUI加载失败") return end
 
-if not success then
-    warn("WindUI 加载失败，无法启动卡密系统")
-    return
-end
+-- 2. 深色主题（匹配界面）
+WindUI:SetTheme("Dark")
 
--- 2. 强制设置 Light 主题（确保卡密界面样式一致）
-WindUI:SetTheme("Light")
-
--- 3. 定义卡密验证逻辑（前置步骤）
+-- 3. 卡密系统（验证通过后窗口直接消失）
 local function InitializeKeySystem()
     local KeyWindow = WindUI:CreateWindow({
         Title = "神秘脚本卡密系统",
         Size = UDim2.new(0, 420, 0, 320),
         Folder = "WindUI_MandatoryKey",
         KeySystem = {
-            SaveKey = false, -- 关闭卡密保存（每次执行都需重新验证）
-            ValidKeys = {
-                "qwe"  -- 有效卡密（已改为 qwe）
-            },
+            SaveKey = false,
+            ValidKeys = {"qwe"}, -- 有效卡密
             Note = "每次启动需重新验证卡密",
-            Thumbnail = {
-                Title = "验证通过后加载功能"
-            },
-            -- 验证失败的回调（直接关闭窗口并终止脚本）
-            OnFail = function(Reason)
-                WindUI:Notify({
-                    Title = "验证失败",
-                    Content = "原因：" .. Reason,
-                    Icon = "x",
-                    Duration = 5
-                })
-                wait(3)
-                KeyWindow:Destroy()
-                return
+            OnSubmit = function(InputKey)
+                if table.find(KeyWindow.KeySystem.Config.ValidKeys, InputKey) then
+                    -- 验证成功：直接销毁卡密窗口（彻底消失）
+                    WindUI:Notify({
+                        Title = "验证成功",
+                        Content = "卡密窗口已关闭",
+                        Icon = "check",
+                        Duration = 2
+                    })
+                    KeyWindow:Destroy() -- 销毁窗口（而非隐藏）
+                    LoadMainFeatures() -- 加载主功能
+                else
+                    -- 验证失败
+                    WindUI:Notify({
+                        Title = "验证失败",
+                        Content = "卡密无效",
+                        Icon = "x",
+                        Duration = 3
+                    })
+                end
             end
         }
     })
-
-    -- 4. 验证通过后加载功能（卡密窗口自动隐藏）
-    KeyWindow.KeySystem:OnVerified(function()
-        WindUI:Notify({
-            Title = "验证成功",
-            Content = "正在加载功能...",
-            Icon = "check",
-            Duration = 3
-        })
-        KeyWindow:Hide() -- 隐藏卡密窗口
-        LoadMainFeatures() -- 加载主功能
-    end)
 end
 
--- 5. 主功能（仅在卡密验证通过后执行）
+-- 4. 主功能
 local function LoadMainFeatures()
     local MainWindow = WindUI:CreateWindow({
         Title = "主功能界面",
         Size = UDim2.new(0, 500, 0, 400)
     })
-
     local HomeTab = MainWindow:Tab({Title = "功能", Icon = "home"})
     HomeTab:Button({
         Title = "测试功能",
         Callback = function()
-            WindUI:Notify({Title = "功能正常", Content = "卡密验证已通过"})
+            WindUI:Notify({Title = "功能正常", Content = "卡密已验证"})
         end
     })
 end
 
--- 启动脚本：强制执行卡密验证
+-- 启动
 InitializeKeySystem()
+
 -- 加载WindUI（确保链接可访问）
 WindUI = loadstring(game:HttpGet("https://github.com/Footagesus/WindUI/releases/latest/download/main.lua"))()
 
