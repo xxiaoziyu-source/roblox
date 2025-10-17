@@ -98,6 +98,37 @@ local NoticeTab_Alien = Window:Tab({
     Icon = "bell",
     Locked = false,
 })
+-- “roblox本熊”功能框（已适配图片ID）
+NoticeTab_Alien:Card({
+    Title = "roblox本熊",
+    Subtitle = "开脚本你就受着",
+    Icon = "rbxassetid://129260712070622",  -- 把这里的“129260712070622”换成你的图片Asset ID
+    IconSize = UDim2.fromOffset(60, 60),
+    Content = {
+        WindUI:Button({
+            Title = "欢迎使用BHBUO脚本",
+            Style = {
+                BackgroundColor = Color3.fromHex("#333333"),
+                TextColor = Color3.new(1,1,1),
+                CornerRadius = UDim.new(0,8)
+            },
+            Callback = function()
+                WindUI:Notify({Title = "提示", Content = "欢迎使用BHBUO脚本"})
+            end
+        }),
+        WindUI:Button({
+            Title = "更新内容",
+            Style = {
+                BackgroundColor = Color3.fromHex("#333333"),
+                TextColor = Color3.new(1,1,1),
+                CornerRadius = UDim.new(0,8)
+            },
+            Callback = function()
+                WindUI:Notify({Title = "更新内容", Content = "V1.0：新增核心功能"})
+            end
+        })
+    }
+})
 local Section = NoticeTab_Alien:Section({ 
     Title = "师傅",
     TextXAlignment = "Left",
