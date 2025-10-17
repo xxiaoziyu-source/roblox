@@ -132,7 +132,7 @@ NoticeTab_Alien:Button({
     Title = "作者QQ群",
     Callback = function()
         setclipboard("749944850")
-        WindUI:Notify({n
+        WindUI:Notify({
             Title = "快手号",
             Content = "已复制到剪贴板",
             Duration = 3
