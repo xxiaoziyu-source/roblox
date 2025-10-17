@@ -1,158 +1,88 @@
--- 1. 加载 WindUI
+-- 1. 加载WindUI + 卡密系统（补全的基础框架）
 local success, WindUI = pcall(function()
     return loadstring(game:HttpGet("https://github.com/Footagesus/WindUI/releases/latest/download/main.lua"))()
 end)
 if not success then warn("WindUI加载失败") return end
-
--- 2. 深色主题（匹配界面）
 WindUI:SetTheme("Dark")
 
--- 3. 卡密系统（验证通过后窗口直接消失）
+-- 2. 卡密验证（验证通过后创建主UI）
 local function InitializeKeySystem()
-    local KeyWindow = WindUI:CreateWindow({
+    local KeyWindow = WindUI:CreateKeySystem({
         Title = "神秘脚本卡密系统",
         Size = UDim2.new(0, 420, 0, 320),
-        Folder = "WindUI_MandatoryKey",
-        KeySystem = {
-            SaveKey = false,
-            ValidKeys = {"qwe"}, -- 有效卡密
-            Note = "每次启动需重新验证卡密",
-            OnSubmit = function(InputKey)
-                if table.find(KeyWindow.KeySystem.Config.ValidKeys, InputKey) then
-                    -- 验证成功：直接销毁卡密窗口（彻底消失）
-                    WindUI:Notify({
-                        Title = "验证成功",
-                        Content = "卡密窗口已关闭",
-                        Icon = "check",
-                        Duration = 2
-                    })
-                    KeyWindow:Destroy() -- 销毁窗口（而非隐藏）
-                    LoadMainFeatures() -- 加载主功能
-                else
-                    -- 验证失败
-                    WindUI:Notify({
-                        Title = "验证失败",
-                        Content = "卡密无效",
-                        Icon = "x",
-                        Duration = 3
-                    })
-                end
-            end
-        }
-    })
-end
-
--- 4. 主功能
-local function LoadMainFeatures()
-    local MainWindow = WindUI:CreateWindow({
-        Title = "主功能界面",
-        Size = UDim2.new(0, 500, 0, 400)
-    })
-    local HomeTab = MainWindow:Tab({Title = "功能", Icon = "home"})
-    HomeTab:Button({
-        Title = "测试功能",
-        Callback = function()
-            WindUI:Notify({Title = "功能正常", Content = "卡密已验证"})
+        ValidKeys = {"qwe"},
+        SaveKey = false,
+        Note = "输入卡密验证后加载功能",
+        OnSuccess = function()
+            WindUI:Notify({Title = "验证成功", Content = "加载主UI中", Icon = "check", Duration = 2})
+            KeyWindow:Destroy()
+            CreateMainUI() -- 卡密通过后创建主UI
+        end,
+        OnFailure = function(Reason)
+            WindUI:Notify({Title = "验证失败", Content = Reason, Icon = "x", Duration = 3})
         end
     })
 end
 
--- 启动
-InitializeKeySystem()
+-- 3. 主UI框架（补全你删掉的部分）
+local function CreateMainUI()
+    -- 主窗口（你之前的UI核心）
+    local Window = WindUI:CreateWindow({
+        Title = "神秘脚本",
+        Icon = "crown",
+        IconThemed = true,
+        Author = "作者:○○",
+        Folder = "9175",
+        Size = UDim2.fromOffset(580, 460),
+        Transparent = true,
+        SideBarWidth = 200,
+        ScrollBarEnabled = true
+    })
 
--- 加载WindUI（确保链接可访问）
-WindUI = loadstring(game:HttpGet("https://github.com/Footagesus/WindUI/releases/latest/download/main.lua"))()
+    -- 主窗口边框（你之前的样式）
+    local windowGui = Window.Gui
+    local borderFrame = Instance.new("Frame")
+    borderFrame.Name = "MainWindowBorder"
+    borderFrame.Size = UDim2.new(1, 6, 1, 6)
+    borderFrame.Position = UDim2.new(0, -3, 0, -3)
+    borderFrame.BackgroundTransparency = 0
+    borderFrame.BackgroundColor3 = Color3.new(1,1,1)
+    borderFrame.ZIndex = 1
+    borderFrame.Parent = windowGui
 
--- 修复：避免与后续的UIGradient变量重名，将函数名改为gradientText
-function gradientText(text, startColor, endColor)
-    local result = ""
-    local length = #text
-    
-    for i = 1, length do
-        local t = (i - 1) / math.max(length - 1, 1)
-        -- Color3的R/G/B是0~1，乘255转为RGB的0~255范围（这部分逻辑是对的）
-        local r = math.floor((startColor.R + (endColor.R - startColor.R) * t) * 255)
-        local g = math.floor((startColor.G + (endColor.G - startColor.G) * t) * 255)
-        local b = math.floor((startColor.B + (endColor.B - startColor.B) * t) * 255)
-
-        local char = text:sub(i, i)
-        result = result .. "<font color=\"rgb(" .. r ..", " .. g .. ", " .. b .. ")\">" .. char .. "</font>"
-    end
-    
-    return result
-end
-
-
-local Window = WindUI:CreateWindow({
-    Title = "神秘脚本",
-    Icon = "crown",
-    IconThemed = true,
-    Author = "作者:○○",
-    Folder = "9175",
-    Size = UDim2.fromOffset(580, 460),
-    Transparent = true,
-    Theme = "Light",
-    User = {
-        Enabled = true,
-        Callback = function() print("clicked") end,
-        Anonymous = true
-    },
-    SideBarWidth = 200,
-    ScrollBarEnabled = true
-})
-
--- 直接修改主窗口的边框（核心修改）
-local windowGui = Window.Gui
-local borderFrame = Instance.new("Frame")
-borderFrame.Name = "MainWindowBorder"
--- 修复：确保边框完全包裹窗口（Size和Position的偏移量对应）
-borderFrame.Size = UDim2.new(1, 6, 1, 6)
-borderFrame.Position = UDim2.new(0, -3, 0, -3)
-borderFrame.BackgroundTransparency = 0
-borderFrame.BackgroundColor3 = Color3.new(1,1,1)
--- 修复：ZIndex改为1（避免被窗口完全遮挡，WindUI窗口的ZIndex通常是2+，这里设1可显示在窗口下层）
-borderFrame.ZIndex = 1
-borderFrame.Parent = windowGui
-
--- 给边框加彩色渐变（修复：变量名改为borderGradient，避免与函数重名）
-local borderGradient = Instance.new("UIGradient")
-borderGradient.Color = ColorSequence.new({
-    ColorSequenceKeypoint.new(0, Color3.fromHex("FF0000")),
-    ColorSequenceKeypoint.new(0.2, Color3.fromHex("FFAA00")),
-    ColorSequenceKeypoint.new(0.4, Color3.fromHex("FFFF00")),
-    ColorSequenceKeypoint.new(0.6, Color3.fromHex("00FF00")),
-    ColorSequenceKeypoint.new(0.8, Color3.fromHex("0000FF")),
-    ColorSequenceKeypoint.new(1, Color3.fromHex("AA00FF"))
-})
-borderGradient.Parent = borderFrame
-
--- 创建顶部按钮（确保WindUI支持该API）
-Window:CreateTopbarButton("MyCustomButton1", "bird", function() print("clicked 1!") end, 990)
-Window:CreateTopbarButton("MyCustomButton3", "battery-plus", function() 
-    -- 修复：确保ToggleFullscreen是WindUI的合法方法
-    if Window.ToggleFullscreen then
-        Window:ToggleFullscreen() 
-    else
-        print("WindUI不支持ToggleFullscreen方法")
-    end
-end, 989)
-
--- 编辑打开按钮样式（确保参数符合WindUI要求）
-Window:EditOpenButton({
-    Title = "神秘脚本",
-    Icon = "crown",
-    CornerRadius = UDim.new(0,16),
-    StrokeThickness = 2,
-    Color = ColorSequence.new({
+    local borderGradient = Instance.new("UIGradient")
+    borderGradient.Color = ColorSequence.new({
         ColorSequenceKeypoint.new(0, Color3.fromHex("FF0000")),
         ColorSequenceKeypoint.new(0.2, Color3.fromHex("FFAA00")),
         ColorSequenceKeypoint.new(0.4, Color3.fromHex("FFFF00")),
         ColorSequenceKeypoint.new(0.6, Color3.fromHex("00FF00")),
         ColorSequenceKeypoint.new(0.8, Color3.fromHex("0000FF")),
         ColorSequenceKeypoint.new(1, Color3.fromHex("AA00FF"))
-    }),
-    Draggable = true,
-})
+    })
+    borderGradient.Parent = borderFrame
+
+    -- 顶部按钮（你之前的设置）
+    Window:CreateTopbarButton("MyCustomButton1", "bird", function() print("clicked 1!") end, 990)
+    Window:CreateTopbarButton("MyCustomButton3", "battery-plus", function() 
+        if Window.ToggleFullscreen then Window:ToggleFullscreen() end
+    end, 989)
+
+    -- 打开按钮样式（你之前的设置）
+    Window:EditOpenButton({
+        Title = "神秘脚本",
+        Icon = "crown",
+        CornerRadius = UDim.new(0,16),
+        StrokeThickness = 2,
+        Color = ColorSequence.new({
+            ColorSequenceKeypoint.new(0, Color3.fromHex("FF0000")),
+            ColorSequenceKeypoint.new(0.2, Color3.fromHex("FFAA00")),
+            ColorSequenceKeypoint.new(0.4, Color3.fromHex("FFFF00")),
+            ColorSequenceKeypoint.new(0.6, Color3.fromHex("00FF00")),
+            ColorSequenceKeypoint.new(0.8, Color3.fromHex("0000FF")),
+            ColorSequenceKeypoint.new(1, Color3.fromHex("AA00FF"))
+        }),
+        Draggable = true,
+    })
 
 -- 1. 通知标签（唯一变量名：NoticeTab_Alien）
 local NoticeTab_Alien = Window:Tab({
@@ -1141,8 +1071,9 @@ zxc:Button({
 })
 
  print("完美结合版加载完成，AlienX美观样式+所有功能均正常")
+end
 
-
+InitializeKeySystem()
 
 
 
