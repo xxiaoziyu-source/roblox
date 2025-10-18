@@ -797,29 +797,29 @@ Loggingtycoon:Button({
     end
 })
 
-local Cutting down trees = Window:Tab({
+local qweasd = Window:Tab({
     Title = "砍伐树木",
     Icon = "bell",
     Locked = false,
 })
-Cutting down trees:Section({ 
-    Title = 自制功能",
+qweasd:Section({ 
+    Title = "自制功能",
     TextXAlignment = "Left",
     TextSize = 25,
 })
-Cutting down trees:Button({
+qweasd:Button({
     Title = "砍树1",
     Callback = function()
        loadstring(game:HttpGet("https://rawscripts.net/raw/Cut-Trees-Cut-all-nearest-trees-57309"))()
     end
 })
-Cutting down trees:Button({
+qweasd:Button({
     Title = "砍树2",
     Callback = function()
        loadstring(game:HttpGet("https://rawscripts.net/raw/Cut-Trees-WORLD-3-Instant-cut-all-trees-56528"))()
     end
 })
-Cutting down trees:Button({
+qweasd:Button({
     Title = "武器变大",
     Callback = function()
        loadstring(game:HttpGet("https://rawscripts.net/raw/Cut-Trees-Resize-tool-57310"))()
