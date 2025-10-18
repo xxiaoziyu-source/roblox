@@ -97,9 +97,14 @@ local NoticeTab_Alien = Window:Tab({
     Icon = "bell",
     Locked = false,
 })
-NoticeTab_Alien:Button({
+NoticeTab_Alien:Section({ 
     Title = "脚本说明",
-    Desc = "感谢黄某,雪花,本熊,老鼠,乌龟,小圆,孤行,",
+    TextXAlignment = "Left",
+    TextSize = 10,
+})
+NoticeTab_Alien:Button({
+    Title = "感谢",
+    Desc = "黄某,雪花,本熊,老鼠,乌龟,小圆,孤行,",
 })
 NoticeTab_Alien:Button({
     Title = "更新内容",
