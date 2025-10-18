@@ -1,49 +1,6 @@
 -- 加载WindUI（确保链接可访问）
 WindUI = loadstring(game:HttpGet("https://github.com/Footagesus/WindUI/releases/latest/download/main.lua"))()
 
--- 添加卡密系统
-local validKeys = {
-    "9175",  -- 示例卡密1
-    "qwe",  -- 示例卡密2
-    "Zl-666"  -- 示例卡密3
-}
-
-local function checkKey(key)
-    for _, validKey in ipairs(validKeys) do
-        if key == validKey then
-            return true
-        end
-    end
-    return false
-end
-
--- 显示卡密输入界面
-local keyInput = WindUI:KeyInput({
-    Title = "神秘脚本19.3",
-    Subtitle = "请输入卡密",
-    Callback = function(input)
-        if checkKey(input) then
-            WindUI:Notify({
-                Title = "验证成功",
-                Content = "欢迎使用神秘脚本",
-                Duration = 3
-            })
-            return true  -- 验证通过
-        else
-            WindUI:Notify({
-                Title = "验证失败",
-                Content = "无效的卡密",
-                Duration = 3
-            })
-            return false  -- 验证失败
-        end
-    end,
-    Attempts = 3  -- 最多尝试3次
-})
-
--- 如果卡密验证失败，直接返回不执行后续代码
-if not keyInput then return end
-
 -- 修复：避免与后续的UIGradient变量重名，将函数名改为gradientText
 function gradientText(text, startColor, endColor)
     local result = ""
@@ -146,7 +103,7 @@ NoticeTab_Alien:Button({
 })
 NoticeTab_Alien:Button({
     Title = "更新内容",
-    Desc = "战争大亨 Blox Fruits",
+    Desc = "战争大亨 Blox Fruits 偷走脑红更新了一个汉化脚本",
 })
 NoticeTab_Alien:Button({
     Title = "作者QQ群",
