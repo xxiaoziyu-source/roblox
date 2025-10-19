@@ -521,6 +521,18 @@ ForestNightTab:Button({
     end
 })
 ForestNightTab:Button({
+    Title = "虚空汉化扩展包",
+    Desc = "虽然卡但把更新的内容给汉化了",
+    Locked = false,
+    Callback = function()
+        pcall(function()
+            -- 虚拟汉化脚本（可直接执行版）
+loadstring(game:HttpGet("https://raw.githubusercontent.com/xxiaoziyu-source/roblox/refs/heads/main/%E8%99%9A%E7%A9%BA%E6%B1%89%E5%8C%96"))()
+            print("虚空汉化加载成功")
+        end)
+    end
+})
+ForestNightTab:Button({
     Title = "H4X(汉化)",
     Desc = "有一小点没汉化",
     Locked = false,
