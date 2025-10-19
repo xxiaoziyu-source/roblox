@@ -1,5 +1,6 @@
--- 1. 精简版汉化词典（去除冗余“功能”后缀，缩短长文本）
+-- 1. 精简版汉化词典（修复语法错误+移除冗余后缀+去重）
 local Translations = {
+    -- 基础功能
     ["Search"] = "搜索",
     ["Information"] = "信息",
     ["Fun"] = "趣味",
@@ -12,6 +13,8 @@ local Translations = {
     ["Misc"] = "杂项",
     ["Theme"] = "主题",
     ["Config"] = "配置",
+
+    -- 物品相关
     ["Pickup All Flowers"] = "全拾花朵",
     ["Collect All Gold Stacks"] = "全收金堆",
     ["Auto Crock Pot"] = "自动炖锅",
@@ -31,6 +34,8 @@ local Translations = {
     ["Loot Radius"] = "战利品半径",
     ["Chest Delay (sec)"] = "宝箱延迟（秒）",
     ["Enabled"] = "启用",
+
+    -- 种植建造
     ["Plant Stuff"] = "种植建造",
     ["Build Radius"] = "建造半径",
     ["Angle Increment"] = "角度增量",
@@ -38,6 +43,8 @@ local Translations = {
     ["Plant Saplings in Circle"] = "环形种树苗",
     ["Build Log Walls in Circle"] = "环形建原木墙",
     ["Ribs"] = "肋骨",
+
+    -- 搬运设置
     ["Bring Settings"] = "搬运设置",
     ["Use Freecam for Bring Items"] = "搬运自由视角",
     ["Bring Method"] = "搬运方式",
@@ -61,15 +68,21 @@ local Translations = {
     ["Slow"] = "慢速",
     ["Fast"] = "快速",
     ["Ultra Fast"] = "超快速",
+
+    -- 目标对象
     ["Player"] = "玩家",
     ["Workbench"] = "工作台",
     ["Fire"] = "火堆",
+
+    -- 光环功能
     ["Entity Godmode"] = "实体无敌",
     ["Hip Height Changer"] = "臀高调整",
     ["Kill Aura"] = "杀戮光环",
     ["Kill Aura Range"] = "杀戮光环范围",
     ["Ice Aura"] = "冰冻光环",
     ["Ice Aura Range"] = "冰冻光环范围",
+
+    -- 树木模块
     ["Tree Farm"] = "树木农场",
     ["Auto Chop Tree Type"] = "自动伐木类型",
     ["Auto Chop Trees"] = "自动伐木",
@@ -79,15 +92,21 @@ local Translations = {
     ["Small Tree"] = "小型树木",
     ["Big Tree"] = "大型树木",
     ["Snowy Small Tree"] = "积雪小型树",
+
+    -- 生存功能
     ["Auto Eat Food"] = "自动进食",
     ["Eat When Hunger Below"] = "饥饿值低时进食",
     ["Auto Eat"] = "自动进食",
     ["Auto Bandage"] = "自动包扎",
     ["MedKit included"] = "含医疗包",
     ["Heal When Below"] = "生命值低时治疗",
+
+    -- 战斗辅助
     ["Hitbox Expansion"] = "碰撞箱扩展",
     ["Enable Hitbox Expansion"] = "启用碰撞箱扩展",
     ["Hitbox Size Multiplier"] = "碰撞箱大小乘数",
+
+    -- 其他功能
     ["Other"] = "其他",
     ["Instant Open Chests"] = "立即开宝箱",
     ["Auto TP to Camp at Night"] = "夜间自动传营地",
@@ -100,6 +119,8 @@ local Translations = {
     ["Chest Dropdown"] = "宝箱下拉",
     ["Teleport To Chest"] = "传至宝箱",
     ["Refresh Chest List"] = "刷新宝箱列表",
+
+    -- 子嗣传送
     ["Child TP"] = "子嗣传送",
     ["选择 Child"] = "选择子嗣",
     ["Teleport To Child"] = "传至子嗣",
@@ -108,9 +129,13 @@ local Translations = {
     ["Lost Child3"] = "迷失孩子3",
     ["Lost Child4"] = "迷失孩子4",
     ["Refresh Children List"] = "刷新孩子列表",
+
+    -- 建筑传送
     ["Structure TP"] = "建筑传送",
     ["选择 Structure"] = "选择建筑",
     ["Teleport To Selected Structure"] = "传至所选建筑",
+
+    -- 其他传送
     ["Other TP"] = "其他传送",
     ["Teleport to Cultist Generator Base"] = "传教徒生成基地",
     ["Teleport to Stronghold"] = "传要塞",
@@ -118,6 +143,8 @@ local Translations = {
     ["Teleport to Caravan"] = "传大篷车",
     ["Teleport to Fairy"] = "传仙子",
     ["Teleport to Anvil"] = "传铁砧",
+
+    -- ESP功能
     ["Main ESP"] = "主要ESP",
     ["PlayerEspColor"] = "玩家ESP颜色",
     ["Fishing ESP"] = "钓鱼ESP",
@@ -133,19 +160,15 @@ local Translations = {
     ["GearsEspColor"] = "齿轮ESP颜色",
     ["Gears Items"] = "齿轮物品ESP",
     ["Fuel ESP"] = "燃料ESP",
-    ["Fuel"] = "燃料ESP项",
     ["FuelEspColor"] = "燃料ESP颜色",
     ["Fuel Items"] = "燃料物品ESP",
     ["Food & Healing ESP"] = "食物治疗ESP",
-    ["Food & Healing"] = "食物治疗ESP项",
     ["FoodHealingEspColor"] = "食物治疗ESP颜色",
     ["Food & Healing Items"] = "食物治疗物品ESP",
     ["Guns & Armor ESP"] = "枪支护甲ESP",
-    ["Guns & Armor"] = "枪支护甲ESP项",
     ["GunsArmorEspColor"] = "枪支护甲ESP颜色",
     ["Guns & Armor Items"] = "枪支护甲物品ESP",
     ["Others ESP"] = "其他物品ESP",
-    ["Others"] = "其他物品ESP项",
     ["OthersEspColor"] = "其他物品ESP颜色",
     ["Others Items"] = "其他物品项ESP",
     ["Characters ESP"] = "角色ESP",
@@ -158,6 +181,8 @@ local Translations = {
     ["Fill Transparency"] = "填充透明度",
     ["Outline Transparency"] = "轮廓透明度",
     ["Text Size"] = "文字大小",
+
+    -- 视角移动
     ["Self"] = "自身",
     ["FOV"] = "视野",
     ["Movement"] = "移动",
@@ -169,6 +194,8 @@ local Translations = {
     ["TP Walk"] = "传送行走",
     ["Noclip"] = "穿墙",
     ["Infinite Jump"] = "无限跳跃",
+
+    -- 视觉效果
     ["Useful Stuff"] = "实用功能",
     ["Fullbright"] = "全亮",
     ["Remove Fog"] = "移除雾气",
@@ -179,6 +206,8 @@ local Translations = {
     ["Lighting Theme"] = "照明主题",
     ["Enable Lighting Theme"] = "启用照明主题",
     ["Aesthetic Lighting"] = "美学照明",
+
+    -- 安全与设置
     ["Security"] = "安全",
     ["Anti AFK"] = "防挂机",
     ["Voidware [Official] #50k"] = "Voidware 官方#50k",
@@ -194,6 +223,8 @@ local Translations = {
     ["Obsidian"] = "Obsidian库",
     ["LinoriaLib"] = "LinoriaLib库",
     ["Wind"] = "Wind库",
+
+    -- 地图与传送
     ["Reveal Map"] = "地图全显",
     ["Teleport All Trees"] = "传送所有树木",
     ["Teleport All BIG Trees"] = "传送所有大树",
@@ -204,6 +235,8 @@ local Translations = {
     ["Freeze the movement of something :3"] = "冻结物体移动",
     ["Freeze The Thingys"] = "冻结物体",
     ["UnFreeze The Thingys"] = "解冻物体",
+
+    -- 实体列表
     ["Frog"] = "青蛙",
     ["Scorpion"] = "蝎子",
     ["Hellephant"] = "地狱象",
@@ -218,65 +251,64 @@ local Translations = {
     ["Mammoth"] = "猛犸象",
     ["Juggernaut Cultist"] = "主宰信徒",
     ["Polar Bear"] = "北极熊",
-    ["Alpha Wolf"] = "阿尔法狼,
+    ["Alpha Wolf"] = "阿尔法狼",
+    ["Cultist King"] = "教徒国王",
+    ["Meteor Crab"] = "流星蟹",
+    ["油漆刷"] = "油漆刷",
+    ["Simple"] = "简单",
+    ["Safe"] = "安全",
+    ["Mammonth Tusk"] = "猛犸象牙",
+    ["Alpha 狼 Pelt"] = "阿尔法狼皮",
+    ["熊 Corpse"] = "熊尸体",
+    ["Meteor Shard"] = "流星碎片",
+    ["Gold Shard"] = "金碎片",
+    ["Raw Obsidiron Ore"] = "原始黑曜石矿石",
+    ["森林宝石 Fragment"] = "森林宝石碎片",
+    ["Swordfish"] = "剑鱼",
+
+    -- 主题列表
+    ["Purple"] = "紫色",
+    ["Galaxy"] = "银河",
+    ["BetterNight"] = "更好的夜晚",
+    ["BetterNight2"] = "更好的夜晚2",
+    ["MagentaOrange"] = "品红橙",
+    ["Purple2"] = "紫色2",
+    ["Galaxy2"] = "银河2",
+    ["Pink"] = "粉色",
+    ["Purple3"] = "紫色3",
+    ["DarkishPink"] = "深粉色",
+    ["Space"] = "太空",
+    ["Galaxy3"] = "银河3",
+    ["NetherWorld"] = "下界",
+    ["Nebula"] = "星云",
+    ["PurpleNight"] = "紫色之夜",
+    ["Aesthetic"] = "美学",
+    ["Aesthetic2"] = "美学2",
+    ["Pastel"] = "马卡龙",
+    ["PurpleClouds"] = "紫云",
+    ["BetterSky"] = "更好的天空",
+    ["BetterNight3"] = "更好的夜晚3",
+    ["Orange"] = "橙色",
+    ["DarkMountains"] = "暗黑山脉",
+    ["FlamingSunset"] = "燃烧的日落",
+    ["NewYork"] = "纽约",
+    ["Aesthetic3"] = "美学3",
+    ["FakeClouds"] = "假云",
+    ["LunarNight"] = " lunar 之夜",
+    ["PitchDark"] = "漆黑",
+
+    -- 其他文本
     ["Close Window"] = "关闭窗口",
     ["Do you want to close this window? You will not be able to open it again."] = "你确定要关闭此窗口吗？关闭后将无法再次打开。",
     ["Cancel"] = "取消",
     ["This tab is empty"] = "此标签页为空",
-    ["Make sure to join our discord server for updates!"] = "请加入我们的Discord服务器获取更新！",
-    ["Cultist King"] = "教徒国王实体功能",
-    ["Meteor Crab"] = "流星蟹实体功能",
-    ["油漆刷"] = "油漆刷实体功能",
-    ["Simple"] = "简单功能",
-    ["Safe"] = "安全功能",
-    ["Mammonth Tusk"] = "猛犸象牙实体功能",
-    ["Alpha 狼 Pelt"] = "阿尔法狼皮实体功能",
-    ["熊 Corpse"] = "熊尸体实体功能",
-    ["Meteor Shard"] = "流星碎片实体功能",
-    ["Gold Shard"] = "金碎片实体功能",
-    ["Raw Obsidiron Ore"] = "原始黑曜石矿石实体功能",
-    ["森林宝石 Fragment"] = "森林宝石碎片实体功能",
-    ["Swordfish"] = "剑鱼实体功能",
-    ["Self"] = "自身功能",
-    ["FOV"] = "视野功能",
-    ["Movement"] = "移动功能",
-    ["Walk Speed"] = "行走速度功能",
-    ["Speed"] = "速度功能",
-    ["Purple"] = "紫色主题功能",
-    ["Galaxy"] = "银河主题功能",
-    ["BetterNight"] = "更好的夜晚主题功能",
-    ["BetterNight2"] = "更好的夜晚2主题功能",
-    ["MagentaOrange"] = "品红橙主题功能",
-    ["Purple2"] = "紫色2主题功能",
-    ["Galaxy2"] = "银河2主题功能",
-    ["Pink"] = "粉色主题功能",
-    ["Purple3"] = "紫色3主题功能",
-    ["DarkishPink"] = "深粉色主题功能",
-    ["Space"] = "太空主题功能",
-    ["Galaxy3"] = "银河3主题功能",
-    ["NetherWorld"] = "下界主题功能",
-    ["Nebula"] = "星云主题功能",
-    ["PurpleNight"] = "紫色之夜主题功能",
-    ["Aesthetic"] = "美学主题功能",
-    ["Aesthetic2"] = "美学2主题功能",
-    ["Pastel"] = "马卡龙主题功能",
-    ["PurpleClouds"] = "紫云主题功能",
-    ["BetterSky"] = "更好的天空主题功能",
-    ["BetterNight3"] = "更好的夜晚3主题功能",
-    ["Orange"] = "橙色主题功能",
-    ["DarkMountains"] = "暗黑山脉主题功能",
-    ["FlamingSunset"] = "燃烧的日落主题功能",
-    ["NewYork"] = "纽约主题功能",
-    ["Aesthetic3"] = "美学3主题功能",
-    ["FakeClouds"] = "假云主题功能",
-    ["LunarNight"] = " lunar 之夜主题功能",
-    ["PitchDark"] = "漆黑主题功能",
-    ["Reset Camera [Might Break your camera!]"] = "重置相机 [可能会破坏你的相机！]功能",
-    ["Please notify me if you need credits (erchodev#0 on discord)"] = "如需署名请通知我（Discord：erchodev#0）功能",
-    ["Background Color"] = "背景颜色功能",
-    ["Outline Color"] = "轮廓颜色功能",
-    ["Text Color"] = "文字颜色功能",
-    ["Placeholder Text Color"] = "占位符文字颜色功能",
+    ["Reset Camera [Might Break your camera!]"] = "重置相机 [可能会破坏你的相机！]",
+    ["Please notify me if you need credits (erchodev#0 on discord)"] = "如需署名请通知我（Discord：erchodev#0）",
+    ["Background Color"] = "背景颜色",
+    ["Outline Color"] = "轮廓颜色",
+    ["Text Color"] = "文字颜色",
+    ["Placeholder Text Color"] = "占位符文字颜色",
+
 -- ============== 万圣节模块 ==============
 ["Bring Pumpkins"] = "获取南瓜",
 ["Bring Candles"] = "获取蜡烛",
@@ -422,7 +454,7 @@ local function setupTranslationEngine()
     local function setupDescendantListener(parent)
         parent.DescendantAdded:Connect(function(descendant)
             if descendant:IsA("TextLabel") or descendant:IsA("TextButton") or descendant:IsA("TextBox") then
-                task.wait(0.1) -- 等待控件初始化完成
+                task.wait(0.05) -- 缩短延迟，提升实时性
                 pcall(function()
                     local text = descendant.Text
                     if text and text ~= "" then
@@ -444,23 +476,24 @@ local function setupTranslationEngine()
         pcall(setupDescendantListener, player.PlayerGui)
     end
 
-    -- 循环扫描遗漏控件（每3秒一次）
+    -- 循环扫描遗漏控件（缩短间隔至1秒）
     while true do
         scanAndTranslate()
-        task.wait(3)
+        task.wait(1)
     end
 end
 
--- 4. 延迟2秒启动汉化引擎（避免与游戏加载冲突）
-task.wait(2)
+-- 4. 延迟1秒启动汉化引擎（减少加载冲突）
+task.wait(1)
 setupTranslationEngine()
 
--- 5. 加载外部脚本（带错误捕获，防止崩溃）
+-- 5. 加载外部脚本（修复参数+优化错误提示）
 local success, err = pcall(function()
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/VapeVoidware/VW-Add/main/nightsintheforest.lua", true))()
+    -- 移除HttpGet的第二个参数，提升兼容性
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/VapeVoidware/VW-Add/main/nightsintheforest.lua"))()
 end)
 
 if not success then
     warn("外部脚本加载失败，错误信息:", err)
+    warn("请检查网络连接或链接有效性")
 end
-"
