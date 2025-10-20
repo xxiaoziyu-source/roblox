@@ -21,7 +21,7 @@ function gradientText(text, startColor, endColor)
 end
 
 local Window = WindUI:CreateWindow({
-    Title = "神秘脚本19.3",
+    Title = "神秘脚本",
     Icon = "crown",
     IconThemed = true,
     Author = "作者:○○",
@@ -108,7 +108,7 @@ NoticeTab_Alien:Button({
 })
 NoticeTab_Alien:Button({
     Title = "更新内容",
-    Desc = "战争大亨 Blox Fruits 偷走脑红更新了一个汉化脚本",
+    Desc = "更新了f3x通用升级版",
 })
 NoticeTab_Alien:Button({
     Title = "作者QQ群",
@@ -142,7 +142,7 @@ end)
 WindUI:SetNotificationLower(true)
 
 Window:Tag({
-    Title = "1.9.3",
+    Title = "1.9.4",
     Color = Color3.fromHex("#9c30ff")
 })
 Window:Tag({
@@ -373,6 +373,13 @@ GeneralTab_Alien:Button({
     Title = "前后空翻",
     Callback = function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/Xingyan777/roblox/refs/heads/main/%E6%97%8B%E8%BD%AC.txt", true))()
+    end
+})
+
+GeneralTab_Alien:Button({
+    Title = " F 3x改进",
+    Callback = function()
+       loadstring(game:HttpGet("https://raw.githubusercontent.com/xxiaoziyu-source/H4x-/refs/heads/main/F%203%20x"))()
     end
 })
 
