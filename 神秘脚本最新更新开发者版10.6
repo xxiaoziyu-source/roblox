@@ -504,6 +504,16 @@ DeadRailTab:Button({
         end)
     end
 })
+DeadRailTab:Button({
+    Title = "攻速(没汉化)",
+    Desc = "攻速调节.第三人称",  
+    Locked = false,
+    Callback = function()
+        pcall(function()              loadstring(game:HttpGet("https://raw.githubusercontent.com/HeadHarse/Dusty/refs/heads/main/NOTV4TRUST"))()
+            print("9178加载成功")
+        end)
+    end
+})
 
 -- 森林中99个夜晚标签
 local ForestNightTab = Window:Tab({
@@ -518,7 +528,7 @@ ForestNightTab:Section({
 })
 ForestNightTab:Button({
     Title = "虚空(汉化)",
-    Desc = "没汉化全但是足够了",
+    Desc = "更新速度快而且免费不需解卡",
     Locked = false,
     Callback = function()
         pcall(function()
@@ -541,7 +551,7 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/xxiaoziyu-source/robl
 })
 ForestNightTab:Button({
     Title = "H4X(汉化)",
-    Desc = "有一小点没汉化",
+    Desc = "要卡密已经被削成中等脚本",
     Locked = false,
     Callback = function()
         pcall(function()
@@ -563,7 +573,7 @@ ForestNightTab:Button({
 })
 ForestNightTab:Button({
     Title = "坑队友脚本(没汉化)",
-    Desc = "恶搞那些没有脚本的普通玩家",
+    Desc = "恶搞那些没有开无敌的玩家",
     Locked = false,
     Callback = function()
         pcall(function()
@@ -599,6 +609,50 @@ ForestNightTab:Button({
         end)
     end
 })
+ForestNightTab:Button({
+    Title = "Ringta(没汉化)",
+    Desc = "也不用解卡",  
+    Locked = false,
+    Callback = function()
+        pcall(function()
+             loadstring(game:HttpGet("https://raw.githubusercontent.com/hdjsjjdgrhj/script-hub/refs/heads/main/99Nights"))()
+            print("9178加载成功")
+        end)
+    end
+})
+ForestNightTab:Button({
+    Title = "soluna(没汉化)",
+    Desc = "需要加DC群获取卡密",  
+    Locked = false,
+    Callback = function()
+        pcall(function()
+             loadstring(game:HttpGet("https://soluna-script.vercel.app/99-Nights-in-the-Forest.lua",true))()
+            print("9178加载成功")
+        end)
+    end
+})
+ForestNightTab:Button({
+    Title = "VEX OP(没汉化)",
+    Desc = "需要解卡密",  
+    Locked = false,
+    Callback = function()
+        pcall(function()
+             loadstring(game:HttpGet("https://raw.githubusercontent.com/yoursvexyyy/VEX-OP/refs/heads/main/99 nights in the forest"))()
+            print("9178加载成功")
+        end)
+    end
+})
+ForestNightTab:Button({
+    Title = "Kenniel(没汉化)",
+    Desc = "需要解卡密",  
+    Locked = false,
+    Callback = function()
+        pcall(function()
+             loadstring(game:HttpGet("https://raw.githubusercontent/Kenniel123/99-Nights-in-the-Forest/refs/heads/main/99 Nights in the Forest"))()
+            print("9178加载成功")
+        end)
+    end
+})
 
 -- 偷走脑红标签
 local StealBrainTab = Window:Tab({
@@ -619,7 +673,7 @@ StealBrainTab:Button({
 })
 StealBrainTab:Button({
     Title = "超强变出脑红(汉化)",
-    Desc = "顶多和朋友装13",
+    Desc = "需要解卡密",
     Locked = false,
     Callback = function()
         pcall(function()
@@ -630,7 +684,7 @@ StealBrainTab:Button({
 })
 StealBrainTab:Button({
     Title = "Zenikaze中心(汉化)",
-    Desc = "有隐身偷",
+    Desc = "有隐身偷目前已失效",
     Locked = false,
     Callback = function()
         pcall(function()
@@ -844,6 +898,23 @@ qweasd:Button({
        loadstring(game:HttpGet("https://rawscripts.net/raw/Cut-Trees-Resize-tool-57310"))()
     end
 })
+qweasd:Section({ 
+    Title = "缝合脚本",
+    TextXAlignment = "Left",
+    TextSize = 25,
+})
+qweasd:Button({
+    Title = "ViKai HUB(没汉化)",
+    Desc = "不用解卡密",  
+    Locked = false,
+    Callback = function()
+        pcall(function()
+             loadstring(game:HttpGet("https://rawscripts.net/raw/Cut-Trees-Free-Keyless-ViKai-HUB-58535"))()
+            print("9178加载成功")
+        end)
+    end
+})
+
 -- 奇怪枪械标签
 local asdfg = Window:Tab({
     Title = "奇怪枪械",
