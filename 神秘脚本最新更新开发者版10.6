@@ -260,6 +260,102 @@ GeneralTab_Alien:Toggle({
     end
 })
 
+-- Wind UI 通用功能注册示例
+local GeneralTab_Alien = require(game:GetService("ReplicatedStorage").WindUI.GeneralTab_Alien)
+
+local Noclip = false
+local NoclipConnection
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+local UserInputService = game:GetService("UserInputService")
+
+local player = Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
+local rootPart = character:WaitForChild("HumanoidRootPart")
+
+local speed = 60
+
+local function enableNoclip()
+    Noclip = true
+    humanoid:ChangeState(Enum.HumanoidStateType.Physics)
+    humanoid.WalkSpeed = 0
+    humanoid.JumpPower = 0
+
+    for _, part in ipairs(character:GetDescendants()) do
+        if part:IsA("BasePart") then part.CanCollide = false end
+    end
+
+    local lastPos = rootPart.CFrame
+    NoclipConnection = RunService.Stepped:Connect(function(_, dt)
+        if not Noclip then return end
+
+        local moveDir = Vector3.new()
+        local keys = {
+            [Enum.KeyCode.W] = Vector3.new(1, 0, 0),
+            [Enum.KeyCode.S] = Vector3.new(-1, 0, 0),
+            [Enum.KeyCode.A] = Vector3.new(0, 0, 1),
+            [Enum.KeyCode.D] = Vector3.new(0, 0, -1),
+            [Enum.KeyCode.Space] = Vector3.new(0, 1, 0),
+            [Enum.KeyCode.LeftControl] = Vector3.new(0, -1, 0)
+        }
+
+        for key, dir in pairs(keys) do
+            if UserInputService:IsKeyDown(key) then
+                moveDir = moveDir + dir
+            end
+        end
+
+        if moveDir.Magnitude > 0 then moveDir = moveDir.Unit end
+
+        local cam = workspace.CurrentCamera
+        local camCF = cam.CFrame
+        local forward = camCF.LookVector
+        local right = camCF.RightVector
+
+        local finalDir = (forward * moveDir.X + right * moveDir.Z + Vector3.new(0, moveDir.Y, 0)).Unit
+        local newPos = lastPos + finalDir * speed * dt
+        rootPart.CFrame = newPos
+        lastPos = newPos
+    end)
+end
+
+local function disableNoclip()
+    Noclip = false
+    if NoclipConnection then
+        NoclipConnection:Disconnect()
+        NoclipConnection = nil
+    end
+
+    humanoid.WalkSpeed = 16
+    humanoid.JumpPower = 50
+    humanoid:ChangeState(Enum.HumanoidStateType.Running)
+
+    for _, part in ipairs(character:GetDescendants()) do
+        if part:IsA("BasePart") then part.CanCollide = true end
+    end
+end
+
+player.CharacterAdded:Connect(function(newChar)
+    character = newChar
+    humanoid = character:WaitForChild("Humanoid")
+    rootPart = character:WaitForChild("HumanoidRootPart")
+    if Noclip then enableNoclip() end
+end)
+
+-- 这里就是你说的 }) 结尾格式
+GeneralTab_Alien:Toggle({
+    Title = "穿墙",
+    Value = false,
+    Callback = function(state)
+        if state then
+            enableNoclip()
+        else
+            disableNoclip()
+        end
+    end
+})
+
 GeneralTab_Alien:Button({
     Title = "点击传送工具",
     Desc = "全自动",
