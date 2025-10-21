@@ -206,6 +206,95 @@ Tabs.Notice:Slider({
     end
 })
 
+Tabs.Notice:Slider({
+    Title = "主面板透明度",
+    Value = {
+        Min = 0,
+        Max = 100,
+        Default = 0,
+    },
+    Increment = 5,
+    Callback = function(value)
+        local transparency = value / 100
+        
+        -- 尝试多种可能的主窗口元素
+        if Window and Window.Gui then
+            -- 方法1: 查找所有可能的容器
+            local containers = {
+                Window.Gui:FindFirstChild("MainFrame"),
+                Window.Gui:FindFirstChild("MainContainer"),
+                Window.Gui:FindFirstChild("Container"),
+                Window.Gui:FindFirstChildOfClass("Frame"),
+                Window.Gui:FindFirstChildOfClass("ScrollingFrame")
+            }
+            
+            for _, container in ipairs(containers) do
+                if container then
+                    -- 设置容器透明度
+                    if container:IsA("GuiObject") then
+                        container.BackgroundTransparency = transparency
+                    end
+                    
+                    -- 递归设置所有子元素的透明度
+                    local function setTransparencyRecursive(object, trans)
+                        for _, child in ipairs(object:GetChildren()) do
+                            if child:IsA("GuiObject") then
+                                -- 设置背景透明度
+                                if child:IsA("Frame") or child:IsA("ImageButton") or child:IsA("TextButton") then
+                                    child.BackgroundTransparency = trans
+                                end
+                                
+                                -- 设置文字透明度
+                                if child:IsA("TextLabel") or child:IsA("TextBox") then
+                                    child.TextTransparency = trans
+                                    child.BackgroundTransparency = trans
+                                end
+                                
+                                -- 设置图片透明度
+                                if child:IsA("ImageLabel") then
+                                    child.ImageTransparency = trans
+                                    child.BackgroundTransparency = trans
+                                end
+                                
+                                -- 递归处理子元素
+                                setTransparencyRecursive(child, trans)
+                            end
+                        end
+                    end
+                    
+                    setTransparencyRecursive(container, transparency)
+                    break
+                end
+            end
+            
+            -- 方法2: 直接设置整个GUI的透明度
+            local function setAllGuiTransparency(gui, trans)
+                for _, child in ipairs(gui:GetDescendants()) do
+                    if child:IsA("GuiObject") then
+                        pcall(function()
+                            child.BackgroundTransparency = trans
+                            if child:IsA("TextLabel") or child:IsA("TextBox") then
+                                child.TextTransparency = trans
+                            end
+                            if child:IsA("ImageLabel") or child:IsA("ImageButton") then
+                                child.ImageTransparency = trans
+                            end
+                        end)
+                    end
+                end
+            end
+            
+            setAllGuiTransparency(Window.Gui, transparency)
+        end
+        
+        WindUI:Notify({
+            Title = "透明度设置",
+            Content = "主面板透明度已设置为: " .. value .. "%",
+            Duration = 2
+        })
+    end
+})
+
 -- 时间标签
 local TimeTag = Window:Tag({
     Title = "00:00", 
