@@ -129,37 +129,24 @@ NoticeTab_Alien:Section({
 -- 直接插在NoticeTab_Alien的Section下面
 NoticeTab_Alien:Slider({
     Title = "面板透明度",
-    -- 恢复WindUI的Value表结构（你的版本需要这个格式）
     Value = {
         Min = 0,
         Max = 1,
         Default = 0.3
     },
     Increment = 0.01,
-    -- 修复：Callback的参数是Value对象，需要取其Value属性
     Callback = function(valObj)
-        local value = valObj.Value -- 从对象中获取当前值
-        value = math.clamp(value, 0, 1) -- 限制范围
-
-        -- 获取WindUI窗口
-        local windowGui = Window.Gui
-        if not windowGui then return end
-
-        -- 设置透明度
-        windowGui.BackgroundTransparency = value
-        local borderFrame = windowGui:FindFirstChild("MainWindowBorder")
+        local value = valObj.Value
+        -- 直接修改WindUI窗口的透明度（核心）
+        Window.Transparency = value
+        -- 同时同步边框的透明度
+        local borderFrame = Window.Gui:FindFirstChild("MainWindowBorder")
         if borderFrame then
             borderFrame.BackgroundTransparency = value
         end
-        for _, child in ipairs(windowGui:GetDescendants()) do
-            if child:IsA("TextLabel") or child:IsA("TextButton") then
-                child.TextTransparency = value
-            elseif child:IsA("Frame") or child:IsA("ImageLabel") then
-                child.BackgroundTransparency = value
-            end
-        end
     end
 })
+
 
 local TimeTag = Window:Tag({
     Title = "00:00", 
