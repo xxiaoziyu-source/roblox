@@ -1,4 +1,4 @@
--- 加载WindUI（确保链接可访问）
+1-- 加载WindUI（确保链接可访问）
 WindUI = loadstring(game:HttpGet("https://github.com/Footagesus/WindUI/releases/latest/download/main.lua"))()
 
 -- 修复：避免与后续的UIGradient变量重名，将函数名改为gradientText
@@ -126,33 +126,35 @@ NoticeTab_Alien:Section({
     TextXAlignment = "Left",
     TextSize = 25,
 })
+-- 直接插在NoticeTab_Alien的Section下面
 NoticeTab_Alien:Slider({
     Title = "面板透明度",
-    -- 修复1：Value的结构（WindUI的Slider中Value是直接的数值，不是表）
-    Value = 0.3, -- 默认值
-    Min = 0,
-    Max = 1,
+    -- 恢复WindUI的Value表结构（你的版本需要这个格式）
+    Value = {
+        Min = 0,
+        Max = 1,
+        Default = 0.3
+    },
     Increment = 0.01,
-    Callback = function(value)
-        -- 修复2：确保正确获取WindUI窗口
+    -- 修复：Callback的参数是Value对象，需要取其Value属性
+    Callback = function(valObj)
+        local value = valObj.Value -- 从对象中获取当前值
+        value = math.clamp(value, 0, 1) -- 限制范围
+
+        -- 获取WindUI窗口
         local windowGui = Window.Gui
         if not windowGui then return end
 
-        -- 强制限制数值范围（避免异常）
-        value = math.clamp(value, 0, 1)
-
-        -- 设置窗口及所有元素的透明度
+        -- 设置透明度
         windowGui.BackgroundTransparency = value
-        -- 处理渐变边框
         local borderFrame = windowGui:FindFirstChild("MainWindowBorder")
         if borderFrame then
             borderFrame.BackgroundTransparency = value
         end
-        -- 处理所有子元素
         for _, child in ipairs(windowGui:GetDescendants()) do
             if child:IsA("TextLabel") or child:IsA("TextButton") then
                 child.TextTransparency = value
-            elseif child:IsA("Frame") or child:IsA("ImageLabel") or child:IsA("ImageButton") then
+            elseif child:IsA("Frame") or child:IsA("ImageLabel") then
                 child.BackgroundTransparency = value
             end
         end
