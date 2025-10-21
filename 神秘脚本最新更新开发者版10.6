@@ -100,7 +100,7 @@ local NoticeTab_Alien = Window:Tab({
 NoticeTab_Alien:Section({ 
     Title = "脚本说明",
     TextXAlignment = "Left",
-    TextSize = 10,
+    TextSize = 25,
 })
 NoticeTab_Alien:Button({
     Title = "感谢",
@@ -119,6 +119,40 @@ NoticeTab_Alien:Button({
             Content = "已复制到剪贴板",
             Duration = 3
         })
+    end
+})
+NoticeTab_Alien:Section({ 
+    Title = "调节功能",
+    TextXAlignment = "Left",
+    TextSize = 25,
+})
+NoticeTab_Alien:Section({
+    Title = "调节功能",
+    TextXAlignment = "Left",
+    TextSize = 25,
+})
+
+-- 面板透明度滑块（放在调节功能区域下）
+NoticeTab_Alien:Slider({
+    Title = "面板透明度",
+    Value = {
+        Min = 0,
+        Max = 1,
+        Default = 0.3
+    },
+    Increment = 0.01,
+    Callback = function(value)
+        local Panel = game.Players.LocalPlayer.PlayerGui:FindFirstChild("你的面板名")
+        if Panel then
+            Panel.BackgroundTransparency = value
+            for _, child in ipairs(Panel:GetDescendants()) do
+                if child:IsA("TextLabel") or child:IsA("TextButton") then
+                    child.TextTransparency = value
+                elseif child:IsA("Frame") or child:IsA("ImageLabel") then
+                    child.BackgroundTransparency = value
+                end
+            end
+        end
     end
 })
 
@@ -142,7 +176,7 @@ end)
 WindUI:SetNotificationLower(true)
 
 Window:Tag({
-    Title = "1.9.4",
+    Title = "v1.9.4",
     Color = Color3.fromHex("#9c30ff")
 })
 Window:Tag({
