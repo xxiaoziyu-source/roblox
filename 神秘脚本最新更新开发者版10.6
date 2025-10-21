@@ -126,7 +126,7 @@ NoticeTab_Alien:Section({
     TextXAlignment = "Left",
     TextSize = 25,
 })
--- 直接插在NoticeTab_Alien的Section下面
+NoticeTab_Alien:Slider({
 NoticeTab_Alien:Slider({
     Title = "面板透明度",
     Value = {
@@ -137,16 +137,27 @@ NoticeTab_Alien:Slider({
     Increment = 0.01,
     Callback = function(valObj)
         local value = valObj.Value
-        -- 直接修改WindUI窗口的透明度（核心）
-        Window.Transparency = value
-        -- 同时同步边框的透明度
-        local borderFrame = Window.Gui:FindFirstChild("MainWindowBorder")
-        if borderFrame then
-            borderFrame.BackgroundTransparency = value
+        -- 强制获取窗口顶层Frame（你的代码里窗口是Window.Gui）
+        local mainFrame = Window.Gui:FindFirstChildWhichIsA("Frame")
+        if not mainFrame then return end
+
+        -- 设置主窗口
+        mainFrame.BackgroundTransparency = value
+        -- 设置边框
+        local border = mainFrame:FindFirstChild("MainWindowBorder")
+        if border then
+            border.BackgroundTransparency = value
+        end
+        -- 设置所有子元素
+        for _, child in ipairs(mainFrame:GetDescendants()) do
+            if child:IsA("TextLabel") then
+                child.TextTransparency = value
+            elseif child:IsA("Frame") then
+                child.BackgroundTransparency = value
+            end
         end
     end
 })
-
 
 local TimeTag = Window:Tag({
     Title = "00:00", 
