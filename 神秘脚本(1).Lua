@@ -56,9 +56,47 @@ Window:EditOpenButton({
     Icon = "crown",
     CornerRadius = UDim.new(0,16),
     StrokeThickness = 2,
-    Color = ColorSequence.new(Color3.fromHex("FF0F7B"), Color3.fromHex("F89B29")),
+    Color = ColorSequence.new({
+        ColorSequenceKeypoint.new(0, Color3.fromHex("FF0000")),
+        ColorSequenceKeypoint.new(0.2, Color3.fromHex("FFAA00")),
+        ColorSequenceKeypoint.new(0.4, Color3.fromHex("FFFF00")),
+        ColorSequenceKeypoint.new(0.6, Color3.fromHex("00FF00")),
+        ColorSequenceKeypoint.new(0.8, Color3.fromHex("0000FF")),
+        ColorSequenceKeypoint.new(1, Color3.fromHex("AA00FF"))
+    }),
     Draggable = true,
 })
+
+-- 添加流动彩虹边框效果
+task.spawn(function()
+    while true do
+        for i = 0, 1, 0.01 do
+            if Window and Window.OpenButton then
+                local openButton = Window.OpenButton
+                if openButton and openButton:FindFirstChild("Stroke") then
+                    local stroke = openButton.Stroke
+                    if stroke:FindFirstChild("UIGradient") then
+                        local gradient = stroke.UIGradient
+                        gradient.Offset = Vector2.new(i, 0)
+                    else
+                        local gradient = Instance.new("UIGradient")
+                        gradient.Color = ColorSequence.new({
+                            ColorSequenceKeypoint.new(0, Color3.fromHex("FF0000")),
+                            ColorSequenceKeypoint.new(0.2, Color3.fromHex("FFAA00")),
+                            ColorSequenceKeypoint.new(0.4, Color3.fromHex("FFFF00")),
+                            ColorSequenceKeypoint.new(0.6, Color3.fromHex("00FF00")),
+                            ColorSequenceKeypoint.new(0.8, Color3.fromHex("0000FF")),
+                            ColorSequenceKeypoint.new(1, Color3.fromHex("AA00FF"))
+                        })
+                        gradient.Rotation = 0
+                        gradient.Parent = stroke
+                    end
+                end
+            end
+            task.wait(0.05)
+        end
+    end
+end)
 
 local Tabs = {
     Notice = Window:Tab({ Title = "通知", Icon = "bell" }),
