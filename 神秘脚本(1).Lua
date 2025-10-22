@@ -781,7 +781,7 @@ Tabs.ForestNight:Button({
     Locked = false,
     Callback = function()
         pcall(function()
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/Rx1m/CpsHub/refs/heads/main/Hub",true))()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/xxiaoziyu-source/H4x-/refs/heads/main/Ri",true))()
             print("坑队友脚本加载成功")
         end)
     end
