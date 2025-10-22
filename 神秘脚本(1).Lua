@@ -138,7 +138,7 @@ Tabs.Notice:Button({
 
 Tabs.Notice:Button({
     Title = "更新内容",
-    Desc = "更新了f3x通用升级版",
+    Desc = "把H4X和虚空重新汉化了一遍",
 })
 
 Tabs.Notice:Button({
@@ -316,7 +316,7 @@ end)
 WindUI:SetNotificationLower(true)
 
 Window:Tag({
-    Title = "v1.9.4",
+    Title = "v1.9.5",
     Color = Color3.fromHex("#9c30ff")
 })
 
@@ -758,7 +758,7 @@ Tabs.ForestNight:Button({
     Locked = false,
     Callback = function()
         pcall(function()
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/xxiaoziyu-source/roblox/cea5629b2f14172983185c8ff2104b5e2e7202aa/H4X%E6%B1%89%E5%8C%96"))()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/xxiaoziyu-source/H4x-/refs/heads/main/H4x%E6%B1%89%E5%8C%96%E8%84%9A%E6%9C%AC"))()
             print("H4x汉化加载成功")
         end)
     end
