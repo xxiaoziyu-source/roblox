@@ -734,19 +734,7 @@ Tabs.ForestNight:Button({
     Locked = false,
     Callback = function()
         pcall(function()
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/xxiaoziyu-source/roblox/a304ee2b7344d37bbef7119436825929212fdaa1/%E8%99%9A%E7%A9%BA%E6%B1%89%E5%8C%96", true))()
-            print("虚空汉化加载成功")
-        end)
-    end
-})
-
-Tabs.ForestNight:Button({
-    Title = "虚空汉化扩展包",
-    Desc = "虽然卡但把更新的内容给汉化了",
-    Locked = false,
-    Callback = function()
-        pcall(function()
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/xxiaoziyu-source/roblox/refs/heads/main/%E8%99%9A%E7%A9%BA%E6%B1%89%E5%8C%96"))()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/xxiaoziyu-source/roblox/refs/heads/main/-45"))()
             print("虚空汉化加载成功")
         end)
     end
