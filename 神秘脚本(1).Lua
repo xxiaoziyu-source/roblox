@@ -547,6 +547,30 @@ Tabs.General:Button({
 })
 
 Tabs.General:Button({
+    Title = "隐身",
+    Callback = function()
+        loadstring(game:HttpGet("https://pastebin.com/raw/vP6CrQJj", true))()
+    end
+})
+
+Tabs.General:Button({
+    Title = "无限跳",
+    Callback = function()
+        loadstring(game:HttpGet("https://pastebin.com/raw/V5PQy3y0", true))()
+    end
+})
+
+Tabs.General:Toggle({
+    Title = "爬墙（关不了）",
+    Value = false,
+    Callback = function(state)
+        if state then
+            loadstring(game:HttpGet("https://pastebin.com/raw/zXk4Rq2r", true))()
+        end
+    end
+})
+
+Tabs.General:Button({
     Title = "F 3x改进",
     Callback = function()
        loadstring(game:HttpGet("https://raw.githubusercontent.com/xxiaoziyu-source/H4x-/refs/heads/main/F%203%20x"))()
@@ -594,16 +618,6 @@ Tabs.General:Button({
     end
 })
 
-Tabs.General:Toggle({
-    Title = "爬墙（关不了）",
-    Value = false,
-    Callback = function(state)
-        if state then
-            loadstring(game:HttpGet("https://pastebin.com/raw/zXk4Rq2r", true))()
-        end
-    end
-})
-
 Tabs.General:Section({ 
     Title = "音频功能",
     TextXAlignment = "Left",
@@ -636,20 +650,6 @@ Tabs.General:Button({
             sound:Play()
             task.spawn(keepPlaying)
         end
-    end
-})
-
-Tabs.General:Button({
-    Title = "隐身",
-    Callback = function()
-        loadstring(game:HttpGet("https://pastebin.com/raw/vP6CrQJj", true))()
-    end
-})
-
-Tabs.General:Button({
-    Title = "无限跳",
-    Callback = function()
-        loadstring(game:HttpGet("https://pastebin.com/raw/V5PQy3y0", true))()
     end
 })
 
