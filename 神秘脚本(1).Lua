@@ -753,6 +753,17 @@ Tabs.ForestNight:Button({
 })
 
 Tabs.ForestNight:Button({
+    Title = "Ringta(汉化)",
+    Desc = "也不用解卡",  
+    Locked = false,
+    Callback = function()
+        pcall(function()
+             loadstring(game:HttpGet("https://raw.githubusercontent.com/hdjsjjdgrhj/script-hub/refs/heads/main/99Nights"))()
+            print("9178加载成功")
+        end)
+    end
+})
+Tabs.ForestNight:Button({
     Title = "TXD中心(汉化)",
     Desc = "要卡密完成96%汉化",
     Locked = false,
@@ -765,7 +776,7 @@ Tabs.ForestNight:Button({
 })
 
 Tabs.ForestNight:Button({
-    Title = "坑队友脚本(没汉化)",
+    Title = "坑队友脚本(汉化)",
     Desc = "恶搞那些没有开无敌的玩家",
     Locked = false,
     Callback = function()
@@ -776,6 +787,17 @@ Tabs.ForestNight:Button({
     end
 })
 
+Tabs.ForestNight:Button({
+    Title = "Nazuro(汉化)",
+    Desc = "不用解卡密",  
+    Locked = false,
+    Callback = function()
+        pcall(function()
+             loadstring(game:HttpGet("https://raw.githubusercontent.com/xxiaoziyu-source/-/refs/heads/main/99%E9%A1%B5nm%E8%84%9A%E6%9C%AC%E6%B1%89%E5%8C%96%E3%80%82"))()
+            print("9178加载成功")
+        end)
+    end
+})
 Tabs.ForestNight:Section({ 
     Title = "没汉化的脚本↓↓↓",
     TextXAlignment = "Left",
@@ -789,30 +811,6 @@ Tabs.ForestNight:Button({
     Callback = function()
         pcall(function()
              loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/7d8a2a1a9a562a403b52532e58a14065.lua"))()
-            print("9178加载成功")
-        end)
-    end
-})
-
-Tabs.ForestNight:Button({
-    Title = "Nazuro(没汉化)",
-    Desc = "不用解卡密",  
-    Locked = false,
-    Callback = function()
-        pcall(function()
-             loadstring(game:HttpGet("https://nazuro.xyz/99nights"))()
-            print("9178加载成功")
-        end)
-    end
-})
-
-Tabs.ForestNight:Button({
-    Title = "Ringta(没汉化)",
-    Desc = "也不用解卡",  
-    Locked = false,
-    Callback = function()
-        pcall(function()
-             loadstring(game:HttpGet("https://raw.githubusercontent.com/hdjsjjdgrhj/script-hub/refs/heads/main/99Nights"))()
             print("9178加载成功")
         end)
     end
