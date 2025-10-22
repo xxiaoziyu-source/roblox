@@ -560,6 +560,40 @@ Tabs.General:Button({
     end
 })
 
+Tabs.General:Button({
+    Title = "生成78",
+    Callback = function()
+       loadstring(game:HttpGet('https://raw.githubusercontent.com/Avtor1zaTion/NO-FE-SNAKE/refs/heads/main/NO-FE-Snake.txt'))()
+    end
+})
+
+Tabs.General:Button({
+    Title = "后门加载器",
+    Callback = function()
+       loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-Backdoor-exe-9413"))()
+    end
+})
+
+Tabs.General:Section({ 
+    Title = "本地黑客功能",
+    TextXAlignment = "Left",
+    TextSize = 25,
+})
+
+Tabs.General:Button({
+    Title = "c00lkidd",
+    Callback = function()
+       loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-c00lkidd-50239"))()
+    end
+})
+
+Tabs.General:Button({
+    Title = "1x1x1x1",
+    Callback = function()
+       loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-1x1x1x1-gui-43195"))()
+    end
+})
+
 Tabs.General:Toggle({
     Title = "爬墙（关不了）",
     Value = false,
@@ -568,6 +602,12 @@ Tabs.General:Toggle({
             loadstring(game:HttpGet("https://pastebin.com/raw/zXk4Rq2r", true))()
         end
     end
+})
+
+Tabs.General:Section({ 
+    Title = "音频功能",
+    TextXAlignment = "Left",
+    TextSize = 25,
 })
 
 Tabs.General:Button({
@@ -912,6 +952,13 @@ Tabs.NaturalDisaster:Button({
     Title = "全局物体漂浮-XTTT",
     Callback = function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/cytj777i/6669178/main/全局物体漂浮最终优化版"))()
+    end
+})
+
+Tabs.NaturalDisaster:Button({
+    Title = "黑洞",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/ke9460394-dot/ugik/refs/heads/main/V1.lua.txt"))()
     end
 })
 
