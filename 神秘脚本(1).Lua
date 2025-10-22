@@ -131,12 +131,12 @@ Tabs.Notice:Section({
     TextSize = 25,
 })
 
-Tabs.Notice:Button({
+Tabs.Notice:Paragraph({
     Title = "感谢",
     Desc = "黄某,雪花,本熊,老鼠,乌龟,小圆,孤行,",
 })
 
-Tabs.Notice:Button({
+Tabs.Notice:Paragraph({
     Title = "更新内容",
     Desc = "把H4X和虚空重新汉化了一遍",
 })
