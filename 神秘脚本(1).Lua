@@ -1188,6 +1188,18 @@ Tabs.BuildPlane:Button({
     end
 })
 
+Tabs.ShelterSurvival:Button({
+    Title = "ZEFERUS.FUN(没汉化)",  
+    Desc = "不是电脑的话，那个框有点大",
+    Locked = false,
+    Callback = function()
+        pcall(function()
+             loadstring(game:HttpGet("https://rawscripts.net/raw/Asylum-Life-Keyless-More-Bypass-58278"))()
+            print("9178加载成功")
+        end)
+    end
+})
+
 Tabs.RaftSurvival:Button({
     Title = "收集木箱1",  
     Desc = "点一下就开启了",
