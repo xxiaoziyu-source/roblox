@@ -1165,7 +1165,17 @@ Tabs.DigBackyard:Button({
         end)
     end
 })
-
+Tabs.BuildPlane:Button({
+    Title = "绿色中心(没汉化)",  
+    Desc = "不用解卡密",
+    Locked = false,
+    Callback = function()
+        pcall(function()
+             loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-Greens-Hub-Build-a-Plane-56944"))()
+            print("9178加载成功")
+        end)
+    end
+})
 -- 数学谋杀案标签页
 Tabs.MathMurder:Button({
     Title = "自动回答",  
