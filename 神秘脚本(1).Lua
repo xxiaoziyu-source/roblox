@@ -1165,6 +1165,7 @@ Tabs.DigBackyard:Button({
         end)
     end
 })
+
 Tabs.BuildPlane:Button({
     Title = "绿色中心(没汉化)",  
     Desc = "不用解卡密",
@@ -1172,6 +1173,41 @@ Tabs.BuildPlane:Button({
     Callback = function()
         pcall(function()
              loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-Greens-Hub-Build-a-Plane-56944"))()
+            print("9178加载成功")
+        end)
+    end
+})
+
+Tabs.RaftSurvival:Button({
+    Title = "收集木箱1",  
+    Desc = "点一下就开启了",
+    Locked = false,
+    Callback = function()
+        pcall(function()
+             loadstring(game:HttpGet("https://rawscripts.net/raw/Survive-on-a-Raft-Survive-on-raft-my-script-59728"))()
+            print("9178加载成功")
+        end)
+    end
+})
+
+Tabs.RaftSurvival:Button({
+    Title = "Peachy Hub(没汉化)",  
+    Desc = "需要解卡密",
+    Locked = false,
+    Callback = function()
+        pcall(function()
+             loadstring(game:HttpGet("https://rawscripts.net/raw/Survive-on-a-Raft-Peachy-Hub-59276"))()
+            print("9178加载成功")
+        end)
+    end
+})
+Tabs.RaftSurvival:Button({
+    Title = "收集木箱2",  
+    Desc = "点一下就开启了",
+    Locked = false,
+    Callback = function()
+        pcall(function()
+             loadstring(game:HttpGet("https://rawscripts.net/raw/Survive-on-a-Raft-Auto-collect-boxes-59284"))()
             print("9178加载成功")
         end)
     end
