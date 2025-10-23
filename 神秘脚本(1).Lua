@@ -100,7 +100,7 @@ end)
 
 local Tabs = {
     Notice = Window:Tab({ Title = "通知", Icon = "bell" }),
-    General = Window:Tab({ Title = "通用(增强版本)", Icon = "sword" }),
+    General = Window:Tab({ Title = "通用", Icon = "sword" }),
     OtherScript = Window:Tab({ Title = "其他脚本", Icon = "sword" }),
     DeadRail = Window:Tab({ Title = "死铁轨", Icon = "sword" }),
     ForestNight = Window:Tab({ Title = "森林中99个夜晚", Icon = "sword" }),
@@ -1177,6 +1177,17 @@ Tabs.BladeBall:Button({
     end
 })
 
+Tabs.PlantGarden:Button({
+    Title = "H4x(没汉化)",  
+    Desc = "需要解卡密",
+    Locked = false,
+    Callback = function()
+        pcall(function()
+             loadstring(game:HttpGet("https://raw.githubusercontent.com/H4xScripts/Loader/refs/heads/main/loader.lua", true))()
+            print("9178加载成功")
+        end)
+    end
+})
 Tabs.GoFishing:Button({
     Title = "H4x(没汉化)",  
     Desc = "不需要解卡",
