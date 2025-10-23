@@ -1165,6 +1165,17 @@ Tabs.DigBackyard:Button({
     end
 })
 
+Tabs.GoFishing:Button({
+    Title = "H4x(没汉化)",  
+    Desc = "不需要解卡",
+    Locked = false,
+    Callback = function()
+        pcall(function()
+             loadstring(game:HttpGet("https://rawscripts.net/raw/UPD-Fish-It!-H4xScripts-Fish-It-60144"))()
+            print("9178加载成功")
+        end)
+    end
+})
 Tabs.BuildPlane:Button({
     Title = "绿色中心(没汉化)",  
     Desc = "不用解卡密",
