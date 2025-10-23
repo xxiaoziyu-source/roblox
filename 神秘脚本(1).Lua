@@ -1165,6 +1165,18 @@ Tabs.DigBackyard:Button({
     end
 })
 
+Tabs.BladeBall:Button({
+    Title = "Blade Ball(没汉化)",
+    Desc = "不需要解卡密",
+    Locked = false,
+    Callback = function()
+        pcall(function()
+             loadstring(game:HttpGet("https://rawscripts.net/raw/cjpimpin's-Place-Blade-ball-48124"))()
+            print("9178加载成功")
+        end)
+    end
+})
+
 Tabs.GoFishing:Button({
     Title = "H4x(没汉化)",  
     Desc = "不需要解卡",
