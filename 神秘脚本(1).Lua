@@ -118,7 +118,7 @@ local Tabs = {
     MathMurder = Window:Tab({ Title = "数学谋杀案", Icon = "bell" }),
     Donate = Window:Tab({ Title = "请捐赠", Icon = "bell" }),
     WarTycoon = Window:Tab({ Title = "战争大亨", Icon = "bell" }),
-    Hypershot = Window:Tab({ Title = "超人弹射", Icon = "bell" }),
+    Hypershot = Window:Tab({ Title = "超人射击", Icon = "bell" }),
     PrivateServer = Window:Tab({ Title = "免费私服", Icon = "bell" })
 }
 
@@ -138,7 +138,8 @@ Tabs.Notice:Paragraph({
 
 Tabs.Notice:Paragraph({
     Title = "更新内容",
-    Desc = "把H4X和虚空重新汉化了一遍",
+    Desc = "修复了一下脚本问题",
+    Desc = "植物vs大脑更新了一个脚本",
 })
 
 Tabs.Notice:Button({
@@ -1107,9 +1108,15 @@ Tabs.StrangeGuns:Button({
     end
 })
 
+Tabs.PlantZombie:Section({ 
+    Title = "汉化的",
+    TextXAlignment = "Left",
+    TextSize = 25,
+})
+
 -- 植物大战脑红标签页
 Tabs.PlantZombie:Button({
-    Title = "HackManHub(oo汉化)",
+    Title = "HackManHub(汉化)",
     Desc = "汉话",
     Locked = false,
     Callback = function()
@@ -1120,6 +1127,23 @@ Tabs.PlantZombie:Button({
     end
 })
 
+Tabs.PlantZombie:Section({ 
+    Title = "没汉化的",
+    TextXAlignment = "Left",
+    TextSize = 25,
+})
+
+Tabs.PlantZombie:Button({
+    Title = "不知名(没汉化)",
+    Desc = "不用解卡密",
+    Locked = false,
+    Callback = function()
+        pcall(function()
+             loadstring(game:HttpGet("https://raw.githubusercontent.com/gumanba/Scripts/main/PlantsVsBrainrots"))()
+            print("9178加载成功")
+        end)
+    end
+})
 -- 挖掘后院标签页
 Tabs.DigBackyard:Button({
     Title = "老外(没汉化)",
@@ -1146,10 +1170,22 @@ Tabs.MathMurder:Button({
     end
 })
 
+Tabs.MathMurder:Button({
+    Title = "自动拾取苹果",  
+    Desc = "并砸向别人",
+    Locked = false,
+    Callback = function()
+        pcall(function()
+             loadstring(game:HttpGet("https://rawscripts.net/raw/Math-Murder-Auto-Answer-43531"))()
+            print("9178加载成功")
+        end)
+    end
+})
+
 -- 请捐赠标签页
 Tabs.Donate:Button({
     Title = "自动圈罗宝",
-    Desc = "全自动",
+    Desc = "全自动辅助类脚本",
     Locked = false,
     Callback = function()
         pcall(function()
