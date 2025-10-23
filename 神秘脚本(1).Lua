@@ -122,7 +122,7 @@ local Tabs = {
     OvernightInSupermarket = Window:Tab({ Title = "在超级超市里过夜", Icon = "shopping-cart" }),
     OhioState = Window:Tab({ Title = "俄亥俄州", Icon = "map" }),
     ShelterSurvival = Window:Tab({ Title = "避难所生存", Icon = "shield" }),
-    RaftSurvival = Window:Tab({ Title = "木筏生存", Icon = "raft" })
+    RaftSurvival = Window:Tab({ Title = "木筏生存", Icon = "raft" }),
     DigBackyard = Window:Tab({ Title = "挖掘后院", Icon = "bell" }),
     MathMurder = Window:Tab({ Title = "数学谋杀案", Icon = "bell" }),
     Donate = Window:Tab({ Title = "请捐赠", Icon = "bell" }),
