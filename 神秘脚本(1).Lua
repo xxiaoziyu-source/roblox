@@ -147,7 +147,6 @@ Tabs.Notice:Paragraph({
 
 Tabs.Notice:Paragraph({
     Title = "更新内容",
-    Desc = "修复了一下脚本问题",
     Desc = "植物vs大脑更新了一个脚本",
 })
 
