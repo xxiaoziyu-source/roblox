@@ -101,6 +101,7 @@ end)
 local Tabs = {
     Notice = Window:Tab({ Title = "通知", Icon = "bell" }),
     General = Window:Tab({ Title = "通用", Icon = "sword" }),
+    AutoLocalization = Window:Tab({ Title = "自动汉化", Icon = "language" }),
     OtherScript = Window:Tab({ Title = "其他脚本", Icon = "sword" }),
     DeadRail = Window:Tab({ Title = "死铁轨", Icon = "sword" }),
     ForestNight = Window:Tab({ Title = "森林中99个夜晚", Icon = "sword" }),
@@ -664,6 +665,22 @@ Tabs.General:Button({
             sound:Play()
             task.spawn(keepPlaying)
         end
+    end
+})
+
+Tabs.AutoLocalization:Paragraph({
+    Title = "目前可以汉化的脚本",
+    Desc = "偷走脑红任何脚本\nH4x[钓鱼吧]",
+})
+Tabs.AutoLocalization:Button({
+    Title = "自动汉化",  
+    Desc = "目前已修卡顿问题",
+    Locked = false,
+    Callback = function()
+        pcall(function()
+             loadstring(game:HttpGet("https://raw.githubusercontent.com/xxiaoziyu-source/H4x-/refs/heads/main/%E8%87%AA%E5%8A%A8%E6%B1%89%E5%8C%96%E3%80%82%20Pro%20max"))()
+            print("9178加载成功")
+        end)
     end
 })
 
