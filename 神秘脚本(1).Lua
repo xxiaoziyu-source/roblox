@@ -334,6 +334,11 @@ Window:Tag({
     Color = Color3.fromHex("#30ff6a")
 })
 
+Window:Tag({
+    Title = "汉化",
+    Color = Color3.fromHex("#0066ff")
+})
+
 -- 通用功能标签页
 Tabs.General:Slider({
     Title = "移速",
