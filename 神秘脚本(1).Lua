@@ -1,4 +1,4 @@
-WindUI = loadstring(game:HttpGet("https://github.com/Footagesus/WindUI/releases/latest/download/main.lua"))()
+1WindUI = loadstring(game:HttpGet("https://github.com/Footagesus/WindUI/releases/latest/download/main.lua"))()
 
 local Confirmed = false
 
@@ -596,6 +596,13 @@ Tabs.General:Button({
     Title = "黑色大翅膀(需要输入anim)",
     Callback = function()
        loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))()
+    end
+})
+
+Tabs.General:Button({
+    Title = "自动跳墙",
+    Callback = function()
+       loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-Auto-wall-hop-51794"))()
     end
 })
 
@@ -1245,6 +1252,30 @@ Tabs.ShelterSurvival:Button({
     end
 })
 
+Tabs.OvernightInSupermarket:Button({
+    Title = "设置传送点并返回(没汉化)",  
+    Desc = "不需要解卡",
+    Locked = false,
+    Callback = function()
+        pcall(function()
+             loadstring(game:HttpGet("https://rawscripts.net/raw/Survive-Overnight-in-a-Mega-Store-Roblox-Survive-Overnight-In-a-Mega-Store-Script-41522"))()
+            print("9178加载成功")
+        end)
+    end
+})
+
+Tabs.OhioState:Button({
+    Title = "RB",  
+    Desc = "没用",
+    Locked = false,
+    Callback = function()
+        pcall(function()
+             loadstring(game:HttpGet("https://raw.githubusercontent.com/Yungengxin/roblox/refs/heads/main/Rb-Hub"))()
+            print("9178加载成功")
+        end)
+    end
+})
+
 Tabs.RaftSurvival:Button({
     Title = "收集木箱1",  
     Desc = "点一下就开启了",
@@ -1268,6 +1299,7 @@ Tabs.RaftSurvival:Button({
         end)
     end
 })
+
 Tabs.RaftSurvival:Button({
     Title = "收集木箱2",  
     Desc = "点一下就开启了",
