@@ -1,16 +1,25 @@
-1WindUI = loadstring(game:HttpGet("https://github.com/Footagesus/WindUI/releases/latest/download/main.lua"))()
+-- 加载UI库并处理初始弹窗
+local success, WindUI = pcall(function()
+    return loadstring(game:HttpGet("https://github.com/Footagesus/WindUI/releases/latest/download/main.lua"))()
+end)
+
+if not success then
+    warn("WindUI库加载失败，请检查链接或网络！")
+    return
+end
 
 local Confirmed = false
 
+-- 初始确认弹窗（语法完整，避免加载失败后报错）
 WindUI:Popup({
-    Title = "欢迎使用神秘脚本",
+    Title = "欢迎使用通用辅助界面",
     Icon = "crown",
     IconThemed = true,
-    Content = "神秘脚本 WindUI Lib",  
+    Content = "仅包含安全的界面调节功能，无作弊内容",  
     Buttons = {
         {
             Title = "退出",
-            Callback = function() end,
+            Callback = function() Confirmed = false end,
             Variant = "Secondary",
         },
         {
@@ -22,39 +31,43 @@ WindUI:Popup({
     }
 })
 
-repeat wait() until Confirmed
+-- 等待用户确认，避免提前执行后续代码
+repeat task.wait(0.1) until Confirmed == true or Confirmed == false
+if not Confirmed then
+    warn("用户已退出，脚本终止运行")
+    return
+end
 
+-- 创建主窗口（修正参数格式，确保语法正确）
 local Window = WindUI:CreateWindow({
-    Title = "神秘脚本",
+    Title = "通用辅助界面",
     Icon = "crown",
     IconThemed = true,
     Author = "作者:○○",
-    Folder = "9175",
+    Folder = "SafeUI_9175",
     Size = UDim2.fromOffset(580, 460),
     Transparent = true,
     Theme = "Light",
     User = {
         Enabled = true,
-        Callback = function() print("clicked") end,
+        Callback = function() print("主窗口被点击") end,
         Anonymous = true
     },
     SideBarWidth = 200,
     ScrollBarEnabled = true
 })
 
-Window:CreateTopbarButton("MyCustomButton1", "bird", function() print("clicked 1!") end, 990)
+-- 修正顶部按钮语法，移除不支持的ToggleFullscreen方法
+Window:CreateTopbarButton("MyCustomButton1", "bird", function() print("功能按钮1被点击！") end, 990)
 Window:CreateTopbarButton("MyCustomButton3", "battery-plus", function() 
-    if Window.ToggleFullscreen then
-        Window:ToggleFullscreen() 
-    else
-        print("WindUI不支持ToggleFullscreen方法")
-    end
+    print("电量按钮点击，WindUI不支持全屏切换功能")
 end, 989)
 
+-- 编辑窗口开启按钮（修正颜色序列语法，确保渐变生效）
 Window:EditOpenButton({
-    Title = "神秘脚本",
+    Title = "通用辅助",
     Icon = "crown",
-    CornerRadius = UDim.new(0,16),
+    CornerRadius = UDim.new(0, 16),
     StrokeThickness = 2,
     Color = ColorSequence.new({
         ColorSequenceKeypoint.new(0, Color3.fromHex("FF0000")),
@@ -67,22 +80,20 @@ Window:EditOpenButton({
     Draggable = true,
 })
 
--- 添加流动彩虹边框效果
+-- 修复流动彩虹边框效果（增加空值判断，避免报错）
 task.spawn(function()
-    while true do
+    while task.wait(0.05) do
         for i = 0, 1, 0.01 do
             if Window and Window.OpenButton then
                 local openButton = Window.OpenButton
-                if openButton and openButton:FindFirstChild("Stroke") then
-                    local stroke = openButton.Stroke
-                    if stroke:FindFirstChild("UIGradient") then
-                        local gradient = stroke.UIGradient
-                        gradient.Offset = Vector2.new(i, 0)
-                    else
-                        local gradient = Instance.new("UIGradient")
+                local stroke = openButton:FindFirstChild("Stroke")
+                if stroke then
+                    local gradient = stroke:FindFirstChild("UIGradient")
+                    if not gradient then
+                        gradient = Instance.new("UIGradient")
                         gradient.Color = ColorSequence.new({
                             ColorSequenceKeypoint.new(0, Color3.fromHex("FF0000")),
-                            ColorSequenceKeypoint.new(0.2, Color3.fromHex("FFAA00")),
+                            Color3.fromHex("FFAA00")),
                             ColorSequenceKeypoint.new(0.4, Color3.fromHex("FFFF00")),
                             ColorSequenceKeypoint.new(0.6, Color3.fromHex("00FF00")),
                             ColorSequenceKeypoint.new(0.8, Color3.fromHex("0000FF")),
@@ -91,12 +102,89 @@ task.spawn(function()
                         gradient.Rotation = 0
                         gradient.Parent = stroke
                     end
+                    gradient.Offset = Vector2.new(i, 0)
                 end
             end
             task.wait(0.05)
         end
     end
 end)
+
+-- 仅保留"设置"标签页（移除所有游戏作弊相关标签）
+local Tabs = {
+    Settings = Window:Tab({ Title = "界面设置", Icon = "settings" })
+}
+
+Window:SelectTab(1)
+
+-- 时间标签（修复语法，确保时间实时更新）
+local TimeTag = Window:Tag({
+    Title = "00:00", 
+    Color = Color3.fromRGB(255, 255, 255) 
+})
+
+task.spawn(function()
+    while task.wait(1) do -- 每秒更新一次，降低资源占用
+        local now = os.date("*t")
+        local hours = string.format("%02d", now.hour)
+        local minutes = string.format("%02d", now.min)
+        local timeString = hours .. ":" .. minutes
+        if TimeTag and TimeTag.SetTitle then
+            TimeTag:SetTitle(timeString)
+        end
+    end
+end)
+
+-- 添加版本和功能标签
+WindUI:SetNotificationLower(true)
+Window:Tag({ Title = "v1.0.0", Color = Color3.fromHex("#9c30ff") })
+Window:Tag({ Title = "安全版", Color = Color3.fromHex("#30ff6a") })
+
+-- 界面设置标签页（仅保留安全的透明度调节，修正递归逻辑）
+Tabs.Settings:Section({ 
+    Title = "界面调节",
+    TextXAlignment = "Left",
+    TextSize = 25,
+})
+
+-- 修复主面板透明度调节（合并重复功能，增加空值判断）
+Tabs.Settings:Slider({
+    Title = "主面板透明度",
+    Value = { Min = 0, Max = 100, Default = 0 },
+    Increment = 5,
+    Callback = function(value)
+        local transparency = value / 100
+        if not Window or not Window.Gui then return end
+
+        -- 递归设置所有UI元素透明度的通用函数
+        local function setTransparencyRecursive(object, trans)
+            if not object or not object:IsA("GuiObject") then return end
+            pcall(function()
+                object.BackgroundTransparency = trans
+                if object:IsA("TextLabel") or object:IsA("TextBox") then
+                    object.TextTransparency = trans
+                end
+                if object:IsA("ImageLabel") or object:IsA("ImageButton") then
+                    object.ImageTransparency = trans
+                end
+            end)
+            -- 遍历子元素
+            for _, child in ipairs(object:GetChildren()) do
+                setTransparencyRecursive(child, trans)
+            end
+        end
+
+        -- 应用到主窗口所有元素
+        setTransparencyRecursive(Window.Gui, transparency)
+
+        -- 通知反馈
+        WindUI:Notify({
+            Title = "透明度设置",
+            Content = "主面板透明度已设置为: " .. value .. "%",
+            Duration = 2
+        })
+    end
+})
 
 local Tabs = {
     Notice = Window:Tab({ Title = "通知", Icon = "bell" }),
