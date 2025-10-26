@@ -148,7 +148,7 @@ Tabs.Notice:Paragraph({
 
 Tabs.Notice:Paragraph({
     Title = "更新内容",
-    Desc = "植物vs大脑更新了一个脚本",
+    Desc = "自动汉化[只能汉化小部分的]\n刷糖果脚本[来自本熊]",
 })
 
 Tabs.Notice:Button({
@@ -885,6 +885,24 @@ Tabs.ForestNight:Button({
     Callback = function()
         pcall(function()
              loadstring(game:HttpGet("https://raw.githubusercontent/Kenniel123/99-Nights-in-the-Forest/refs/heads/main/99 Nights in the Forest"))()
+            print("9178加载成功")
+        end)
+    end
+})
+
+Tabs.ForestNight:Section({ 
+    Title = "刷糖果脚本↓↓↓",
+    TextXAlignment = "Left",
+    TextSize = 25,
+})
+
+Tabs.ForestNight:Button({
+    Title = "Night(没汉化)",
+    Desc = "需要到晚上才能刷",  
+    Locked = false,
+    Callback = function()
+        pcall(function()
+             loadstring(game:HttpGet('https://raw.githubusercontent.com/MQPS7/99-Night-in-the-Forset/refs/heads/main/CandyFarm'))()
             print("9178加载成功")
         end)
     end
