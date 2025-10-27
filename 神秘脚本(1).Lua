@@ -11,19 +11,25 @@ local function showKeyAuth()
         Icon = "key",
         IconThemed = true,
         Content = "请输入卡密:",
-        Size = UDim2.fromOffset(400, 200), -- 固定弹窗大小，避免输入框遮挡
-        -- 输入框配置（最新版WindUI必需的Elements参数）
+        Size = UDim2.fromOffset(400, 250), -- 增大弹窗高度，预留输入框空间
+        -- 调整弹窗背景（可选，让输入框更明显）
+        BackgroundColor3 = Color3.fromRGB(30, 30, 30),
+        -- 重新配置输入框（强制显示）
         Elements = {
             {
                 Type = "TextBox",
                 Name = "KeyInput",
                 Properties = {
                     PlaceholderText = "在此输入卡密",
-                    PasswordChar = "*", -- 隐藏输入内容
-                    Size = UDim2.fromScale(0.8, 0.2),
-                    Position = UDim2.fromScale(0.1, 0.4),
+                    PasswordChar = "*",
+                    -- 调整输入框大小和位置，确保在弹窗内
+                    Size = UDim2.fromOffset(320, 40),
+                    Position = UDim2.fromOffset(40, 100), -- 固定坐标，避免缩放问题
+                    -- 调整样式，与背景区分开
                     BackgroundColor3 = Color3.fromRGB(255, 255, 255),
-                    TextColor3 = Color3.fromRGB(0, 0, 0)
+                    TextColor3 = Color3.fromRGB(0, 0, 0),
+                    BorderSizePixel = 2, -- 增加边框
+                    BorderColor3 = Color3.fromRGB(100, 100, 100)
                 }
             }
         },
