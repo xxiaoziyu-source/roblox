@@ -1,64 +1,6 @@
 WindUI = loadstring(game:HttpGet("https://github.com/Footagesus/WindUI/releases/latest/download/main.lua"))()
 
--- ========== 简化版卡密验证模块 ==========
-local Confirmed = false
-local correctKey = "SM" -- 这里改成你的正确卡密
 
--- 卡密验证弹窗函数
-local function showKeyAuth()
-    WindUI:Popup({
-        Title = "神秘脚本",
-        Icon = "key",
-        IconThemed = true,
-        Content = "请输入卡密:",
-        Input = {
-            Placeholder = "在此输入卡密",
-            Type = "Password" -- 隐藏输入内容
-        },
-        Buttons = {
-            {
-                Title = "退出",
-                Callback = function() end,
-                Variant = "Secondary",
-            },
-            {
-                Title = "验证",
-                Icon = "arrow-right",
-                Callback = function(inputText)
-                    if inputText == correctKey then
-                        Confirmed = true
-                        WindUI:Notify({
-                            Title = "验证成功",
-                            Content = "欢迎使用！",
-                            Duration = 3
-                        })
-                    else
-                        WindUI:Notify({
-                            Title = "验证失败",
-                            Content = "卡密错误，请重试",
-                            Duration = 3,
-                            Type = "Error"
-                        })
-                        showKeyAuth() -- 重新显示验证窗口
-                    end
-                end,
-                Variant = "Primary",
-            }
-        }
-    })
-    
-    -- 简单的焦点处理：等待弹窗渲染后尝试获取焦点
-    task.wait(0.5)
-    
-    -- 如果点击输入框没反应，可以取消下面这行的注释试试
-    -- game:GetService("ContextActionService"):BindAction("DisableControls", function() return Enum.ContextActionResult.Sink end, false, Enum.ContextActionPriority.High.Value, Enum.KeyCode.W, Enum.KeyCode.A, Enum.KeyCode.S, Enum.KeyCode.D)
-end
-
--- 启动卡密验证
-showKeyAuth()
--- 等待验证通过
-repeat task.wait() until Confirmed
--- ========== 卡密模块结束 ==========
 local Window = WindUI:CreateWindow({
     Title = "神秘脚本",
     Icon = "crown",
