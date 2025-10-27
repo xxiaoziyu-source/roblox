@@ -41,8 +41,6 @@ WindUI:Popup({
     }
 })
 
-repeat wait() until Confirmed
-
 local Window = WindUI:CreateWindow({
     Title = "神秘脚本",
     Icon = "crown",
@@ -735,7 +733,7 @@ Tabs.DeadRail:Section({
     Title = "更新了两个死铁鬼脚本↓↓",
     TextXAlignment = "Left",
     TextSize = 25,
-})1
+})
 
 Tabs.DeadRail:Button({
     Title = "红叶子",
