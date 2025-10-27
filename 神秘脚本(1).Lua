@@ -41,6 +41,8 @@ WindUI:Popup({
     }
 })
 
+repeat wait() until Confirmed
+
 local Window = WindUI:CreateWindow({
     Title = "神秘脚本",
     Icon = "crown",
@@ -161,13 +163,18 @@ Tabs.Notice:Section({
 })
 
 Tabs.Notice:Paragraph({
-    Title = "感谢",
-    Desc = "黄某,雪花,本熊,老鼠,乌龟,小圆,孤行,",
+    Title = "更新内容",
+    Desc = "自动汉化[只能汉化小部分的]\n刷糖果脚本[来自本熊]",
 })
 
 Tabs.Notice:Paragraph({
-    Title = "更新内容",
-    Desc = "自动汉化[只能汉化小部分的]\n刷糖果脚本[来自本熊]",
+    Title = "师傅",
+    Desc = "张乐是个蛋",
+})
+
+Tabs.Notice:Paragraph({
+    Title = "脚本帮助",
+    Desc = "本能[阳谋]\n老鼠[源码帮助]\n小圆[功能帮助]\n孤行[创作帮助]",
 })
 
 Tabs.Notice:Button({
@@ -712,12 +719,12 @@ Tabs.AutoLocalization:Button({
 
 -- 其他脚本标签页
 Tabs.OtherScript:Button({
-    Title = "本熊汉化脚本",
-    Desc = "因为采用了高级加密所以加载会非常的卡",
+    Title = "本熊脚本",
+    Desc = "非常好用\n非常推荐\n非常厉害\n非常高技",
     Locked = false,
     Callback = function()
         pcall(function()
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/jbu7666gvv/benhan/main/benhan"))()
+            loadstring(game:HttpGet("\104\116\116\112\115\58\47\47\112\97\115\116\101\102\121\46\97\112\112\47\115\57\80\105\106\110\118\84\47\114\97\119"))()
             print("笨熊汉化加载成功")
         end)
     end
@@ -728,7 +735,7 @@ Tabs.DeadRail:Section({
     Title = "更新了两个死铁鬼脚本↓↓",
     TextXAlignment = "Left",
     TextSize = 25,
-})
+})1
 
 Tabs.DeadRail:Button({
     Title = "红叶子",
@@ -1305,6 +1312,12 @@ Tabs.OhioState:Button({
     end
 })
 
+Tabs.RaftSurvival:Section({ 
+    Title = "半自动收集",
+    TextXAlignment = "Left",
+    TextSize = 25,
+})
+
 Tabs.RaftSurvival:Button({
     Title = "收集木箱1",  
     Desc = "点一下就开启了",
@@ -1312,18 +1325,6 @@ Tabs.RaftSurvival:Button({
     Callback = function()
         pcall(function()
              loadstring(game:HttpGet("https://rawscripts.net/raw/Survive-on-a-Raft-Survive-on-raft-my-script-59728"))()
-            print("9178加载成功")
-        end)
-    end
-})
-
-Tabs.RaftSurvival:Button({
-    Title = "Peachy Hub(没汉化)",  
-    Desc = "需要解卡密",
-    Locked = false,
-    Callback = function()
-        pcall(function()
-             loadstring(game:HttpGet("https://rawscripts.net/raw/Survive-on-a-Raft-Peachy-Hub-59276"))()
             print("9178加载成功")
         end)
     end
@@ -1340,6 +1341,25 @@ Tabs.RaftSurvival:Button({
         end)
     end
 })
+
+Tabs.RaftSurvival:Section({ 
+    Title = "缝合脚本",
+    TextXAlignment = "Left",
+    TextSize = 25,
+})
+
+Tabs.RaftSurvival:Button({
+    Title = "Peachy Hub(没汉化)",  
+    Desc = "需要解卡密",
+    Locked = false,
+    Callback = function()
+        pcall(function()
+             loadstring(game:HttpGet("https://rawscripts.net/raw/Survive-on-a-Raft-Peachy-Hub-59276"))()
+            print("9178加载成功")
+        end)
+    end
+})
+
 -- 数学谋杀案标签页
 Tabs.MathMurder:Button({
     Title = "自动回答",  
