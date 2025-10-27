@@ -1,48 +1,6 @@
 WindUI = loadstring(game:HttpGet("https://github.com/Footagesus/WindUI/releases/latest/download/main.lua"))()
 
 
-function gradient(text, startColor, endColor)
-    local result = ""
-    local length = #text
-    
-    for i = 1, length do
-        local t = (i - 1) / math.max(length - 1, 1)
-        local r = math.floor((startColor.R + (endColor.R - startColor.R) * t) * 255)
-        local g = math.floor((startColor.G + (endColor.G - startColor.G) * t) * 255)
-        local b = math.floor((startColor.B + (endColor.B - startColor.B) * t) * 255)
-
-        local char = text:sub(i, i)
-        result = result .. "<font color=\"rgb(" .. r ..", " .. g .. ", " .. b .. ")\">" .. char .. "</font>"
-    end
-    
-    return result
-end
-
-local Confirmed = false
-
-WindUI:Popup({
-    Title = "欢迎使用神秘脚本",
-    Icon = "",
-    IconThemed = true,
-    Content = "神秘脚本" .. gradient("WindUI", Color3.fromHex("#00FF87"), Color3.fromHex("#60EFFF")) .. " Lib",  
-    Buttons = {
-        
-        {
-            Title = "退出",
-            Callback = function() end,
-            Variant = "Secondary",
-        },
-        {
-            Title = "使用",
-            Icon = "arrow-right",
-            Callback = function() Confirmed = true end,
-            Variant = "Primary",
-        }
-    }
-})
-
-repeat wait() until Confirmed
-
 local Window = WindUI:CreateWindow({
     Title = "神秘脚本",
     Icon = "crown",
