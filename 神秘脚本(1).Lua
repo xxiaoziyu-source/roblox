@@ -6,7 +6,7 @@ WindUI:Popup({
     Title = "欢迎使用神秘脚本",
     Icon = "crown",
     IconThemed = true,
-    Content = "神秘脚本 WindUI Lib",  
+    Content = "是否使用免费版",  
     Buttons = {
         {
             Title = "退出",
