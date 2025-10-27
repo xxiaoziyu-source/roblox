@@ -1,45 +1,41 @@
 WindUI = loadstring(game:HttpGet("https://github.com/Footagesus/WindUI/releases/latest/download/main.lua"))()
 
--- ========== 独立卡密验证模块（复制这段插入脚本） ==========
-local Confirmed = false
-local correctKey = "123456" -- 这里改成你的正确卡密
-
--- 卡密验证弹窗函数
 local function showKeyAuth()
     WindUI:Popup({
         Title = "神秘脚本",
         Icon = "key",
         IconThemed = true,
-        Content = "请输入卡密:",
-        Input = {
-            Placeholder = "在此输入卡密",
-            Type = "Password" -- 隐藏输入内容
+        Size = UDim2.fromOffset(400, 200), -- 定义弹窗大小，确保输入框显示
+        Elements = { -- 新版WindUI用Elements添加输入框
+            {
+                Type = "TextBox",
+                Name = "KeyInput", -- 输入框标识，用于后续获取内容
+                Properties = {
+                    PlaceholderText = "请输入卡密",
+                    PasswordChar = "*",
+                    Size = UDim2.fromScale(0.8, 0.2),
+                    Position = UDim2.fromScale(0.1, 0.4)
+                }
+            }
         },
         Buttons = {
             {
                 Title = "退出",
-                Callback = function() end,
+                Callback = function(popup) popup:Close() end,
                 Variant = "Secondary",
             },
             {
                 Title = "验证",
                 Icon = "arrow-right",
-                Callback = function(inputText)
+                Callback = function(popup)
+                    -- 通过Elements.Name获取输入框内容
+                    local inputText = popup.Elements.KeyInput.Text
                     if inputText == correctKey then
                         Confirmed = true
-                        WindUI:Notify({
-                            Title = "验证成功",
-                            Content = "欢迎使用！",
-                            Duration = 3
-                        })
+                        WindUI:Notify({Title = "验证成功", Content = "欢迎使用！", Duration = 3})
+                        popup:Close()
                     else
-                        WindUI:Notify({
-                            Title = "验证失败",
-                            Content = "卡密错误，请重试",
-                            Duration = 3,
-                            Type = "Error"
-                        })
-                        showKeyAuth() -- 重新显示验证窗口
+                        WindUI:Notify({Title = "验证失败", Content = "卡密错误", Duration = 3, Type = "Error"})
                     end
                 end,
                 Variant = "Primary",
@@ -48,11 +44,6 @@ local function showKeyAuth()
     })
 end
 
--- 启动卡密验证
-showKeyAuth()
--- 等待验证通过（必须等这一步完成，才会继续执行后面的代码）
-repeat wait() until Confirmed
--- ========== 卡密模块结束 ==========
 local Window = WindUI:CreateWindow({
     Title = "神秘脚本",
     Icon = "crown",
