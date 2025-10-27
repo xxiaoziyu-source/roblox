@@ -41,6 +41,8 @@ WindUI:Popup({
     }
 })
 
+repeat wait() until Confirmed
+
 local Window = WindUI:CreateWindow({
     Title = "神秘脚本",
     Icon = "crown",
@@ -59,7 +61,6 @@ local Window = WindUI:CreateWindow({
     ScrollBarEnabled = true
 })
 
-repeat wait() until Confirmed
 
 Window:CreateTopbarButton("MyCustomButton1", "bird", function() print("clicked 1!") end, 990)
 Window:CreateTopbarButton("MyCustomButton3", "battery-plus", function() 
