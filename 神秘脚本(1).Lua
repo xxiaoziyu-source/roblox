@@ -713,7 +713,7 @@ Tabs.AutoLocalization:Button({
 -- 其他脚本标签页
 Tabs.OtherScript:Button({
     Title = "本熊脚本",
-    Desc = "非常好用♥️♥️♥️♥️"
+    Desc = "非常好用♥️♥️♥️♥️",
     Locked = false,
     Callback = function()
         pcall(function()
