@@ -878,6 +878,19 @@ Tabs.ForestNight:Button({
         end)
     end
 })
+
+Tabs.ForestNight:Button({
+    Title = "Cec(汉化)",
+    Desc = "不需要解卡密",  
+    Locked = false,
+    Callback = function()
+        pcall(function()
+             loadstring(game:HttpGet("https://github.com/xxiaoziyu-source/T-/blob/main/Cec%E6%B1%89%E5%8C%96"))()
+            print("9178加载成功")
+        end)
+    end
+})
+
 Tabs.ForestNight:Section({ 
     Title = "没汉化的脚本↓↓↓",
     TextXAlignment = "Left",
@@ -921,12 +934,12 @@ Tabs.ForestNight:Button({
 })
 
 Tabs.ForestNight:Button({
-    Title = "Kenniel(没汉化)",
+    Title = "Neox(没汉化)",
     Desc = "需要解卡密",  
     Locked = false,
     Callback = function()
         pcall(function()
-             loadstring(game:HttpGet("https://raw.githubusercontent/Kenniel123/99-Nights-in-the-Forest/refs/heads/main/99 Nights in the Forest"))()
+             loadstring(game:HttpGet("https://raw.githubusercontent.com/hassanxzayn-lua/NEOXHUBMAIN/refs/heads/main/99NIFT"))()
             print("9178加载成功")
         end)
     end
@@ -946,8 +959,8 @@ Tabs.StealBrain:Button({
 })
 
 Tabs.StealBrain:Button({
-    Title = "超强变出脑红(汉化)",
-    Desc = "需要解卡密",
+    Title = "变出脑红脚本(汉化)",
+    Desc = "本地客户端效果",
     Locked = false,
     Callback = function()
         pcall(function()
