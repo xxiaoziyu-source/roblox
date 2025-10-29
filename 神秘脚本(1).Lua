@@ -162,7 +162,7 @@ Tabs.Notice:Section({
 
 Tabs.Notice:Paragraph({
     Title = "更新内容",
-    Desc = "自动汉化[只能汉化小部分的]\n刷糖果脚本[森林中99个夜晚]\nCec汉化[森林中99个夜晚]",
+    Desc = "自动汉化[只能汉化小部分的]\n刷糖果脚本[森林中99个夜晚]\nCec汉化[森林中99个夜晚]\n修复Cec脚本持续汉化卡顿问题",
 })
 
 Tabs.Notice:Paragraph({
@@ -880,7 +880,7 @@ Tabs.ForestNight:Button({
     Locked = false,
     Callback = function()
         pcall(function()
-             loadstring(game:HttpGet("https://github.com/xxiaoziyu-source/T-/blob/main/Cec%E6%B1%89%E5%8C%96"))()
+             loadstring(game:HttpGet("https://raw.githubusercontent.com/xxiaoziyu-source/T-/refs/heads/main/Cec%E6%B1%89%E5%8C%96"))()
             print("9178加载成功")
         end)
     end
