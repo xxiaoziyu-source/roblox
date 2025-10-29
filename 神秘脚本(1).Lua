@@ -167,7 +167,7 @@ Tabs.Notice:Paragraph({
 
 Tabs.Notice:Paragraph({
     Title = "脚本帮助",
-    Desc = "本能[阳谋]\n老鼠[源码帮助]\n小圆[功能帮助]\n孤行[创作帮助]",
+    Desc = "本能[阳谋]\n乌龟[最大功能帮助]\n老鼠[源码帮助]\n小圆[功能帮助]\n孤行[创作帮助]\n□□[小号帮助]",
 })
 
 Tabs.Notice:Button({
