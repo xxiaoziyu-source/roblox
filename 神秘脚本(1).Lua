@@ -20,10 +20,10 @@ end
 local Confirmed = false
 
 WindUI:Popup({
-    Title = "欢迎使用神秘脚本",
+    Title = "神秘脚本",
     Icon = "",
     IconThemed = true,
-    Content = "神秘脚本" .. gradient("WindUI", Color3.fromHex("#00FF87"), Color3.fromHex("#60EFFF")) .. " Lib",  
+    Content = "欢迎" .. gradient("使用", Color3.fromHex("#00FF87"), Color3.fromHex("#60EFFF")) .. "神秘脚本",  
     Buttons = {
         
         {
