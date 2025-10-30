@@ -612,7 +612,14 @@ Tabs.General:Button({
 })
 
 Tabs.General:Button({
-    Title = "黑色大翅膀(需要输入anim)",
+    Title = "MC工艺",
+    Callback = function()
+       loadstring(game:HttpGet("https://raw.githubusercontent.com/xxiaoziyu-source/oo-/refs/heads/main/MC%E5%85%AC%E7%9B%8A"))()
+    end
+})
+
+Tabs.General:Button({
+    Title = "指令工具",
     Callback = function()
        loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))()
     end
