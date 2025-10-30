@@ -345,7 +345,7 @@ end)
 WindUI:SetNotificationLower(true)
 
 Window:Tag({
-    Title = "v1.9.6",
+    Title = "v2.0",
     Color = Color3.fromHex("#9c30ff")
 })
 
