@@ -501,6 +501,18 @@ Tabs.General:Button({
 })
 
 Tabs.General:Button({
+    Title = "私人服务器脚本",
+    Desc = "需要进入你要弄的私服服务器",  
+    Locked = false,
+    Callback = function()
+        pcall(function()
+             loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-FREE-PRIVATE-SERVER-GUI-ANY-GAME-55939"))()
+            print("9178加载成功")
+        end)
+    end
+})
+
+Tabs.General:Button({
     Title = "后门加载器",
     Callback = function()
        loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-Backdoor-exe-9413"))()
