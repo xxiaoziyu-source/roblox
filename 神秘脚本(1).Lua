@@ -1,3 +1,5 @@
+-- 嘎嘎嘎嘎嘎嘎
+
 WindUI = loadstring(game:HttpGet("https://github.com/Footagesus/WindUI/releases/latest/download/main.lua"))()
 
 function gradient(text, startColor, endColor)
@@ -86,7 +88,6 @@ Window:EditOpenButton({
     Draggable = true,
 })
 
--- 添加流动彩虹边框效果
 task.spawn(function()
     while true do
         for i = 0, 1, 0.01 do
@@ -148,12 +149,10 @@ local Tabs = {
     Donate = Window:Tab({ Title = "请捐赠", Icon = "bell" }),
     WarTycoon = Window:Tab({ Title = "战争大亨", Icon = "bell" }),
     Hypershot = Window:Tab({ Title = "超人射击", Icon = "bell" }),
-    PrivateServer = Window:Tab({ Title = "免费私服", Icon = "bell" })
 }
 
 Window:SelectTab(1)
 
--- 通知标签页
 Tabs.Notice:Section({ 
     Title = "脚本说明",
     TextXAlignment = "Left",
@@ -188,143 +187,6 @@ Tabs.Notice:Section({
     TextSize = 25,
 })
 
--- 主面板透明度控制滑块
-Tabs.Notice:Slider({
-    Title = "主面板透明度",
-    Value = {
-        Min = 0,
-        Max = 100,
-        Default = 0,
-    },
-    Increment = 5,
-    Callback = function(value)
-        local transparency = value / 100
-        
-        if Window and Window.Gui then
-            local mainFrame = Window.Gui:FindFirstChild("MainFrame") or Window.Gui:FindFirstChildOfClass("Frame")
-            
-            if mainFrame then
-                mainFrame.BackgroundTransparency = transparency
-                
-                local function setChildrenTransparency(object, trans)
-                    for _, child in ipairs(object:GetChildren()) do
-                        if child:IsA("GuiObject") then
-                            if child:IsA("Frame") or child:IsA("ImageButton") or child:IsA("TextButton") then
-                                child.BackgroundTransparency = trans
-                            end
-                            
-                            if child:IsA("TextLabel") or child:IsA("TextBox") then
-                                child.TextTransparency = trans
-                                child.BackgroundTransparency = trans
-                            end
-                            
-                            setChildrenTransparency(child, trans)
-                        end
-                    end
-                end
-                
-                setChildrenTransparency(mainFrame, transparency)
-            end
-        end
-        
-        WindUI:Notify({
-            Title = "透明度设置",
-            Content = "主面板透明度已设置为: " .. value .. "%",
-            Duration = 2
-        })
-    end
-})
-
-Tabs.Notice:Slider({
-    Title = "主面板透明度",
-    Value = {
-        Min = 0,
-        Max = 100,
-        Default = 0,
-    },
-    Increment = 5,
-    Callback = function(value)
-        local transparency = value / 100
-        
-        -- 尝试多种可能的主窗口元素
-        if Window and Window.Gui then
-            -- 方法1: 查找所有可能的容器
-            local containers = {
-                Window.Gui:FindFirstChild("MainFrame"),
-                Window.Gui:FindFirstChild("MainContainer"),
-                Window.Gui:FindFirstChild("Container"),
-                Window.Gui:FindFirstChildOfClass("Frame"),
-                Window.Gui:FindFirstChildOfClass("ScrollingFrame")
-            }
-            
-            for _, container in ipairs(containers) do
-                if container then
-                    -- 设置容器透明度
-                    if container:IsA("GuiObject") then
-                        container.BackgroundTransparency = transparency
-                    end
-                    
-                    -- 递归设置所有子元素的透明度
-                    local function setTransparencyRecursive(object, trans)
-                        for _, child in ipairs(object:GetChildren()) do
-                            if child:IsA("GuiObject") then
-                                -- 设置背景透明度
-                                if child:IsA("Frame") or child:IsA("ImageButton") or child:IsA("TextButton") then
-                                    child.BackgroundTransparency = trans
-                                end
-                                
-                                -- 设置文字透明度
-                                if child:IsA("TextLabel") or child:IsA("TextBox") then
-                                    child.TextTransparency = trans
-                                    child.BackgroundTransparency = trans
-                                end
-                                
-                                -- 设置图片透明度
-                                if child:IsA("ImageLabel") then
-                                    child.ImageTransparency = trans
-                                    child.BackgroundTransparency = trans
-                                end
-                                
-                                -- 递归处理子元素
-                                setTransparencyRecursive(child, trans)
-                            end
-                        end
-                    end
-                    
-                    setTransparencyRecursive(container, transparency)
-                    break
-                end
-            end
-            
-            -- 方法2: 直接设置整个GUI的透明度
-            local function setAllGuiTransparency(gui, trans)
-                for _, child in ipairs(gui:GetDescendants()) do
-                    if child:IsA("GuiObject") then
-                        pcall(function()
-                            child.BackgroundTransparency = trans
-                            if child:IsA("TextLabel") or child:IsA("TextBox") then
-                                child.TextTransparency = trans
-                            end
-                            if child:IsA("ImageLabel") or child:IsA("ImageButton") then
-                                child.ImageTransparency = trans
-                            end
-                        end)
-                    end
-                end
-            end
-            
-            setAllGuiTransparency(Window.Gui, transparency)
-        end
-        
-        WindUI:Notify({
-            Title = "透明度设置",
-            Content = "主面板透明度已设置为: " .. value .. "%",
-            Duration = 2
-        })
-    end
-})
-
--- 时间标签
 local TimeTag = Window:Tag({
     Title = "00:00", 
     Color = Color3.fromRGB(255, 255, 255) 
@@ -359,7 +221,6 @@ Window:Tag({
     Color = Color3.fromHex("#0066ff")
 })
 
--- 通用功能标签页
 Tabs.General:Slider({
     Title = "移速",
     Value = {
@@ -717,7 +578,6 @@ Tabs.AutoLocalization:Button({
     end
 })
 
--- 其他脚本标签页
 Tabs.OtherScript:Button({
     Title = "本熊脚本",
     Desc = "非常好用♥️♥️♥️♥️",
@@ -730,7 +590,6 @@ Tabs.OtherScript:Button({
     end
 })
 
--- 死铁轨标签页
 Tabs.DeadRail:Section({ 
     Title = "更新了两个死铁鬼脚本↓↓",
     TextXAlignment = "Left",
@@ -803,7 +662,6 @@ Tabs.ForestNight:Button({
     end
 })
 
--- 森林中99个夜晚标签页
 Tabs.ForestNight:Section({ 
     Title = "最好用的99页脚本↓↓",
     TextXAlignment = "Left",
@@ -947,7 +805,6 @@ Tabs.ForestNight:Button({
     end
 })
 
--- 偷走脑红标签页
 Tabs.StealBrain:Button({
     Title = "VORTEX(没汉化)",
     Desc = "现在还能用",
@@ -996,7 +853,6 @@ Tabs.StealBrain:Button({
     end
 })
 
--- Blox Fruits标签页
 Tabs.Blox:Button({
     Title = "Event Blox Fruits",
     Desc = "要卡",
@@ -1035,7 +891,6 @@ Tabs.NaturalDisaster:Button({
     end
 })
 
--- 被遗弃标签页
 Tabs.Abandoned:Button({
     Title = "虚空(汉化)",
     Desc = "完全免费的🥰🥰",
@@ -1072,7 +927,6 @@ Tabs.Abandoned:Button({
     end
 })
 
--- G&B标签页
 Tabs.GB:Button({
     Title = "G&B(皮脚本)",
     Desc = "功能还是较多的",
@@ -1109,7 +963,6 @@ Tabs.GB:Button({
     end
 })
 
--- Doors标签页
 Tabs.Doors:Button({
     Title = "VelocityX(汉化)",
     Desc = "汉化",
@@ -1122,7 +975,6 @@ Tabs.Doors:Button({
     end
 })
 
--- 伐木大亨2标签页
 Tabs.Logging:Button({
     Title = "LuaWare(汉化)",
     Desc = "汉化的",
@@ -1135,7 +987,6 @@ Tabs.Logging:Button({
     end
 })
 
--- 砍伐树木标签页
 Tabs.CutTrees:Section({ 
     Title = "自制功能",
     TextXAlignment = "Left",
@@ -1181,7 +1032,6 @@ Tabs.CutTrees:Button({
     end
 })
 
--- 奇怪枪械标签页
 Tabs.StrangeGuns:Button({
     Title = "修改武器(汉化)",
     Desc = "非常好用修改后还有伤害",
@@ -1200,7 +1050,6 @@ Tabs.PlantZombie:Section({
     TextSize = 25,
 })
 
--- 植物大战脑红标签页
 Tabs.PlantZombie:Button({
     Title = "HackManHub(汉化)",
     Desc = "汉话",
@@ -1230,7 +1079,7 @@ Tabs.PlantZombie:Button({
         end)
     end
 })
--- 挖掘后院标签页
+
 Tabs.DigBackyard:Button({
     Title = "老外(没汉化)",
     Desc = "功能不咋多",
@@ -1266,6 +1115,7 @@ Tabs.PlantGarden:Button({
         end)
     end
 })
+
 Tabs.GoFishing:Button({
     Title = "H4x(没汉化)",  
     Desc = "不需要解卡",
@@ -1277,6 +1127,7 @@ Tabs.GoFishing:Button({
         end)
     end
 })
+
 Tabs.BuildPlane:Button({
     Title = "绿色中心(没汉化)",  
     Desc = "不用解卡密",
@@ -1373,7 +1224,6 @@ Tabs.RaftSurvival:Button({
     end
 })
 
--- 数学谋杀案标签页
 Tabs.MathMurder:Button({
     Title = "自动回答",  
     Desc = "点一下就开启了",
@@ -1398,7 +1248,6 @@ Tabs.MathMurder:Button({
     end
 })
 
--- 请捐赠标签页
 Tabs.Donate:Button({
     Title = "自动圈罗宝",
     Desc = "全自动辅助类脚本",
@@ -1411,7 +1260,6 @@ Tabs.Donate:Button({
     end
 })
 
--- 战争大亨标签页
 Tabs.WarTycoon:Button({
     Title = "战争大亨1(没汉化)",
     Desc = "要卡密",
@@ -1436,7 +1284,6 @@ Tabs.WarTycoon:Button({
     end
 })
 
--- 超人弹射标签页
 Tabs.Hypershot:Button({
     Title = "Zephyr(没汉化)",
     Desc = "国外免费最强脚本",  
@@ -1449,23 +1296,10 @@ Tabs.Hypershot:Button({
     end
 })
 
--- 免费私服标签页
-Tabs.PrivateServer:Button({
-    Title = "免费私服脚本(没汉化)",
-    Desc = "需要进入你要弄的私服服务器",  
-    Locked = false,
-    Callback = function()
-        pcall(function()
-             loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-FREE-PRIVATE-SERVER-GUI-ANY-GAME-55939"))()
-            print("9178加载成功")
-        end)
-    end
-})
-
 -- 脚本加载完成提示
 print("神秘脚本加载完成！")
 WindUI:Notify({
     Title = "神秘脚本",
-    Content = "脚本加载完成！",
+    Content = "圈钱脚本加载完成111111",
     Duration = 3
 })
