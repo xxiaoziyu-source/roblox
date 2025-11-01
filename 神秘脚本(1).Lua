@@ -56,12 +56,36 @@ local Window = WindUI:CreateWindow({
     User = {
         Enabled = true,
         Callback = function() print("clicked") end,
-        Anonymous = true
+        Anonymous = false
     },
     SideBarWidth = 200,
     ScrollBarEnabled = true
 })
 
+task.spawn(function()
+    wait(2)
+    
+    local background = Instance.new("ImageLabel")
+    background.Name = "WhiteHoleBackground"
+    background.Image = "rbxassetid://14899276645"
+    background.Size = UDim2.new(1, 0, 1, 0)
+    background.Position = UDim2.new(0, 0, 0, 0)
+    background.BackgroundTransparency = 1
+    background.ScaleType = Enum.ScaleType.Crop
+    background.ZIndex = -1
+    background.ImageTransparency = 0.2
+    
+    local playerGui = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+    local windUI = playerGui:WaitForChild("WindUI")
+    if windUI then
+        local mainFrame = windUI:FindFirstChild("MainFrame") or windUI:FindFirstChildWhichIsA("Frame")
+        if mainFrame then
+            background.Parent = mainFrame
+        else
+            background.Parent = windUI
+        end
+    end
+end)
 
 Window:CreateTopbarButton("MyCustomButton1", "bird", function() print("clicked 1!") end, 990)
 Window:CreateTopbarButton("MyCustomButton3", "battery-plus", function() 
