@@ -210,6 +210,12 @@ Tabs.Notice:Section({
     TextXAlignment = "Left",
     TextSize = 25,
 })
+-- 搜索框功能别问，因为我是瞎加的
+Tabs.General:CreateInput({
+    Title = "搜索功能",
+    Placeholder = "输入搜索...",
+    MaxLength = 30
+})
 
 local TimeTag = Window:Tag({
     Title = "00:00", 
