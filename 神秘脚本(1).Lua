@@ -161,7 +161,7 @@ Tabs.Notice:Section({
 
 Tabs.Notice:Paragraph({
     Title = "更新内容",
-    Desc = "自动汉化[只能汉化小部分的]\n刷糖果脚本[森林中99个夜晚]\nCec汉化[森林中99个夜晚]\n修复Cec脚本持续汉化卡顿问题",
+    Desc = "自动汉化[只能汉化小部分的]\n刷糖果脚本[森林中99个夜晚]\nCec汉化[森林中99个夜晚]\n修复Cec脚本持续汉化卡顿问题\nSyx中心汉化[钓鱼吧]",
 })
 
 Tabs.Notice:Paragraph({
@@ -1135,6 +1135,18 @@ Tabs.GoFishing:Button({
     Callback = function()
         pcall(function()
              loadstring(game:HttpGet("https://rawscripts.net/raw/UPD-Fish-It!-H4xScripts-Fish-It-60144"))()
+            print("9178加载成功")
+        end)
+    end
+})
+
+Tabs.GoFishing:Button({
+    Title = "SyxHub(汉化)",  
+    Desc = "不需要解卡",
+    Locked = false,
+    Callback = function()
+        pcall(function()
+             loadstring(game:HttpGet("https://raw.githubusercontent.com/xxiaoziyu-source/H4x-/refs/heads/main/%E4%B8%AD%E5%BF%83%E5%96%8A%E8%AF%9D"))()
             print("9178加载成功")
         end)
     end
