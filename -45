@@ -1,494 +1,782 @@
-local Translations = {
-   --["这里填要替换的英文"] = "这里填中文",
-    -- 基础功能
-
-["Search"] = "搜索",
-
-["Information"] = "信息",
-
-["Fun"] = "趣味",
-
-["Automation"] = "自动化",
-
-["Bring Stuff"] = "物品搬运",
-
-["Fishing"] = "钓鱼",
-
-["Teleport"] = "传送",
-
-["Visuals"] = "视觉",
-
-["Local Player"] = "本地玩家",
-
-["Misc"] = "杂项",
-
-["Theme"] = "主题",
-
-["Config"] = "配置",
-
--- 物品相关
-
-["Pickup All Flowers"] = "全拾花朵",
-
-["Collect All Gold Stacks"] = "全收金堆",
-
-["Auto Crock Pot"] = "自动炖锅",
-
-["Food Choice"] = "食物选择",
-
-["Bring Food To Cook Pot"] = "食物送锅",
-
-["Auto Campfire"] = "自动营火",
-
-["Fuel Type"] = "燃料类型",
-
-["Auto Fill Campfire"] = "自动填火",
-
-["Start Fueling when (Fire HP)"] = "按火生命值添燃料",
-
-["Auto Collect"] = "自动收集",
-
-["Auto Pickup Flowers"] = "自动拾花",
-
-["Auto Collect Coin Stacks"] = "自动收金币堆",
-
-["Auto Open Seed Boxes"] = "自动开种子箱",
-
-["Auto Chest [BETA]"] = "自动宝箱（测试版）",
-
-["Bring Location"] = "搬运位置",
-
-["Loot Mode"] = "战利品模式",
-
-["Loot Radius"] = "战利品半径",
-
-["Chest Delay (sec)"] = "宝箱延迟（秒）",
-
-["Enabled"] = "启用",
-
--- 种植建造
-
-["Plant Stuff"] = "种植建造",
-
-["Build Radius"] = "建造半径",
-
-["Angle Increment"] = "角度增量",
-
-["Plant/Build Limit"] = "种植/建造限制",
-
-["Plant Saplings in Circle"] = "环形种树苗",
-
-["Build Log Walls in Circle"] = "环形建原木墙",
-
-["Ribs"] = "肋骨",
-
--- 搬运设置
-
-["Bring Settings"] = "搬运设置",
-
-["Use Freecam for Bring Items"] = "搬运自由视角",
-
-["Bring Method"] = "搬运方式",
-
-["Max Per Item"] = "单物品最大数量",
-
-["Bring Cooldown"] = "搬运冷却",
-
-["No Bring Amount Limit"] = "无搬运数量限制",
-
-["Bring Height"] = "搬运高度",
-
-["Bring Cultists"] = "搬运教徒",
-
-["Cultist Choice"] = "教徒选择",
-
-["Bring Fuel [BETA]"] = "搬运燃料（测试版）",
-
-["Fuel"] = "燃料",
-
-["Bring Logs [BETA]"] = "搬运原木（测试版）",
-
-["Bring Food & Healing"] = "搬运食物与治疗",
-
-["Food & Healing"] = "食物与治疗",
-
-["Bring Gears"] = "搬运齿轮",
-
-["Gears"] = "齿轮",
-
-["Bring Guns & Armor"] = "搬运枪支护甲",
-
-["Guns & Armor"] = "枪支护甲",
-
-["Bring Others"] = "搬运其他物品",
-
-["Others"] = "其他物品",
-
-["Slow"] = "慢速",
-
-["Fast"] = "快速",
-
-["Ultra Fast"] = "超快速",
-
--- 目标对象
-
-["Player"] = "玩家",
-
-["Workbench"] = "工作台",
-
-["Fire"] = "火堆",
-
-["Nail"] = "钉子",
-
-["FrogBlue"] = "蓝色青蛙",
-
-["FrogPurple"] = "紫色青蛙",
-
-["Wolf"] = "狼",
-
-["Bear"] = "熊",
-
-["Bunny"] = "兔子",
-
-["Arctic Fox"] = "北极狐",
-
-["Mammoth"] = "猛犸象",
-
-["Juggernaut Cultist"] = "主宰信徒",
-
-["Polar Bear"] = "北极熊",
-
-["Alpha Wolf"] = "阿尔法狼",
-
-["Cultist King"] = "教徒国王",
-
-["Meteor Crab"] = "流星蟹",
-
-["油漆刷"] = "油漆刷",
-
-["Simple"] = "简单",
-
-["Safe"] = "安全",
-
-["Mammonth Tusk"] = "猛犸象牙",
-
-["Alpha 狼 Pelt"] = "阿尔法狼皮",
-
-["熊 Corpse"] = "熊尸体",
-
-["Meteor Shard"] = "流星碎片",
-
-["Gold Shard"] = "金碎片",
-
-["Raw Obsidiron Ore"] = "原始黑曜石矿石",
-
-["森林宝石 Fragment"] = "森林宝石碎片",
-
-["Swordfish"] = "剑鱼",
-
--- 主题列表
-
-["Purple"] = "紫色",
-
-["Galaxy"] = "银河",
-
-["BetterNight"] = "更好的夜晚",
-
-["BetterNight2"] = "更好的夜晚2",
-
-["MagentaOrange"] = "品红橙",
-
-["Purple2"] = "紫色2",
-
-["Galaxy2"] = "银河2",
-
-["Pink"] = "粉色",
-
-["Purple3"] = "紫色3",
-
-["DarkishPink"] = "深粉色",
-
-["Space"] = "太空",
-
-["Galaxy3"] = "银河3",
-
-["NetherWorld"] = "下界",
-
-["Nebula"] = "星云",
-
-["PurpleNight"] = "紫色之夜",
-
-["Aesthetic"] = "美学",
-
-["Aesthetic2"] = "美学2",
-
-["Pastel"] = "马卡龙",
-
-["PurpleClouds"] = "紫云",
-
-["BetterSky"] = "更好的天空",
-
-["BetterNight3"] = "更好的夜晚3",
-
-["Orange"] = "橙色",
-
-["DarkMountains"] = "暗黑山脉",
-
-["FlamingSunset"] = "燃烧的日落",
-
-["NewYork"] = "纽约",
-
-["Aesthetic3"] = "美学3",
-
-["FakeClouds"] = "假云",
-
-["LunarNight"] = " lunar 之夜",
-
-["PitchDark"] = "漆黑",
-
--- 其他文本
-
-["Close Window"] = "关闭窗口",
-
-["Do you want to close this window? You will not be able to open it again."] = "你确定要关闭此窗口吗？关闭后将无法再次打开。",
-
-["Cancel"] = "取消",
-
-["This tab is empty"] = "此标签页为空",
-
-["Reset Camera [Might Break your camera!]"] = "重置相机 [可能会破坏你的相机！]",
-
-["Please notify me if you need credits (erchodev#0 on discord)"] = "如需署名请通知我（Discord：erchodev#0）",
-
-["Background Color"] = "背景颜色",
-
-["Outline Color"] = "轮廓颜色",
-
-["Text Color"] = "文字颜色",
-
-["Placeholder Text Color"] = "占位符文字颜色",
-
--- ============== 万圣节模块 ==============
-
-["Bring Pumpkins"] = "获取南瓜",
-
-["Bring Candles"] = "获取蜡烛",
-
-["Open All Chests via Auto Chest"] = "通过自动开宝箱打开所有箱子",
-
-["By opening all chests you have a bigger chance of bringing a lot of halloween candles 🎃"] = "打开所有箱子可提升获取大量万圣节蜡烛的概率 🎃",
-
-["Halloween House TP"] = "万圣节房屋传送",
-
-["Halloween House Choice"] = "万圣节房屋选择",
-
-["传送 to Halloween House"] = "传送至万圣节房屋",
-
-["Refresh Halloween House List"] = "刷新万圣节房屋列表",
-
-["Halloween"] = "万圣节",
-
-["Halloween House Alien"] = "万圣节房屋（外星风格）",
-
-["Open All Chests via全自动Chest"] = "通过全自动宝箱打开所有箱子",
-
-["传送to万圣节House"] = "传送至万圣节房屋",
-
-["Refresh万圣节House List"] = "刷新万圣节房屋列表",
-
--- ============== 地图/自动功能模块 ==============
-
-["Auto"] = "自动",
-
-["显示地图"] = "显示地图",
-
-["Loops you in circle around the map to let everything load 🔥"] = "让你绕地图循环移动以加载所有内容 🔥",
-
-["Must upgrade the fire constantly or the map won't load!"] = "必须持续升级火堆，否则地图无法加载！",
-
--- ============== 光环/技能模块 ==============
-
-["Require Hand Check"] = "需要手持工具验证",
-
-["If disabled, it will let all Auras to work without you holding any tool 🔥"] = "若关闭，所有光环功能无需手持工具即可生效 🔥",
-
-["Auto TP to Targets"] = "自动传送至目标",
-
-["Automatically teleports to targets when they are out of range (200 Studs). This is because the 99 Nights devs patched higher range :c"] = "当目标超出200单位范围时自动传送。这是因为99 Nights开发者修复了更大范围的传送功能 :c",
-
-["Aura 范围"] = "光环范围",
-
-["Tree Aura"] = "树木光环",
-
-["矿石光环"] = "矿石光环",
-
-["If disabled, it will let all光环s to work without you holding any tool 🔥"] = "若关闭，所有光环功能无需手持工具即可生效 🔥",
-
--- ============== 树木模块 ==============
-
-["自动砍树"] = "自动砍树",
-
-["自动砍树类型"] = "自动砍树类型",
-
-["小树, Dead..."] = "小树、枯树...",
-
-["自动砍树范围"] = "自动砍树范围",
-
-["自动种树苗"] = "自动种树苗",
-
-["砍伐可视化"] = "砍伐可视化",
-
--- ============== 驯服模块 ==============
-
-["Taming"] = "驯服",
-
-["Equip Zookeeper class"] = "装备动物管理员职业",
-
-["Bring Carrots"] = "获取胡萝卜",
-
-["Bring Steak"] = "获取牛排",
-
-["100% Taming Success Rate"] = "100%驯服成功率",
-
-["Instant Taming Minigame"] = "驯服小游戏秒过",
-
--- ============== 界面基础模块 ==============
-
-["虚空"] = "虚空",
-
-["OO汉化"] = "OO汉化",
-
-["搜索"] = "搜索",
-
-["信息"] = "信息",
-
-["趣味"] = "趣味",
-
-["物品获取"] = "物品获取",
-
-["主要"] = "主要",
-
-["性能"] = "性能",
-
-["传送"] = "传送",
-
-["视觉"] = "视觉",
-
-["本地玩家"] = "本地玩家"
-}
-
-local function translateText(text)
-    if not text or type(text) ~= "string" then return text end
-    
-    if Translations[text] then
-        return Translations[text]
-    end
-    
-    for en, cn in pairs(Translations) do
-        if text:find(en) then
-            return text:gsub(en, cn)
-        end
-    end
-    
-    return text
-end
-
-local function setupTranslationEngine()
-    local success, err = pcall(function()
-        local oldIndex = getrawmetatable(game).__newindex
-        setreadonly(getrawmetatable(game), false)
-        
-        getrawmetatable(game).__newindex = newcclosure(function(t, k, v)
-            if (t:IsA("TextLabel") or t:IsA("TextButton") or t:IsA("TextBox")) and k == "Text" then
-                v = translateText(tostring(v))
+local WindUI = loadstring(game:HttpGet("https://raw.githubusercontent.com/Footagesus/WindUI/main/dist/main.lua"))()
+
+WindUI:Popup({
+    Title = "欢迎使用长夜月脚本",
+    Icon = "sparkles",
+    Content = "缝合牛逼",
+    Buttons = {
+        {
+            Title = "进入",
+            Icon = "arrow-right",
+            Variant = "Primary",
+            Callback = function() 
+                print("进入")
+                -- 主窗口
+                createMainWindow()
             end
-            return oldIndex(t, k, v)
-        end)
-        
-        setreadonly(getrawmetatable(game), true)
+        }
+    }
+})
+
+function createMainWindow()
+    local Players = game:GetService("Players")
+    local LocalPlayer = Players.LocalPlayer
+    local Character = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
+    local hum = Character:WaitForChild("HumanoidRootPart")
+    local PlayerGui = LocalPlayer:WaitForChild("PlayerGui")
+
+    local Window = WindUI:CreateWindow({
+        Title = "CYYhub<font color='#00FF00'>1.0</font>",
+        Icon = "rbxassetid:/",
+        IconTransparency = 0.5,
+        IconThemed = true,
+        Author = "作者:长夜月",
+        Folder = "CloudHub",
+        Size = UDim2.fromOffset(400, 300),
+        Transparent = true,
+        Theme = "Light",
+        User = {
+            Enabled = true,
+            Callback = function() print("clicked") end,
+            Anonymous = false
+        },
+        SideBarWidth = 200,
+        ScrollBarEnabled = true,
+        Background ="rbxassetid:/100291624074476"
+    })
+    
+    local TimeTag = Window:Tag({
+        Title = "00:00",
+        Color = Color3.fromHex("#30ff6a")
+    })
+    
+    local hue = 0
+    task.spawn(function()
+        while true do
+            local now = os.date("*t")
+            local hours = string.format("%02d", now.hour)
+            local minutes = string.format("%02d", now.min)
+            
+            hue = (hue + 0.01) % 1
+            local color = Color3.fromHSV(hue, 1, 1)
+            
+            TimeTag:SetTitle(hours .. ":" .. minutes)
+            --TimeTag:SetColor(color)
+
+            task.wait(0.06)
+        end
     end)
     
-    if not success then
-        warn("元表劫持失败:", err)
-       
-        local translated = {}
-        local function scanAndTranslate()
-            for _, gui in ipairs(game:GetService("CoreGui"):GetDescendants()) do
-                if (gui:IsA("TextLabel") or gui:IsA("TextButton") or gui:IsA("TextBox")) and not translated[gui] then
-                    pcall(function()
-                        local text = gui.Text
-                        if text and text ~= "" then
-                            local translatedText = translateText(text)
-                            if translatedText ~= text then
-                                gui.Text = translatedText
-                                translated[gui] = true
-                            end
-                        end
-                    end)
+    Window:Tag({
+        Title = "v1.0",
+        Color = Color3.fromHex("#30ff6a")
+    })
+
+    Window:EditOpenButton({
+        Title = "长夜月脚本中心",
+        Icon = "crown",
+        CornerRadius = UDim.new(0,16),
+        StrokeThickness = 2,
+        Color = ColorSequence.new(
+            Color3.fromHex("FF0F7B"), 
+            Color3.fromHex("F89B29")
+        ),
+        Draggable = true,
+    })
+    
+    Window:EditOpenButton({
+        StrokeColor = ColorSequence.new({
+            ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 0, 0)),     -- 红色
+            ColorSequenceKeypoint.new(0.2, Color3.fromRGB(255, 165, 0)), -- 橙色
+            ColorSequenceKeypoint.new(0.4, Color3.fromRGB(255, 255, 0)), -- 黄色
+            ColorSequenceKeypoint.new(0.6, Color3.fromRGB(0, 255, 0)),   -- 绿色
+            ColorSequenceKeypoint.new(0.8, Color3.fromRGB(0, 0, 255)),   -- 蓝色
+            ColorSequenceKeypoint.new(1, Color3.fromRGB(128, 0, 128))    -- 紫色
+        }),
+        StrokeThickness = 3,  
+    })
+    
+    local MainTab = Window:Tab({
+        Title = "主页",
+        Icon = "zap",
+        Locked = false,
+    })
+    
+    MainTab:Paragraph({
+        Title = "欢迎使用长夜月脚本中心",
+        Desc = "作者QQ3970952279",
+        Image = "rbxassetid://100291624074476",
+        ImageSize = 42,
+        Thumbnail = "rbxassetid://100291624074476",
+        ThumbnailSize = 120
+    })
+    
+    MainTab:Paragraph({
+        Title = "感谢你的测试",
+        Desc = "当前服务器ID: " .. game.PlaceId, 
+    })
+    
+    local executorName = "未知"
+    if type(identifyexecutor) == "function" then
+        executorName = identifyexecutor() or "未知"
+    end
+    
+    MainTab:Paragraph({
+        Title = "注入器",
+        Desc = ": " .. executorName, 
+    })
+    
+    local GeneralTab = Window:Tab({
+        Title = "通用",
+        Icon = "zap",
+        Locked = false,
+    })
+    
+    GeneralTab:Slider({
+        Title = "移速",
+        Value = {
+            Min = 16,
+            Max = 400,
+            Default = 16,
+        },
+        Increment = 1,
+        Callback = function(value)
+            if game.Players.LocalPlayer.Character then
+                local humanoid = game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid")
+                if humanoid then
+                    humanoid.WalkSpeed = value
                 end
             end
-            
-            local player = game:GetService("Players").LocalPlayer
-            if player and player:FindFirstChild("PlayerGui") then
-                for _, gui in ipairs(player.PlayerGui:GetDescendants()) do
-                    if (gui:IsA("TextLabel") or gui:IsA("TextButton") or gui:IsA("TextBox")) and not translated[gui] then
-                        pcall(function()
-                            local text = gui.Text
-                            if text and text ~= "" then
-                                local translatedText = translateText(text)
-                                if translatedText ~= text then
-                                    gui.Text = translatedText
-                                    translated[gui] = true
-                                end
+        end
+    })
+
+    GeneralTab:Slider({
+        Title = "跳跃",
+        Value = {
+            Min = 50,
+            Max = 200,
+            Default = 50,
+        },
+        Increment = 1,
+        Callback = function(value)
+            if game.Players.LocalPlayer.Character then
+                local humanoid = game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid")
+                if humanoid then
+                    humanoid.JumpPower = value
+                end
+            end
+        end
+    })
+
+    GeneralTab:Slider({
+        Title = "重力",
+        Value = {
+            Min = 0.1,
+            Max = 500.0,
+            Default = 196.2,
+        },
+        Step = 0.1,
+        Callback = function(value)
+            game.Workspace.Gravity = value
+        end
+    })
+
+    local originalAmbient
+    GeneralTab:Toggle({
+        Title = "夜视",
+        Value = false,
+        Callback = function(state)
+            if state then
+                originalAmbient = game.Lighting.Ambient
+                game.Lighting.Ambient = Color3.new(1, 1, 1)  
+            else
+                game.Lighting.Ambient = originalAmbient or Color3.new(0, 0, 0)
+            end
+        end
+    })
+
+    local Noclip = false
+    local NoclipConnection
+    GeneralTab:Toggle({
+        Title = "穿墙",
+        Value = false,
+        Callback = function(state)
+            if state then
+                Noclip = true
+                if NoclipConnection then
+                    NoclipConnection:Disconnect()
+                end
+                NoclipConnection = game:GetService("RunService").Stepped:Connect(function()
+                    if Noclip and game.Players.LocalPlayer.Character then
+                        for _, part in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
+                            if part:IsA("BasePart") then
+                                part.CanCollide = false
                             end
-                        end)
+                        end
+                    end
+                end)
+            else
+                Noclip = false
+                if NoclipConnection then
+                    NoclipConnection:Disconnect()
+                    NoclipConnection = nil
+                end
+            end
+        end
+    })
+
+    GeneralTab:Button({
+        Title = "点击传送工具",
+        Callback = function()
+            local mouse = game.Players.LocalPlayer:GetMouse() 
+            local tool = Instance.new("Tool") 
+            tool.RequiresHandle = false 
+            tool.Name = "点击传送" 
+            tool.Activated:Connect(function() 
+                if game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
+                    local pos = mouse.Hit + Vector3.new(0, 2.5, 0)
+                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(pos.X, pos.Y, pos.Z)
+                end
+            end) 
+            tool.Parent = game.Players.LocalPlayer.Backpack
+        end
+    })
+
+    GeneralTab:Button({
+        Title = "肘击",
+        Callback = function()
+            loadstring(game:HttpGet('https://raw.githubusercontent.com/0Ben1/fe/main/obf_5wpM7bBcOPspmX7lQ3m75SrYNWqxZ858ai3tJdEAId6jSI05IOUB224FQ0VSAswH.lua.txt', true))()
+        end
+    })
+
+    GeneralTab:Button({
+        Title = "无敌少侠飞行",
+        Callback = function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/H20CalibreYT/SystemBroken/main/script"))()
+        end
+    })
+
+    GeneralTab:Button({
+        Title = "egor假延迟",
+        Callback = function()
+            loadstring(game:HttpGet("https://pastebin.com/raw/GBmWn4eZ", true))()
+        end
+    })
+
+    GeneralTab:Button({
+        Title = "玩家实时数据",
+        Callback = function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/ke9460394-dot/ugik/refs/heads/main/%E5%AE%9E%E6%97%B6%E6%95%B0%E6%8D%AE.txt", true))()
+        end
+    })
+
+    GeneralTab:Button({
+        Title = "飞行v3",
+        Callback = function()
+           loadstring(game:HttpGet("https://raw.githubusercontent.com/Jay907692/Jay/8b94c47bd5969608438fa1ee57f34b1350789caa/飞行脚本", true))()
+        end
+    })
+
+    GeneralTab:Button({
+        Title = "透视",
+        Callback = function()
+            local Players = game:GetService("Players")
+            local RunService = game:GetService("RunService")
+            
+            local highlight = Instance.new("Highlight")
+            highlight.Name = "Highlight"
+            highlight.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop -- 保证透视高亮始终可见
+
+            for _, player in ipairs(Players:GetPlayers()) do
+                if player ~= game.Players.LocalPlayer then
+                    repeat task.wait() until player.Character and player.Character:FindFirstChild("HumanoidRootPart")
+                    local humanoidRootPart = player.Character.HumanoidRootPart
+                    
+                    if not humanoidRootPart:FindFirstChild("Highlight") then
+                        local highlightClone = highlight:Clone()
+                        highlightClone.Adornee = player.Character
+                        highlightClone.Parent = humanoidRootPart
+                    end
+
+                    if not humanoidRootPart:FindFirstChild("PlayerNameDisplay") then
+                        local billboardGui = Instance.new("BillboardGui")
+                        billboardGui.Name = "PlayerNameDisplay"
+                        billboardGui.Adornee = humanoidRootPart
+                        billboardGui.Size = UDim2.new(0, 150, 0, 20)
+                        billboardGui.StudsOffset = Vector3.new(0, 2.8, 0)
+                        billboardGui.AlwaysOnTop = true
+
+                        local textLabel = Instance.new("TextLabel")
+                        textLabel.Parent = billboardGui
+                        textLabel.Size = UDim2.new(1, 0, 1, 0)
+                        textLabel.BackgroundTransparency = 1
+                        textLabel.Text = player.Name
+                        textLabel.TextColor3 = Color3.new(1, 1, 1)
+                        textLabel.TextSize = 9
+                        textLabel.TextScaled = false
+
+                        billboardGui.Parent = humanoidRootPart
                     end
                 end
             end
-        end
-        
-        local function setupDescendantListener(parent)
-            parent.DescendantAdded:Connect(function(descendant)
-                if descendant:IsA("TextLabel") or descendant:IsA("TextButton") or descendant:IsA("TextBox") then
-                    task.wait(0.1)
-                    pcall(function()
-                        local text = descendant.Text
-                        if text and text ~= "" then
-                            local translatedText = translateText(text)
-                            if translatedText ~= text then
-                                descendant.Text = translatedText
+
+            game.Players.PlayerAdded:Connect(function(player)
+                player.CharacterAdded:Connect(function(character)
+                    repeat task.wait() until character:FindFirstChild("HumanoidRootPart")
+                    local humanoidRootPart = character.HumanoidRootPart
+                    
+                    if not humanoidRootPart:FindFirstChild("Highlight") then
+                        local highlightClone = highlight:Clone()
+                        highlightClone.Adornee = character
+                        highlightClone.Parent = humanoidRootPart
+                    end
+
+                    local billboardGui = Instance.new("BillboardGui")
+                    billboardGui.Name = "PlayerNameDisplay"
+                    billboardGui.Adornee = humanoidRootPart
+                    billboardGui.Size = UDim2.new(0, 150, 0, 20)
+                    billboardGui.StudsOffset = Vector3.new(0, 2.8, 0)
+                    billboardGui.AlwaysOnTop = true
+
+                    local textLabel = Instance.new("TextLabel")
+                    textLabel.Parent = billboardGui
+                    textLabel.Size = UDim2.new(1, 0, 1, 0)
+                    textLabel.BackgroundTransparency = 1
+                    textLabel.Text = player.Name
+                    textLabel.TextColor3 = Color3.new(1, 1, 1)
+                    textLabel.TextSize = 9 -- 名字缩小到9
+                    textLabel.TextScaled = false
+
+                    billboardGui.Parent = humanoidRootPart
+                end)
+            end)
+
+            game.Players.PlayerRemoving:Connect(function(player)
+                if player.Character and player.Character:FindFirstChild("HumanoidRootPart") then
+                    local humanoidRootPart = player.Character.HumanoidRootPart
+                    if humanoidRootPart:FindFirstChild("Highlight") then
+                        humanoidRootPart.Highlight:Destroy()
+                    end
+                    if humanoidRootPart:FindFirstChild("PlayerNameDisplay") then
+                        humanoidRootPart.PlayerNameDisplay:Destroy()
+                    end
+                end
+            end)
+
+            RunService.Heartbeat:Connect(function()
+                for _, player in ipairs(Players:GetPlayers()) do
+                    if player ~= game.Players.LocalPlayer and player.Character then
+                        local humanoidRootPart = player.Character:FindFirstChild("HumanoidRootPart")
+                        if humanoidRootPart then
+                            -- 透视
+                            if not humanoidRootPart:FindFirstChild("Highlight") then
+                                local highlightClone = highlight:Clone()
+                                highlightClone.Adornee = player.Character
+                                highlightClone.Parent = humanoidRootPart
+                                task.wait()
+                            end
+
+                            -- 小尺寸
+                            if not humanoidRootPart:FindFirstChild("PlayerNameDisplay") then
+                                local billboardGui = Instance.new("BillboardGui")
+                                billboardGui.Name = "PlayerNameDisplay"
+                                billboardGui.Adornee = humanoidRootPart
+                                billboardGui.Size = UDim2.new(0, 150, 0, 20)
+                                billboardGui.StudsOffset = Vector3.new(0, 2.8, 0)
+                                billboardGui.AlwaysOnTop = true
+
+                                local textLabel = Instance.new("TextLabel")
+                                textLabel.Parent = billboardGui
+                                textLabel.Size = UDim2.new(1, 0, 1, 0)
+                                textLabel.BackgroundTransparency = 1
+                                textLabel.Text = player.Name
+                                textLabel.TextColor3 = Color3.new(1, 1, 1)
+                                textLabel.TextSize = 9 -- 名字缩小到9
+                                textLabel.TextScaled = false
+
+                                billboardGui.Parent = humanoidRootPart
+                                task.wait()
                             end
                         end
-                    end)
+                    end
                 end
             end)
         end
-        
-        pcall(setupDescendantListener, game:GetService("CoreGui"))
-        local player = game:GetService("Players").LocalPlayer
-        if player and player:FindFirstChild("PlayerGui") then
-            pcall(setupDescendantListener, player.PlayerGui)
+    })
+
+    GeneralTab:Button({
+        Title = "前后空翻",
+        Callback = function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/Xingyan777/roblox/refs/heads/main/%E6%97%8B%E8%BD%AC.txt", true))()
         end
-        
-        while true do
-            scanAndTranslate()
-            task.wait(3)
+    })
+    
+    -- 神教nb
+    GeneralTab:Toggle({
+        Title = "爬墙（关不了）",
+        Value = false,
+        Callback = function(state)
+            if state then
+                loadstring(game:HttpGet("https://pastebin.com/raw/zXk4Rq2r", true))()
+            end
         end
-    end
+    })
+    
+    GeneralTab:Button({
+        Title = "隐身",
+        Callback = function()
+            loadstring(game:HttpGet("https://pastebin.com/raw/vP6CrQJj", true))()
+        end
+    })
+    
+    GeneralTab:Button({
+        Title = "无限跳",
+        Callback = function()
+            loadstring(game:HttpGet("https://pastebin.com/raw/V5PQy3y0", true))()
+        end
+    })
+
+    local OftenTab = Window:Tab({
+        Title = "死铁轨",
+        Icon = "skull",
+        Locked = false,
+    })
+    
+    OftenTab:Button({
+        Title = "攻速",
+        Desc = "英文 推荐500",
+        Callback = function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/HeadHarse/DeadRails/refs/heads/main/V5OPSWING", true))()
+        end
+    })
+    
+    OftenTab:Button({
+        Title = "刷债券",
+        Desc = "英文 进局里找到Auto bond",
+        Callback = function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/thantzy/thanhub/refs/heads/main/thanv1", true))()
+        end
+    })
+    
+    OftenTab:Button({
+        Title = "JAY",
+        Desc = "英文",
+        Callback = function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/wefwef127382/DEADRAILS.github.io/refs/heads/main/mainringta.lua", true))()
+        end
+    })
+    
+    OftenTab:Button({
+        Title = "自动到终点",
+        Desc = "英文",
+        Callback = function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/gumanba/Scripts/refs/heads/main/DeadRails", true))()
+        end
+    })
+        
+    OftenTab:Button({
+        Title = "自动获得马",
+        Desc = "英文",
+        Callback = function()
+            local args = {[1] = "Horse"}
+            game:GetService("ReplicatedStorage"):WaitForChild("Shared"):WaitForChild("RemotePromise"):WaitForChild("Remotes"):WaitForChild("C_BuyClass"):FireServer(unpack(args))
+        end
+    })
+    
+    OftenTab:Button({
+        Title = "刷债券",
+        Desc = "中文",
+        Callback = function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/JsYb666/Item/refs/heads/main/%E5%88%B7%E5%80%BA%E5%88%B8", true))()
+        end
+    })
+    
+    OftenTab:Button({
+        Title = "SANSHUB",
+        Desc = "中文 要解卡",
+        Callback = function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/gumanba/Scripts/refs/heads/main/DeadRails", true))()
+        end
+    })
+    
+    local InkgameTab = Window:Tab({
+        Title = "墨水游戏",
+        Icon = "zap",
+        Locked = false,
+    })
+    
+    InkgameTab:Button({
+        Title = "AX",
+        Desc = "英文 好用",
+        Callback = function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/TexRBLX/Roblox-stuff/refs/heads/main/ink-game/script.lua", true))()
+        end
+    })
+    
+    InkgameTab:Button({
+        Title = "LT",
+        Desc = "英文 好用",
+        Callback = function()
+            loadstring(game:HttpGet("https://rawscripts.net/raw/The-Strongest-Battlegrounds-NSExpression-v2-a3-TSBG-20252", true))()
+        end
+    })
+
+    InkgameTab:Button({
+        Title = "ink",
+        Desc = "英文",
+        Callback = function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/MortalR/wrwerew/refs/heads/main/ss"))()
+        end
+    })
+
+    InkgameTab:Button({
+        Title = "ref",
+        Desc = "中文 还行",
+        Callback = function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/hdjsjjdgrhj/OK/refs/heads/main/sb"))()
+        end
+    })
+
+    InkgameTab:Button({
+        Title = "Ringta",
+        Desc = "中文 还行",
+        Callback = function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/hdjsjjdgrhj/script-hub/refs/heads/main/Ringta"))()
+        end
+    })
+    
+    InkgameTab:Button({
+        Title = "TEX",
+        Desc = "中文 好用",
+        Callback = function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/hdjsjjdgrhj/script-hub/refs/heads/main/TexRBLlX"))()
+        end
+    })
+    
+    InkgameTab:Button({
+        Title = "AX",
+        Desc = "中文 易封 可以当英文翻译",
+        Callback = function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/Xingtaiduan/Script/refs/heads/main/Games/墨水游戏.lua", true))()
+        end
+    })
+    
+    local NightTab = Window:Tab({
+        Title = "在森林中生存99夜",
+        Icon = "map-pin",
+        Locked = false,
+    })
+    
+    NightTab:Button({
+        Title = "二狗子",
+        Desc = "中文 配合飞行挺好玩",
+        Callback = function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/gycgchgyfytdttr/shenqin/refs/heads/main/99day.lua", true))()
+        end
+    })
+    
+    NightTab:Button({
+        Title = "LT",
+        Desc = "中文",
+        Callback = function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/hdjsjjdgrhj/script-hub/refs/heads/main/99Nights", true))()
+        end
+    })
+    
+    NightTab:Button({
+        Title = "国外最强99夜",
+        Desc = "英文 要解卡",
+        Callback = function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/OverflowBGSI/Overflow/refs/heads/main/loader.txt", true))()
+        end
+    })
+    
+    local ZombiTab = Window:Tab({
+        Title = "G&B",
+        Icon = "zap",
+        Locked = false,
+    })
+    
+    ZombiTab:Button({
+        Title = "老味精",
+        Desc = "中文",
+        Callback = function()
+            loadstring(game:HttpGet("https://pastefy.app/A3Nqz4Np/raw", true))()
+        end
+    })
+    
+    ZombiTab:Button({
+        Title = "星火交辉G&B",
+        Desc = "中文",
+        Callback = function()
+            loadstring(game:HttpGet("https://pastebin.com/raw/37tCRtum", true))()
+        end
+    })
+    
+    ZombiTab:Button({
+        Title = "情云",
+        Desc = "中文",
+        Callback = function()
+            loadstring(utf8.char((function() return table.unpack({108,111,97,100,115,116,114,105,110,103,40,103,97,109,101,58,72,116,116,112,71,101,116,40,34,104,116,116,112,115,58,47,47,114,97,119,46,103,105,116,104,117,98,117,115,101,114,99,111,110,116,101,110,116,46,99,111,109,47,67,104,105,110,97,81,89,47,45,47,109,97,105,110,47,37,69,54,37,56,51,37,56,53,37,69,52,37,66,65,37,57,49,34,41,41,40,41})end)()))()
+        end
+    })
+    
+    local AbandTab = Window:Tab({
+        Title = "被遗弃",
+        Icon = "zap",
+        Locked = false,
+    })
+    
+    AbandTab:Button({
+        Title = "不知名被遗弃",
+        Desc = "不知道",
+        Callback = function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/nikoladhima/Forsaken-Hub/refs/heads/main/ForsakenHub-Script.lua", true))()
+        end
+    })
+    
+    AbandTab:Button({
+        Title = "还是不知名",
+        Desc = "不知道",
+        Callback = function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/Redexe19/RXGUIV1/refs/heads/main/RX%20Forsaken/RX_Forsakened", true))()
+        end
+    })
+    
+    AbandTab:Button({
+        Title = "情云",
+        Desc = "中文 简洁好用",
+        Callback = function()
+            loadstring(utf8.char((function() return table.unpack({108,111,97,100,115,116,114,105,110,103,40,103,97,109,101,58,72,116,116,112,71,101,116,40,34,104,116,116,112,115,58,47,47,114,97,119,46,103,105,116,104,117,98,117,115,101,114,99,111,110,116,101,110,116,46,99,111,109,47,67,104,105,110,97,81,89,47,45,47,109,97,105,110,47,37,69,54,37,56,51,37,56,53,37,69,52,37,66,65,37,57,49,34,41,41,40,41})end)()))()
+        end
+    })
+    
+    local NatureTab = Window:Tab({
+        Title = "自然灾害",
+        Icon = "rbxassetid://94462465090724",
+        Locked = false,
+    })
+    
+    NatureTab:Button({
+        Title = "黑洞v6",
+        Desc = "英文 推荐搭配飞行使用",
+        Callback = function()
+            loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-Super-ring-Parts-V6-28581", true))()
+        end
+    })
+    
+    NatureTab:Button({
+        Title = "油管制作",
+        Desc = "英文",
+        Callback = function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/2dgeneralspam1/scripts-and-stuff/master/scripts/LoadstringUjHI6RQpz2o8", true))()
+        end
+    })
+    
+    local StornTab = Window:Tab({
+        Title = "最强战场",
+        Icon = "swords",
+        Locked = false,
+    })
+    
+    StornTab:Button({
+        Title = "自动格挡自瞄",
+        Desc = "英文",
+        Callback = function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/Cyborg883/TSB/refs/heads/main/CombatGui", true))()
+        end
+    })
+    
+    StornTab:Button({
+        Title = "无限侧闪",
+        Desc = "英文 看不懂全开就行",
+        Callback = function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/10tempest01/tempest-hub/refs/heads/main/Launcher.lua", true))()
+        end
+    })
+    
+    local DoorTab = Window:Tab({
+        Title = "doors",
+        Icon = "zap",
+        Locked = false,
+    })
+
+    DoorTab:Button({
+        Title = "Jay汉化",
+        Desc = "中文",
+        Callback = function()
+            loadstring(game:HttpGet("\104\116\116\112\115\58\47\47\112\97\115\116\101\98\105\110\46\99\111\109\47\114\97\119\47\54\53\84\119\84\56\106\97"))()
+        end
+    })
+    
+    DoorTab:Button({
+        Title = "不知名",
+        Desc = "英文",
+        Callback = function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/GamingScripter/Darkrai-X/main/Games/Doors"))()
+        end
+    })
+
+    DoorTab:Button({
+        Title = "小云汉化",
+        Desc = "中文",
+        Callback = function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/XiaoYunCN/EntitySpawner/main/doors(orionlib).lua"))()
+        end
+    })
+
+    local OtherTab = Window:Tab({
+        Title = "其他脚本中心",
+        Icon = "user",
+        Locked = false,
+    })
+
+    OtherTab:Button({
+        Title = "皮脚本",
+        Desc = "单击执行",
+        Callback = function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/xiaopi77/xiaopi77/main/QQ1002100032-Roblox-Pi-script.lua"))()
+        end
+    })
+
+    OtherTab:Button({
+        Title = "导管脚本中心",
+        Desc = "单击执行",
+        Callback = function()
+            loadstring("\108\111\97\100\115\116\114\105\110\103\40\103\97\109\101\58\72\116\116\112\71\101\116\40\34\104\116\116\112\115\58\47\47\114\97\119\46\103\105\116\104\117\98\117\115\101\114\99\111\110\116\101\110\116\46\99\111\109\47\117\115\101\114\97\110\101\119\114\102\102\47\114\111\98\108\111\120\45\47\109\97\105\110\47\37\69\54\37\57\68\37\65\49\37\69\54\37\65\67\37\66\69\37\69\53\37\56\68\37\56\70\37\69\56\37\65\69\37\65\69\34\41\41\40\41\10")()
+        end
+    })
+
+    OtherTab:Button({
+        Title = "XK脚本",
+        Desc = "单击执行",
+        Callback = function()
+            loadstring(game:HttpGet('https://github.com/devslopo/DVES/raw/main/XK%20Hub', true))()
+        end
+    })
+
+    OtherTab:Button({
+        Title = "情云脚本",
+        Desc = "单击执行",
+        Callback = function()
+            loadstring(utf8.char((function() return table.unpack({108,111,97,100,115,116,114,105,110,103,40,103,97,109,101,58,72,116,116,112,71,101,116,40,34,104,116,116,112,115,58,47,47,114,97,119,46,103,105,116,104,117,98,117,115,101,114,99,111,110,116,101,110,116,46,99,111,109,47,67,104,105,110,97,81,89,47,45,47,109,97,105,110,47,37,69,54,37,56,51,37,56,53,37,69,52,37,66,65,37,57,49,34,41,41,40,41})end)()))()
+        end
+    })
+
+    OtherTab:Button({
+        Title = "杀脚本",
+        Desc = "单击执行",
+        Callback = function()
+            FengYu_HUB = "殺脚本"
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/FengYu-3/FengYu/refs/heads/main/QQ1926190957.lua", true))()
+        end
+    })
 end
 
-task.wait(2)
+    })
 
-setupTranslationEngine()
-
-local success, err = pcall(function()
---这下面填加载外部脚本
-loadstring(game:HttpGet("https://raw.githubusercontent.com/xxiaoziyu-source/roblox/a304ee2b7344d37bbef7119436825929212fdaa1/%E8%99%9A%E7%A9%BA%E6%B1%89%E5%8C%96", true))()
-
-
-
-end)
-
-if not success then
-    warn("加载失败:", err)
-end
+    local CYYNBaaa = Window:Tab({
+        Title = "破解",
+        Icon = "skull",
+        Locked = false,
+    })
