@@ -163,16 +163,13 @@ local Tabs = {
     GoFishing = Window:Tab({ Title = "钓鱼吧", Icon = "fish" }),
     BladeBall = Window:Tab({ Title = "刀刃球", Icon = "ball" }),
     PlantGarden = Window:Tab({ Title = "种植花园", Icon = "flower" }),
-    LongTrip = Window:Tab({ Title = "长途旅行", Icon = "car" }),
     OvernightInSupermarket = Window:Tab({ Title = "在超级超市里过夜", Icon = "shopping-cart" }),
     OhioState = Window:Tab({ Title = "俄亥俄州", Icon = "map" }),
     ShelterSurvival = Window:Tab({ Title = "避难所生存", Icon = "shield" }),
     RaftSurvival = Window:Tab({ Title = "木筏生存", Icon = "raft" }),
     DigBackyard = Window:Tab({ Title = "挖掘后院", Icon = "bell" }),
     MathMurder = Window:Tab({ Title = "数学谋杀案", Icon = "bell" }),
-    Donate = Window:Tab({ Title = "请捐赠", Icon = "bell" }),
     WarTycoon = Window:Tab({ Title = "战争大亨", Icon = "bell" }),
-    Hypershot = Window:Tab({ Title = "超人射击", Icon = "bell" }),
 }
 
 Window:SelectTab(1)
@@ -616,11 +613,37 @@ Tabs.AutoLocalization:Button({
 
 Tabs.OtherScript:Button({
     Title = "本熊脚本",
-    Desc = "非常好用♥️♥️♥️♥️",
+    Desc = "非常好用♥️♥️♥️♥️卡密：囚笼",
     Locked = false,
     Callback = function()
         pcall(function()
             loadstring(game:HttpGet("\104\116\116\112\115\58\47\47\112\97\115\116\101\102\121\46\97\112\112\47\115\57\80\105\106\110\118\84\47\114\97\119"))()
+            print("笨熊汉化加载成功")
+        end)
+    end
+})
+
+Tabs.OtherScript:Button({
+    Title = "黄某脚本",
+    Desc = "咕咕嘎嘎",
+    Locked = false,
+    Callback = function()
+        pcall(function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/xiaokong6/x1/refs/heads/main/黄某脚本加载器"))()
+            print("笨熊汉化加载成功")
+        end)
+    end
+})
+
+
+Tabs.OtherScript:Button({
+    Title = "KG脚本",
+    Desc = "射击服务器专用",
+    Locked = false,
+    Callback = function()
+        pcall(function()
+            KG_SCRIPT = "张硕制作"
+loadstring(game:HttpGet("https://github.com/ZS-NB/KG/raw/main/Zhang-Shuo.lua"))()
             print("笨熊汉化加载成功")
         end)
     end
@@ -1200,18 +1223,6 @@ Tabs.ShelterSurvival:Button({
     end
 })
 
-Tabs.OvernightInSupermarket:Button({
-    Title = "设置传送点并返回(没汉化)",  
-    Desc = "不需要解卡",
-    Locked = false,
-    Callback = function()
-        pcall(function()
-             loadstring(game:HttpGet("https://rawscripts.net/raw/Survive-Overnight-in-a-Mega-Store-Roblox-Survive-Overnight-In-a-Mega-Store-Script-41522"))()
-            print("9178加载成功")
-        end)
-    end
-})
-
 Tabs.OhioState:Button({
     Title = "RB",  
     Desc = "没用",
@@ -1272,42 +1283,6 @@ Tabs.RaftSurvival:Button({
     end
 })
 
-Tabs.MathMurder:Button({
-    Title = "自动回答",  
-    Desc = "点一下就开启了",
-    Locked = false,
-    Callback = function()
-        pcall(function()
-             loadstring(game:HttpGet("https://rawscripts.net/raw/Math-Murder-Auto-Answer-43521"))()
-            print("9178加载成功")
-        end)
-    end
-})
-
-Tabs.MathMurder:Button({
-    Title = "自动拾取苹果",  
-    Desc = "并砸向别人",
-    Locked = false,
-    Callback = function()
-        pcall(function()
-             loadstring(game:HttpGet("https://rawscripts.net/raw/Math-Murder-Auto-Answer-43531"))()
-            print("9178加载成功")
-        end)
-    end
-})
-
-Tabs.Donate:Button({
-    Title = "自动圈罗宝",
-    Desc = "全自动辅助类脚本",
-    Locked = false,
-    Callback = function()
-        pcall(function()
-             loadstring(game:HttpGet("https://rawscripts.net/raw/PLS-DONATE-szze-autofarm-11262"))()
-            print("9178加载成功")
-        end)
-    end
-})
-
 Tabs.WarTycoon:Button({
     Title = "战争大亨1(没汉化)",
     Desc = "要卡密",
@@ -1327,18 +1302,6 @@ Tabs.WarTycoon:Button({
     Callback = function()
         pcall(function()
              loadstring(game:HttpGet("https://raw.githubusercontent.com/ke9460394-dot/ugik/refs/heads/main/%E6%88%98%E4%BA%89%E5%A4%A7%E4%BA%A8.txt"))()
-            print("9178加载成功")
-        end)
-    end
-})
-
-Tabs.Hypershot:Button({
-    Title = "Zephyr(没汉化)",
-    Desc = "国外免费最强脚本",  
-    Locked = false,
-    Callback = function()
-        pcall(function()
-             loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-Hypershot-OP-by-EDUX-51972"))()
             print("9178加载成功")
         end)
     end
