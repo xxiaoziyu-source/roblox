@@ -181,8 +181,8 @@ Tabs.Notice:Section({
 })
 
 Tabs.Notice:Paragraph({
-    Title = "更新内容",
-    Desc = "自动汉化[只能汉化小部分的]\n刷糖果脚本[森林中99个夜晚]\nCec汉化[森林中99个夜晚]\n修复Cec脚本持续汉化卡顿问题\nSyx中心汉化[钓鱼吧]",
+    Title = "2.0.1更新内容",
+    Desc = "Volcano汉化[海贼王]",
 })
 
 Tabs.Notice:Paragraph({
@@ -228,7 +228,7 @@ end)
 WindUI:SetNotificationLower(true)
 
 Window:Tag({
-    Title = "v2.0",
+    Title = "v2.0.1",
     Color = Color3.fromHex("#9c30ff")
 })
 
@@ -656,12 +656,12 @@ Tabs.DeadRail:Section({
 })
 
 Tabs.DeadRail:Button({
-    Title = "红叶子",
-    Desc = "根本没有汉化😏😏",
+    Title = "红叶子(汉化)",
+    Desc = "有些没汗",
     Locked = false,
     Callback = function()
         pcall(function()
-             loadstring(game:HttpGet("https://getnative.cc/script/loader"))()
+             loadstring(game:HttpGet("https://pastefy.app/IetM6XoV/raw"))()
             print("红叶子加载成功")
         end)
     end
@@ -942,7 +942,7 @@ Tabs.Blox:Button({
     Locked = false,
     Callback = function()
         pcall(function()
-             
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/xxiaoziyu-source/T-/refs/heads/main/Volcano%E8%B1%AA%E5%8D%8E"))() 
             print("9178加载成功")
         end)
     end
@@ -956,9 +956,16 @@ Tabs.NaturalDisaster:Button({
 })
 
 Tabs.NaturalDisaster:Button({
-    Title = "黑洞",
+    Title = "黑洞vI",
     Callback = function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/ke9460394-dot/ugik/refs/heads/main/V1.lua.txt"))()
+    end
+})
+
+Tabs.NaturalDisaster:Button({
+    Title = "黑洞v6",
+    Callback = function()
+       loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-Super-ring-Parts-V6-28581", true))()
     end
 })
 
