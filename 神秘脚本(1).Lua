@@ -209,19 +209,26 @@ Tabs.Notice:Section({
 })
 
 local TimeTag = Window:Tag({
-    Title = "00:00", 
+    Title = "00:00:00:000 周一", 
     Color = Color3.fromRGB(255, 255, 255) 
 })
 
-local hue = 0
+-- 星期几的中文映射
+local weekDays = {"日", "一", "二", "三", "四", "五", "六"}
+
 task.spawn(function()
     while true do
-        local now = os.date("*t")
+        local timestamp = tick()
+        local now = os.date("*t", timestamp)
+        local milliseconds = math.floor((timestamp - math.floor(timestamp)) * 1000)
         local hours = string.format("%02d", now.hour)
         local minutes = string.format("%02d", now.min)
-        local timeString = hours .. ":" .. minutes
+        local seconds = string.format("%02d", now.sec)
+        local ms = string.format("%03d", milliseconds)
+        local weekDay = weekDays[now.wday]
+        local timeString = hours .. ":" .. minutes .. ":" .. seconds .. ":" .. ms .. " 周" .. weekDay
         TimeTag:SetTitle(timeString)
-        task.wait(0.06)
+        task.wait(0.01)
     end
 end)
 
