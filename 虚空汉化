@@ -1,6 +1,4 @@
--- 1. 精简版汉化词典（修复语法错误+移除冗余后缀+去重）
 local Translations = {
-    -- 基础功能
     ["Search"] = "搜索",
     ["Information"] = "信息",
     ["Fun"] = "趣味",
