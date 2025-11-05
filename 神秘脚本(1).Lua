@@ -936,6 +936,18 @@ Tabs.Blox:Button({
     end
 })
 
+Tabs.Blox:Button({
+    Title = "Volcano(汉化)",
+    Desc = "购买的那个符号太多了，所以汉化失败",
+    Locked = false,
+    Callback = function()
+        pcall(function()
+             
+            print("9178加载成功")
+        end)
+    end
+})
+
 Tabs.NaturalDisaster:Button({
     Title = "全局物体漂浮-XTTT",
     Callback = function()
