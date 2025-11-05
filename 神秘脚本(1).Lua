@@ -303,6 +303,13 @@ Tabs.General:Button({
     end
 })
 
+Tabs.General:Button({
+    Title = "无敌少侠飞行",
+    Callback = function()
+       loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-Invinicible-Flight-R15-45414"))()
+    end
+})
+
 local originalAmbient = game.Lighting.Ambient 
 Tabs.General:Toggle({
     Title = "夜视",
@@ -473,6 +480,13 @@ Tabs.General:Button({
     Title = "无限跳",
     Callback = function()
         loadstring(game:HttpGet("https://pastebin.com/raw/V5PQy3y0", true))()
+    end
+})
+
+Tabs.General:Button({
+    Title = "反挂机",
+    Callback = function()
+         loadstring(game:HttpGet("https://pastebin.com/raw/9fFu43FF"))()
     end
 })
 
