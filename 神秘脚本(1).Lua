@@ -182,7 +182,7 @@ Tabs.Notice:Section({
 
 Tabs.Notice:Paragraph({
     Title = "2.0.1更新内容",
-    Desc = "Volcano汉化[海贼王]",
+    Desc = "Volcano汉化[海贼王]\n修复99页虚空汉化失败问题",
 })
 
 Tabs.Notice:Paragraph({
@@ -733,7 +733,7 @@ Tabs.ForestNight:Button({
     Locked = false,
     Callback = function()
         pcall(function()
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/xxiaoziyu-source/roblox/refs/heads/main/-45"))()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/xxiaoziyu-source/roblox/refs/heads/main/%E8%99%9A%E7%A9%BA%E6%B1%89%E5%8C%96"))()
             print("虚空汉化加载成功")
         end)
     end
