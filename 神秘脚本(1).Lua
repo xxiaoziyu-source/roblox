@@ -52,7 +52,17 @@ local Window = WindUI:CreateWindow({
     Folder = "9175",
     Size = UDim2.fromOffset(580, 460),
     Transparent = true,
-    Theme = "Light",
+    Theme = "Light",    
+
+    Gradient = {
+        Colors = {
+            Color3.fromRGB(255, 215, 0),  -- 金色
+            Color3.fromRGB(255, 165, 0),  -- 橙色
+            Color3.fromRGB(255, 255, 0)   -- 亮黄色
+        },
+        Speed = 2
+    },
+
     User = {
         Enabled = true,
         Callback = function() print("clicked") end,
