@@ -67,7 +67,7 @@ task.spawn(function()
     
     local background = Instance.new("ImageLabel")
     background.Name = "WhiteHoleBackground"
-    background.Image = "rbxassetid://14899276645"
+    background.Image = "rbxassetid://113857708636459"
     background.Size = UDim2.new(1, 0, 1, 0)
     background.Position = UDim2.new(0, 0, 0, 0)
     background.BackgroundTransparency = 1
