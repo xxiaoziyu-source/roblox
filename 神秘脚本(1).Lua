@@ -197,13 +197,6 @@ local Tabs = {
 
 Window:SelectTab(1)
 
-Tabs.Notice:Paragraph({
-    Title = "神秘脚本",
-    Content = "开脚本我就不受着",
-    Image = "rbxassetid://7072716642",
-    ImageSize = UDim2.fromOffset(60, 60)
-})
-
 Tabs.Notice:Section({ 
     Title = "脚本说明",
     TextXAlignment = "Left",
@@ -217,7 +210,7 @@ Tabs.Notice:Paragraph({
 
 Tabs.Notice:Paragraph({
     Title = "脚本帮助",
-    Desc = "本能[阳谋]\n乌龟[最大功能帮助]\n老鼠[源码帮助]\n小圆[功能帮助]\n孤行[创作帮助]\n□□[小号帮助]",
+    Desc = "张乐[厮负]\n本能[阳谋]\n乌龟[最大功能帮助]\n老鼠[源码帮助]\n小圆[功能帮助]\n孤行[创作帮助]\n□□[小号帮助]",
 })
 
 Tabs.Notice:Button({
