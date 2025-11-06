@@ -197,6 +197,13 @@ local Tabs = {
 
 Window:SelectTab(1)
 
+Tabs.Notice:AddCard({
+    Title = "神秘脚本",
+    Content = "开脚本我就不受着",
+    Image = "rbxassetid://7072716642",
+    ImageSize = UDim2.fromOffset(60, 60)
+})
+
 Tabs.Notice:Section({ 
     Title = "脚本说明",
     TextXAlignment = "Left",
