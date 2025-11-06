@@ -44,6 +44,19 @@ WindUI:Popup({
 
 repeat wait() until Confirmed
 
+WindUI:Notify({
+    Title = "欢迎使用神秘脚本",
+    Content = "脚本会持续云端更新",
+    Duration = 4
+})
+
+task.wait(1.5)
+WindUI:Notify({
+    Title = "催更提示", 
+    Content = "如果要催更的话就加一下Q群\n关注我也行",
+    Duration = 5
+})
+
 local Window = WindUI:CreateWindow({
     Title = "神秘脚本",
     Icon = "crown",
