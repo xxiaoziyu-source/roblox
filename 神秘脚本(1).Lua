@@ -197,23 +197,6 @@ local Tabs = {
 
 Window:SelectTab(1)
 
-Tabs.Notice:AddCard({
-    Title = "神秘脚本",
-    Content = "版本: 2.0.1 | 持续更新中",
-    Image = "rbxassetid://7072716642",
-    ImageSize = UDim2.fromOffset(60, 60),
-    Button = {
-        Text = "查看更新",
-        Callback = function()
-            WindUI:Notify({
-                Title = "最新更新",
-                Content = "2.0.1版本已发布！",
-                Duration = 3
-            })
-        end
-    }
-})
-
 Tabs.Notice:Section({ 
     Title = "脚本说明",
     TextXAlignment = "Left",
