@@ -10,8 +10,7 @@ Tabs.ForestNight:Button({
             
             -- 定义自动执行函数
             local function startAutoLogic()
-                _G.Auto = true -- 设置自动开关为开启
-
+                _G.Auto = true -- 设置自动开
                 local ReplicatedStorage = game:GetService("ReplicatedStorage")
                 -- 请再次确认这个RemoteEvent的路径是否正确
                 local Event = ReplicatedStorage.RemoteEvents.CarnivalCompleteShootingGallery
