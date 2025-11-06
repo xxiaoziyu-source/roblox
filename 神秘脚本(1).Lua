@@ -5,7 +5,7 @@ Tabs.ForestNight:Button({
     Desc = "点击加载并执行H4X脚本",
     Locked = false,
     Callback = function()
-        pcall(function()
+        pcall(func22852
             print("H4x汉化脚本开始加载...")
             
             -- 定义自动执行函数
