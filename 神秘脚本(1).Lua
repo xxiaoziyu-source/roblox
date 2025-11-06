@@ -197,7 +197,7 @@ local Tabs = {
 
 Window:SelectTab(1)
 
-Tabs.Notice:Section({
+Tabs.Notice:Paragraph({
     Title = "神秘脚本",
     Content = "开脚本我就不受着",
     Image = "rbxassetid://7072716642",
