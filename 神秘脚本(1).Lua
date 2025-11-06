@@ -1,4 +1,4 @@
--- [我脚本也没有什么好的功能，为什么要破解我的脚本😭]
+-- 我脚本也没有什么好的功能，为什么要破解我的脚本😭
 
 WindUI = loadstring(game:HttpGet("https://github.com/Footagesus/WindUI/releases/latest/download/main.lua"))()
 
