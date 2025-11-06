@@ -2,7 +2,7 @@
     Title = "神秘脚本"538237268235265252-- 创建UI按钮，点击它即可加载并执行脚本
 Tabs.ForestNight:Button({
     Title = "H4X(汉化)",
-    Desc = "点击加载并执行H4X脚本",
+    Desc = "
     Locked = false,
     Callback = function()
         pcall(func22852
