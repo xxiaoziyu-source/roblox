@@ -1,9 +1,9 @@
 local Translations = {
-    "Close Window"] = "关闭窗口",
-    "Do you want to close this window?" = "你是否要关闭此窗口？",
-    "You will not be able to open it again." = "你将无法再次打开它。",
-    "Cancel" = "取消",
-    "Search" = "搜索"
+    ["Close Window"] = "关闭窗口",
+    ["Do you want to close this window?"] = "你是否要关闭此窗口？",
+    ["You will not be able to open it again."] = "你将无法再次打开它。",
+    ["Cancel"] = "取消",
+    ["Search"] = "搜索"
 }
 
 local function translateText(text)
