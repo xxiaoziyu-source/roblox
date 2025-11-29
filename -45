@@ -1,13 +1,9 @@
 local Translations = {
     ["Close Window"] = "关闭窗口",
-    ["Do you want to close this window?"] = "你是否要关闭此窗口？",
+    ["Do you want to close this window"] = "你是否要关闭此窗口",
     ["You will not be able to open it again."] = "你将无法再次打开它。",
     ["Cancel"] = "取消",
-    ["Search"] = "搜索",
-    "DEADLY DELIVERY": "致命配送",
-    "Find Items": "寻找物品",
-    "Go to Elevator": "前往电梯",
-    "YouTube: Tora IsMe": "YouTube：Tora IsMe"
+    ["Search"] = "搜索"
 }
 
 local function translateText(text)
