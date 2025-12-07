@@ -1,3 +1,4 @@
+-- 假如我这个加密了，对
 local Translations = {
     ["Close Window"] = "关闭窗口",
     ["Do you want to close this window"] = "你是否要关闭此窗口",
@@ -111,7 +112,6 @@ task.wait(2)
 setupTranslationEngine()
 
 local success, err = pcall(function()
---这下面填加载外部脚本
 loadstring(game:HttpGet("https://raw.githubusercontent.com/wpisstestfprg/Volcano/refs/heads/main/VolcanoNewUpda.luau"))()
 
 end)
