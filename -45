@@ -1,121 +1,424 @@
--- 假如我这个加密了，对
-local Translations = {
-    ["Close Window"] = "关闭窗口",
-    ["Do you want to close this window"] = "你是否要关闭此窗口",
-    ["You will not be able to open it again."] = "你将无法再次打开它。",
-    ["Cancel"] = "取消",
-    ["Search"] = "搜索"
-}
+local Player = game:GetService("Players").LocalPlayer
+local PlayerGui = Player:WaitForChild("PlayerGui")
+local Mouse = Player:GetMouse()
+local UIS = game:GetService("UserInputService")
+local Debris = game:GetService("Debris")
 
-local function translateText(text)
-    if not text or type(text) ~= "string" then return text end
-    
-    if Translations[text] then
-        return Translations[text]
-    end
-    
-    for en, cn in pairs(Translations) do
-        if text:find(en) then
-            return text:gsub(en, cn)
-        end
-    end
-    
-    return text
+local selectedPart = nil
+local selectionBox = nil
+local history = {}
+local historyIndex = 0
+local currentTextLabel = nil
+
+local Library = loadstring(Game:HttpGet("https://raw.githubusercontent.com/bloodball/-back-ups-for-libs/main/wizard"))()
+local MainWindow = Library:NewWindow("F3X 建筑工具")
+
+local MoveTab = MainWindow:NewSection("移动")
+local ScaleTab = MainWindow:NewSection("缩放")
+local RotateTab = MainWindow:NewSection("旋转")
+local ColorTab = MainWindow:NewSection("涂色")
+local DeleteTab = MainWindow:NewSection("删除")
+local CopyTab = MainWindow:NewSection("复制")
+local FixTab = MainWindow:NewSection("固定")
+local EffectTab = MainWindow:NewSection("特效")
+local TextTab = MainWindow:NewSection("字体")
+local BrightnessTab = MainWindow:NewSection("亮度")
+local UndoTab = MainWindow:NewSection("撤销")
+local CollisionTab = MainWindow:NewSection("碰撞")
+local ExtraTab = MainWindow:NewSection("额外功能") 
+
+local function showSelectionBox(part)
+    if selectionBox then selectionBox:Destroy() end
+    if not part then return end
+    local box = Instance.new("SelectionBox")
+    box.Adornee = part
+    box.Color3 = Color3.new(1, 0.5, 0)
+    box.LineThickness = 0.08
+    box.Parent = PlayerGui
+    selectionBox = box
 end
 
-local function setupTranslationEngine()
-    local success, err = pcall(function()
-        local oldIndex = getrawmetatable(game).__newindex
-        setreadonly(getrawmetatable(game), false)
-        
-        getrawmetatable(game).__newindex = newcclosure(function(t, k, v)
-            if (t:IsA("TextLabel") or t:IsA("TextButton") or t:IsA("TextBox")) and k == "Text" then
-                v = translateText(tostring(v))
-            end
-            return oldIndex(t, k, v)
-        end)
-        
-        setreadonly(getrawmetatable(game), true)
+local function recordHistory(action, data)
+    for i = historyIndex + 1, #history do
+        table.remove(history, i)
+    end
+    table.insert(history, {action = action, data = data})
+    historyIndex = #history
+end
+
+local function notify(text, isSuccess)
+    Library:Notify(text, isSuccess and Color3.new(0.2, 0.8, 0.2) or Color3.new(0.8, 0.2, 0.2))
+end
+
+local moveDirs = {{"前", Vector3.new(0, 0, 2)}, {"后", Vector3.new(0, 0, -2)}, {"左", Vector3.new(-2, 0, 0)}, {"右", Vector3.new(2, 0, 0)}, {"上", Vector3.new(0, 2, 0)}, {"下", Vector3.new(0, -2, 0)}}
+for _, dir in ipairs(moveDirs) do
+    MoveTab:CreateButton("移动" .. dir[1], function()
+        if not selectedPart then notify("请先选择物体", false); return end
+        recordHistory("move", {part = selectedPart, oldPos = selectedPart.Position})
+        selectedPart.Position = selectedPart.Position + dir[2]
+        notify("已移动" .. dir[1], true)
     end)
-    
-    if not success then
-        warn("元表劫持失败:", err)
-       
-        local translated = {}
-        local function scanAndTranslate()
-            for _, gui in ipairs(game:GetService("CoreGui"):GetDescendants()) do
-                if (gui:IsA("TextLabel") or gui:IsA("TextButton") or gui:IsA("TextBox")) and not translated[gui] then
-                    pcall(function()
-                        local text = gui.Text
-                        if text and text ~= "" then
-                            local translatedText = translateText(text)
-                            if translatedText ~= text then
-                                gui.Text = translatedText
-                                translated[gui] = true
-                            end
-                        end
-                    end)
-                end
-            end
-            
-            local player = game:GetService("Players").LocalPlayer
-            if player and player:FindFirstChild("PlayerGui") then
-                for _, gui in ipairs(player.PlayerGui:GetDescendants()) do
-                    if (gui:IsA("TextLabel") or gui:IsA("TextButton") or gui:IsA("TextBox")) and not translated[gui] then
-                        pcall(function()
-                            local text = gui.Text
-                            if text and text ~= "" then
-                                local translatedText = translateText(text)
-                                if translatedText ~= text then
-                                    gui.Text = translatedText
-                                    translated[gui] = true
-                                end
-                            end
-                        end)
-                    end
-                end
-            end
-        end
-        
-        local function setupDescendantListener(parent)
-            parent.DescendantAdded:Connect(function(descendant)
-                if descendant:IsA("TextLabel") or descendant:IsA("TextButton") or descendant:IsA("TextBox") then
-                    task.wait(0.1)
-                    pcall(function()
-                        local text = descendant.Text
-                        if text and text ~= "" then
-                            local translatedText = translateText(text)
-                            if translatedText ~= text then
-                                descendant.Text = translatedText
-                            end
-                        end
-                    end)
-                end
-            end)
-        end
-        
-        pcall(setupDescendantListener, game:GetService("CoreGui"))
-        local player = game:GetService("Players").LocalPlayer
-        if player and player:FindFirstChild("PlayerGui") then
-            pcall(setupDescendantListener, player.PlayerGui)
-        end
-        
-        while true do
-            scanAndTranslate()
-            task.wait(3)
-        end
-    end
 end
 
-task.wait(2)
+local scaleDirs = {{"前+", Vector3.new(1, 1, 1.1), Vector3.new(0, 0, 0.1)}, {"前-", Vector3.new(1, 1, 0.9), Vector3.new(0, 0, -0.1)}, {"后+", Vector3.new(1, 1, 1.1), Vector3.new(0, 0, -0.1)}, {"后-", Vector3.new(1, 1, 0.9), Vector3.new(0, 0, 0.1)}, {"左+", Vector3.new(1.1, 1, 1), Vector3.new(-0.1, 0, 0)}, {"左-", Vector3.new(0.9, 1, 1), Vector3.new(0.1, 0, 0)}, {"右+", Vector3.new(1.1, 1, 1), Vector3.new(0.1, 0, 0)}, {"右-", Vector3.new(0.9, 1, 1), Vector3.new(-0.1, 0, 0)}, {"上+", Vector3.new(1, 1.1, 1), Vector3.new(0, 0.1, 0)}, {"上-", Vector3.new(1, 0.9, 1), Vector3.new(0, -0.1, 0)}, {"下+", Vector3.new(1, 1.1, 1), Vector3.new(0, -0.1, 0)}, {"下-", Vector3.new(1, 0.9, 1), Vector3.new(0, 0.1, 0)}}
+for _, dir in ipairs(scaleDirs) do
+    ScaleTab:CreateButton("缩放" .. dir[1], function()
+        if not selectedPart then notify("请先选择物体", false); return end
+        recordHistory("scale", {part = selectedPart, oldSize = selectedPart.Size})
+        selectedPart.Size = selectedPart.Size * dir[2]
+        selectedPart.Position = selectedPart.Position + dir[3] * selectedPart.Size
+        notify("已缩放" .. dir[1], true)
+    end)
+end
 
-setupTranslationEngine()
+-- 3. 旋转标签页（X/Y/Z轴各22.5度）
+local rotateAxes = {{"X轴", Vector3.new(22.5, 0, 0)}, {"Y轴", Vector3.new(0, 22.5, 0)}, {"Z轴", Vector3.new(0, 0, 22.5)}}
+for _, axis in ipairs(rotateAxes) do
+    RotateTab:CreateButton("旋转" .. axis[1], function()
+        if not selectedPart then notify("请先选择物体", false); return end
+        recordHistory("rotate", {part = selectedPart, oldRot = selectedPart.Rotation})
+        selectedPart.Rotation = selectedPart.Rotation + axis[2]
+        notify("已旋转" .. axis[1] .. "22.5°", true)
+    end)
+end
 
-local success, err = pcall(function()
-loadstring(game:HttpGet("https://raw.githubusercontent.com/wpisstestfprg/Volcano/refs/heads/main/VolcanoNewUpda.luau"))()
+-- 4. 涂色标签页（16种颜色）
+local colors = {Color3.new(1,0,0), Color3.new(1,0.5,0), Color3.new(1,1,0), Color3.new(0.5,1,0), Color3.new(0,1,0), Color3.new(0,1,0.5), Color3.new(0,1,1), Color3.new(0,0.5,1), Color3.new(0,0,1), Color3.new(0.5,0,1), Color3.new(1,0,1), Color3.new(1,0,0.5), Color3.new(1,1,1), Color3.new(0.8,0.8,0.8), Color3.new(0.5,0.5,0.5), Color3.new(0,0,0)}
+local colorNames = {"红","橙","黄","黄绿","绿","青绿","青","蓝绿","蓝","紫蓝","紫","紫红","白","浅灰","深灰","黑"}
+for i, color in ipairs(colors) do
+    ColorTab:CreateButton("涂色" .. colorNames[i], function()
+        if not selectedPart then notify("请先选择物体", false); return end
+        recordHistory("color", {part = selectedPart, oldColor = selectedPart.BrickColor})
+        selectedPart.BrickColor = BrickColor.new(color)
+        notify("已设置为" .. colorNames[i] .. "色", true)
+    end)
+end
 
+-- 5. 删除标签页
+DeleteTab:CreateButton("删除物体", function()
+    if not selectedPart then notify("请先选择物体", false); return end
+    recordHistory("delete", {part = selectedPart, clone = selectedPart:Clone(), pos = selectedPart.Position})
+    selectedPart:Destroy()
+    selectedPart = nil
+    showSelectionBox(nil)
+    notify("已删除物体", true)
 end)
 
-if not success then
-    warn("加载失败:", err)
+-- 6. 复制标签页
+CopyTab:CreateButton("原位复制", function()
+    if not selectedPart then notify("请先选择物体", false); return end
+    local clone = selectedPart:Clone()
+    clone.Position = selectedPart.Position
+    clone.Parent = workspace
+    recordHistory("copy", {part = clone})
+    selectedPart = clone
+    showSelectionBox(clone)
+    notify("已复制物体", true)
+end)
+
+
+FixTab:CreateButton("固定物体", function()
+    if not selectedPart then notify("请先选择物体", false); return end
+    if selectedPart.Anchored then notify("物体已固定", false); return end
+    recordHistory("anchor", {part = selectedPart, oldAnchor = selectedPart.Anchored})
+    selectedPart.Anchored = true
+    notify("已固定物体", true)
+end)
+FixTab:CreateButton("解除固定", function()
+    if not selectedPart then notify("请先选择物体", false); return end
+    if not selectedPart.Anchored then notify("物体未固定", false); return end
+    recordHistory("anchor", {part = selectedPart, oldAnchor = selectedPart.Anchored})
+    selectedPart.Anchored = false
+    notify("已解除固定", true)
+end)
+
+
+local effects = {{name = "火焰", asset = "rbxassetid://154966223"}, {name = "烟雾", asset = "rbxassetid://154966261"}, {name = "火花", asset = "rbxassetid://13246808"}, {name = "蒸汽", asset = "rbxassetid://154966331"}, {name = "冷烟", asset = "rbxassetid://154966347"}, {name = "电弧", asset = "rbxassetid://13246826"}, {name = "光环", asset = "rbxassetid://13246874"}, {name = "雪花", asset = "rbxassetid://13246910"}}
+for _, eff in ipairs(effects) do
+    EffectTab:CreateButton("特效:" .. eff.name, function()
+        if not selectedPart then notify("请先选择物体", false); return end
+        for _, child in ipairs(selectedPart:GetChildren()) do
+            if child:IsA("ParticleEmitter") and child.Name == "F3XEffect" then
+                child:Destroy()
+            end
+        end
+        local emitter = Instance.new("ParticleEmitter")
+        emitter.Name = "F3XEffect"
+        emitter.Texture = eff.asset
+        emitter.Rate = 50
+        emitter.Lifetime = NumberRange.new(1, 2)
+        emitter.Speed = NumberRange.new(2, 5)
+        emitter.SpreadAngle = Vector2.new(360, 360)
+        emitter.Parent = selectedPart
+        recordHistory("effect", {part = selectedPart, emitter = emitter})
+        notify("已添加" .. eff.name .. "特效", true)
+    end)
 end
+
+
+TextTab:CreateButton("添加文字", function()
+    if not selectedPart then notify("请先选择物体", false); return end
+    local panel = Instance.new("Frame")
+    panel.Size = UDim2.new(0, 250, 0, 100)
+    panel.Position = UDim2.new(0.5, -125, 0.5, -50)
+    panel.BackgroundColor3 = Color3.new(0, 0, 0)
+    panel.BackgroundTransparency = 0.3
+    panel.Parent = PlayerGui
+
+    local input = Instance.new("TextBox")
+    input.Size = UDim2.new(0.8, 0, 0, 30)
+    input.Position = UDim2.new(0.1, 0, 0.1, 0)
+    input.PlaceholderText = "输入要添加的文字"
+    input.BackgroundColor3 = Color3.new(0.3, 0.3, 0.3)
+    input.TextColor3 = Color3.new(1, 1, 1)
+    input.Parent = panel
+
+    local confirmBtn = Instance.new("TextButton")
+    confirmBtn.Size = UDim2.new(0, 80, 0, 25)
+    confirmBtn.Position = UDim2.new(0.1, 0, 0.5, 0)
+    confirmBtn.BackgroundColor3 = Color3.new(0.2, 0.8, 0.2)
+    confirmBtn.Text = "确认添加"
+    confirmBtn.TextColor3 = Color3.new(1, 1, 1)
+    confirmBtn.Parent = panel
+    confirmBtn.MouseButton1Click:Connect(function()
+        if input.Text == "" then notify("文字不能为空", false); return end
+        local sg = Instance.new("SurfaceGui")
+        sg.Parent = selectedPart
+        sg.Face = Enum.NormalId.Front
+
+        local lbl = Instance.new("TextLabel")
+        lbl.Size = UDim2.new(1, 0, 1, 0)
+        lbl.Text = input.Text
+        lbl.TextColor3 = Color3.new(1, 1, 1)
+        lbl.BackgroundTransparency = 1
+        lbl.TextSize = 32
+        lbl.Parent = sg
+
+        currentTextLabel = lbl
+        recordHistory("text", {part = selectedPart, sg = sg})
+        panel:Destroy()
+        notify("已添加文字", true)
+    end)
+end)
+TextTab:CreateButton("编辑文字", function()
+    if not currentTextLabel then notify("无文字可编辑", false); return end
+    local panel = Instance.new("Frame")
+    panel.Size = UDim2.new(0, 250, 0, 100)
+    panel.Position = UDim2.new(0.5, -125, 0.5, -50)
+    panel.BackgroundColor3 = Color3.new(0, 0, 0)
+    panel.BackgroundTransparency = 0.3
+    panel.Parent = PlayerGui
+
+    local input = Instance.new("TextBox")
+    input.Size = UDim2.new(0.8, 0, 0, 30)
+    input.Position = UDim2.new(0.1, 0, 0.1, 0)
+    input.Text = currentTextLabel.Text
+    input.BackgroundColor3 = Color3.new(0.3, 0.3, 0.3)
+    input.TextColor3 = Color3.new(1, 1, 1)
+    input.Parent = panel
+
+    local confirmBtn = Instance.new("TextButton")
+    confirmBtn.Size = UDim2.new(0, 80, 0, 25)
+    confirmBtn.Position = UDim2.new(0.1, 0, 0.5, 0)
+    confirmBtn.BackgroundColor3 = Color3.new(0.2, 0.8, 0.2)
+    confirmBtn.Text = "确认编辑"
+    confirmBtn.TextColor3 = Color3.new(1, 1, 1)
+    confirmBtn.Parent = panel
+    confirmBtn.MouseButton1Click:Connect(function()
+        if input.Text == "" then notify("文字不能为空", false); return end
+        currentTextLabel.Text = input.Text
+        panel:Destroy()
+        notify("已编辑文字", true)
+    end)
+end)
+
+-- 10. 亮度标签页
+BrightnessTab:CreateButton("调节亮度", function()
+    if not selectedPart then notify("请先选择物体", false); return end
+    local panel = Instance.new("Frame")
+    panel.Size = UDim2.new(0, 200, 0, 80)
+    panel.Position = UDim2.new(0.5, -100, 0.5, -40)
+    panel.BackgroundColor3 = Color3.new(0, 0, 0)
+    panel.BackgroundTransparency = 0.3
+    panel.Parent = PlayerGui
+
+    local slider = Instance.new("Frame")
+    slider.Size = UDim2.new(0.8, 0, 0, 10)
+    slider.Position = UDim2.new(0.1, 0, 0.2, 0)
+    slider.BackgroundColor3 = Color3.new(0.5, 0.5, 0.5)
+    slider.Parent = panel
+
+    local handle = Instance.new("Frame")
+    handle.Size = UDim2.new(0, 15, 0, 20)
+    handle.Position = UDim2.new(0.5, -7.5, 0.15, -5)
+    handle.BackgroundColor3 = Color3.new(1, 1, 0)
+    handle.Parent = panel
+
+    local brightness = 1
+    local dragging = false
+
+    UIS.InputBegan:Connect(function(input)
+        if input.UserInputType == Enum.UserInputType.MouseButton1 and input.Position:Distance(handle.AbsolutePosition) < 15 then
+            dragging = true
+        end
+    end)
+
+    UIS.InputChanged:Connect(function(input)
+        if dragging and input.UserInputType == Enum.UserInputType.MouseMovement then
+            local relX = math.clamp(input.Position.X - slider.AbsolutePosition.X, 0, slider.AbsoluteSize.X)
+            handle.Position = UDim2.new(relX / slider.AbsoluteSize.X, -7.5, 0.15, -5)
+            brightness = relX / slider.AbsoluteSize.X * 5
+        end
+    end)
+
+    UIS.InputEnded:Connect(function(input)
+        if input.UserInputType == Enum.UserInputType.MouseButton1 then
+            dragging = false
+            recordHistory("brightness", {part = selectedPart, oldMat = selectedPart.Material, oldColor = selectedPart.Color})
+            selectedPart.Material = Enum.Material.Neon
+            selectedPart.Color = Color3.new(brightness, brightness, brightness)
+            notify("亮度已调节为: " .. string.format("%.1f", brightness), true)
+            panel:Destroy()
+        end
+    end)
+end)
+
+
+UndoTab:CreateButton("撤销操作", function()
+    if historyIndex < 1 then notify("无操作可撤销", false); return end
+    local action = history[historyIndex]
+    if action.action == "move" then
+        action.data.part.Position = action.data.oldPos
+    elseif action.action == "scale" then
+        action.data.part.Size = action.data.oldSize
+    elseif action.action == "rotate" then
+        action.data.part.Rotation = action.data.oldRot
+    elseif action.action == "color" then
+        action.data.part.BrickColor = action.data.oldColor
+    elseif action.action == "delete" then
+        local clone = action.data.clone
+        clone.Position = action.data.pos
+        clone.Parent = workspace
+        selectedPart = clone
+        showSelectionBox(clone)
+    elseif action.action == "copy" then
+        action.data.part:Destroy()
+        selectedPart = nil
+        showSelectionBox(nil)
+    elseif action.action == "anchor" then
+        action.data.part.Anchored = action.data.oldAnchor
+    elseif action.action == "effect" then
+        action.data.emitter:Destroy()
+    elseif action.action == "text" then
+        action.data.sg:Destroy()
+        currentTextLabel = nil
+    elseif action.action == "brightness" then
+        action.data.part.Material = action.data.oldMat
+        action.data.part.Color = action.data.oldColor
+    end
+    historyIndex = historyIndex - 1
+    notify("已撤销操作", true)
+end)
+UndoTab:CreateButton("反撤销操作", function()
+    if historyIndex >= #history then notify("无操作可反撤销", false); return end
+    historyIndex = historyIndex + 1
+    local action = history[historyIndex]
+    if action.action == "move" then
+        action.data.part.Position = action.data.part.Position + (action.data.part.Position - action.data.oldPos)
+    elseif action.action == "scale" then
+        action.data.part.Size = action.data.part.Size * (action.data.part.Size / action.data.oldSize)
+    elseif action.action == "rotate" then
+        action.data.part.Rotation = action.data.part.Rotation + (action.data.part.Rotation - action.data.oldRot)
+    elseif action.action == "color" then
+        action.data.part.BrickColor = BrickColor.new(action.data.part.Color)
+    elseif action.action == "delete" then
+        if selectedPart and selectedPart == action.data.clone then
+            selectedPart:Destroy()
+            selectedPart = nil
+            showSelectionBox(nil)
+        end
+    elseif action.action == "copy" then
+        local clone = action.data.part:Clone()
+        clone.Position = action.data.part.Position
+        clone.Parent = workspace
+        selectedPart = clone
+        showSelectionBox(clone)
+    elseif action.action == "anchor" then
+        action.data.part.Anchored = not action.data.oldAnchor
+    elseif action.action == "effect" then
+        local emitter = Instance.new("ParticleEmitter")
+        emitter.Name = "F3XEffect"
+        emitter.Texture = action.data.emitter.Texture
+        emitter.Rate = action.data.emitter.Rate
+        emitter.Lifetime = action.data.emitter.Lifetime
+        emitter.Speed = action.data.emitter.Speed
+        emitter.SpreadAngle = action.data.emitter.SpreadAngle
+        emitter.Parent = action.data.part
+        action.data.emitter = emitter
+    elseif action.action == "text" then
+        local sg = Instance.new("SurfaceGui")
+        sg.Parent = action.data.part
+        sg.Face = Enum.NormalId.Front
+        local lbl = Instance.new("TextLabel")
+        lbl.Size = UDim2.new(1, 0, 1, 0)
+        lbl.Text = currentTextLabel and currentTextLabel.Text or ""
+        lbl.TextColor3 = Color3.new(1, 1, 1)
+        lbl.BackgroundTransparency = 1
+        lbl.TextSize = 32
+        lbl.Parent = sg
+        currentTextLabel = lbl
+        action.data.sg = sg
+    elseif action.action == "brightness" then
+        action.data.part.Material = Enum.Material.Neon
+        action.data.part.Color = Color3.new(1, 1, 1)
+    end
+    notify("已反撤销操作", true)
+end)
+
+
+CollisionTab:CreateButton("开启碰撞", function()
+    if not selectedPart then notify("请先选择物体", false); return end
+    if selectedPart.CanCollide then notify("已开启碰撞", false); return end
+    recordHistory("collide", {part = selectedPart, oldCollide = selectedPart.CanCollide})
+    selectedPart.CanCollide = true
+    notify("已开启碰撞", true)
+end)
+CollisionTab:CreateButton("关闭碰撞", function()
+    if not selectedPart then notify("请先选择物体", false); return end
+    if not selectedPart.CanCollide then notify("已关闭碰撞", false); return end
+    recordHistory("collide", {part = selectedPart, oldCollide = selectedPart.CanCollide})
+    selectedPart.CanCollide = false
+    notify("已关闭碰撞", true)
+end)
+
+
+ExtraTab:CreateButton("批量选择同类型物体", function()
+    if not selectedPart then notify("请先选择物体", false); return end
+    local partType = selectedPart.ClassName
+    local count = 0
+    for _, part in ipairs(workspace:GetDescendants()) do
+        if part.ClassName == partType then
+            showSelectionBox(part)
+            selectedPart = part
+            count += 1
+        end
+    end
+    notify("已选中" .. count .. "个" .. partType .. "物体", true)
+end)
+ExtraTab:CreateButton("清空物体特效", function()
+    if not selectedPart then notify("请先选择物体", false); return end
+    for _, child in ipairs(selectedPart:GetChildren()) do
+        if child:IsA("ParticleEmitter") then
+            child:Destroy()
+        end
+    end
+    notify("已清空物体特效", true)
+end)
+
+Mouse.Button1Down:Connect(function()
+    if Mouse.Target and Mouse.Target:IsA("BasePart") then
+        selectedPart = Mouse.Target
+        showSelectionBox(selectedPart)
+        notify("已选中物体: " .. selectedPart.Name, true)
+    end
+end)
