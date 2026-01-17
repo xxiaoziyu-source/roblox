@@ -1,5 +1,3 @@
--- 脚本来源: discord.gg/25ms
--- Cat-King-HUB v2.5 重构版
 local CoreGui = game:GetService('CoreGui')
 local Players = game:GetService('Players')
 local LocalPlayer = Players.LocalPlayer
@@ -8,7 +6,6 @@ local UserInputService = game:GetService('UserInputService')
 local Lighting = game:GetService('Lighting')
 local HttpService = game:GetService('HttpService')
 
--- 清理旧 WindUI 实例
 if CoreGui:FindFirstChild('WindUI') then
     CoreGui.WindUI:Destroy()
 end
@@ -16,11 +13,9 @@ if LocalPlayer.PlayerGui:FindFirstChild('WindUI') then
     LocalPlayer.PlayerGui.WindUI:Destroy()
 end
 
--- 加载依赖
 require('./src/Init')
 local CatKingHub = loadstring(game:HttpGet('https://raw.githubusercontent.com/CatKing2331/Script/refs/heads/main/main.lua'))()
 
--- 创建主窗口
 local MainWindow = CatKingHub:CreateWindow({
     NewElements = true,
     OpenButton = {
@@ -33,7 +28,7 @@ local MainWindow = CatKingHub:CreateWindow({
         CornerRadius = UDim.new(1, 0),
     },
     User = {Enabled = true},
-    Folder = 'Cat-King-HUB',
+    Folder = '神秘脚本',
     Topbar = {
         Height = 44,
         ButtonsType = 'Mac',
@@ -46,15 +41,13 @@ local MainWindow = CatKingHub:CreateWindow({
     Acrylic = true,
 })
 
--- 窗口标签
-MainWindow:Tag({Title = 'v2.5', Color = Color3.fromHex('#1c1c1c')})
+MainWindow:Tag({Title = 'v2.O', Color = Color3.fromHex('#1c1c1c')})
 local StatusTag = MainWindow:Tag({Title = 'Loading...', Color = Color3.fromHex('#1c1c1c')})
 
--- 优化彩虹文字动画（修复无限循环错误）
 task.spawn(function()
-    local hueStep = 0.0833 -- 12个字母对应12等分色相环
+    local hueStep = 0.0833
     while wait(0.1) do
-        local baseHue = os.clock() * 0.2 % 1 -- 缓慢循环色相
+        local baseHue = os.clock() * 0.2 % 1
         local text = ''
         local letters = {'G','o','o','d',' ','E','v','e','n','i','n','g'}
         
@@ -69,7 +62,6 @@ task.spawn(function()
     end
 end)
 
--- 添加主题
 CatKingHub:AddTheme({
     Outline = Color3.fromHex('#E5E5E5'),
     DialogIcon = Color3.fromHex('#000000'),
@@ -108,50 +100,44 @@ CatKingHub:ToggleAcrylic(true)
 CatKingHub.Transparent = true
 CatKingHub.TransparencyValue = 0.6
 
--- 颜色定义
 local ColorGray = Color3.fromHex('#83889E')
 local ColorBlue = Color3.fromHex('#257AF7')
 
--- ========== About 标签页 ==========
 local AboutTab = MainWindow:Tab({
     IconShape = 'Square',
     IconColor = ColorGray,
-    Title = 'About Cat-King',
+    Title = '通知',
     Icon = 'solar:info-square-bold',
 })
 
 AboutTab:Paragraph({
-    Title = 'What is Cat-King?',
-    Desc = [[Cat King is just an ordinary person living in a country somewhere on Earth.
-I love Roblox, and in my spare time I focus on researching and creating scripts.
-All scripts I release are free to use, and anyone is welcome to use them.
-The reason ads are included is not for profit, but because maintaining, updating,
-and testing scripts requires a significant amount of time and effort.
-In reality, ad revenue is very limited.
-If you would like to support me, you can also do so by purchasing a key,
-which helps me continue improving and updating the scripts.
-My original intention is to allow more players to use safe and reliable scripts for free.
-While there are many no-key scripts available online, a large number of them carry risks
-such as steal Roblox account or steal Robux.
-Even though my scripts may not be as powerful as some others,
-I will continue to improve and make them better.
-"Free is the most expensive."
-Thank you for your understanding and support.
-Have fun, enjoy your game, and wish you happiness every day!]],
+    Title = '作者的制作感盐',
+    Desc = [[○○只是一个生活在cn国家的人民 本熊已经消失了、
+我喜欢玩罗布肉丝，我会用我的剩余时间研究和制作脚本虽然我只会用ai.
+我瞎做的脚本都是免费的，你们可以随便用，.虽然有些功能会导致封号.
+我后续做的脚本可能会带卡密，狠狠圈爆你们的米(贪财表情包),
+做脚本需要测试很多东西.可能需要成千上百遍(小难过表情包).
+实际上我每天都会做，但我太懒了(大玉表情包).
+如果我后续要卡密了，我在想是否要花钱购买毕竟这还很远,
+如果我写的脚本有什么问题，可以随时向我的朋友本熊汇报.
+我的初衷就是给那些没有脚本的人做脚本.虽然其他人也可能这么做.
+我目前不认为。那些免费不要卡密的脚本安全。毕竟天上没有馅饼，对吧
+比如说直接盗走你的账户和罗宝(恶魔表情包).
+尽管我的神秘脚本可能没有其他的强,
+我想改进，但是我没有办法,
+感谢你使用我的脚本]],
 })
 
 AboutTab:Image({
-    Image = 'https://i.pinimg.com/736x/ca/68/6e/ca686e9577d7c2c3801e551ccdaa138f.jpg',
+    Image = 'https://raw.githubusercontent.com/xxiaoziyu-source/oo-/main/Screenshot_2025_1122_201419.png',
     Radius = 9,
     AspectRatio = '1:1',
 })
 AboutTab:Space()
 AboutTab:Select()
 
--- ========== Universal 分类 ==========
 local UniversalSection = MainWindow:Section({Title = 'Universal'})
 
--- Players 标签页
 local PlayersTab = UniversalSection:Tab({
     IconShape = 'Square',
     IconColor = ColorGray,
